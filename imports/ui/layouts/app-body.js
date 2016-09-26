@@ -43,7 +43,7 @@ Template.App_body.helpers({
     return Meteor.isCordova && 'cordova';
   },
   emailLocalPart() {
-    const email = Meteor.user().emails[0].address;
+    const email = Meteor.user().services.facebook.email;
     return email.substring(0, email.indexOf('@'));
   },
   userMenuOpen() {
