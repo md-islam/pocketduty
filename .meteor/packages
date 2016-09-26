@@ -22,3 +22,13 @@ autopublish@1.0.7             # Publish all data to the clients (for prototyping
 insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 accounts-ui
 accounts-password
+accounts-facebook
+service-configuration
+kadira:flow-router
+kadira:blaze-layout
+useraccounts:core
+useraccounts:flow-routing
+arillo:flow-router-helpers
+underscore
+aldeed:template-extension
+useraccounts:unstyled

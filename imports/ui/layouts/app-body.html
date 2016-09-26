@@ -1,0 +1,59 @@
+<template name="App_body">
+    <div id="container" class="{{menuOpen}} {{cordova}}">
+      <section id="menu">
+        {{#if currentUser}}
+          <div class="btns-group-vertical">
+            <a href="#" class="js-user-menu btn-secondary">
+              {{#if userMenuOpen}}
+                <span class="icon-arrow-up"></span>
+                {{else}}
+                <span class="icon-arrow-down"></span>
+              {{/if}}
+
+              {{emailLocalPart}}
+            </a>
+            {{#if userMenuOpen}}
+              <a class="js-logout btn-secondary">
+                Logout
+              </a>
+            {{/if}}
+          </div>
+        {{else}}
+          <div class="btns-group">
+            <a href="{{pathFor 'signin'}}" class="btn-secondary">
+              Sign In
+            </a>
+            <a href="{{pathFor 'join'}}" class="btn-secondary">
+              Join
+            </a>
+          </div>
+        {{/if}}
+      </section>
+
+      {{#unless connected}}
+        <div class="notifications">
+          <div class="notification">
+            <span class="icon-sync"></span>
+            <div class="meta">
+              <div class="title-notification">
+                Tring to connect
+              </div>
+              <div class="description">
+                Connection Issues
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/unless}}
+
+      <div class="content-overlay"></div>
+
+      <div id="content-container">
+          {{#if Template.subscriptionsReady}}
+            {{> Template.dynamic template=main}}
+          {{else}}
+            {{> App_loading}}
+          {{/if}}
+      </div>
+    </div>
+</template>
