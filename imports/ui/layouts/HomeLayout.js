@@ -8,6 +8,7 @@ import { $ } from 'meteor/jquery';
 
 import '../../ui/components/Header.html';
 import '../../ui/components/SideNav.html';
+import '../../ui/components/ConnectionStatus.html';
 import './HomeLayout.html';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
@@ -35,3 +36,19 @@ Template.HomeLayout.onCreated(function appBodyOnCreated() {
     userMenuOpen: false,
   });
 });
+
+Template.HomeLayout.helpers({
+  connected: function(){
+    if (showConnectionIssue.get()) {
+      return Meteor.status().connected;
+    }
+
+    return true;
+  }
+});
+
+FlowRouter.triggers.enter([function(context, redirect){
+  if(Meteor.userId()) {
+    FlowRouter.go('home');
+  }
+}]);

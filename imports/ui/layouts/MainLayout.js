@@ -7,6 +7,7 @@ import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
 
 import '../../ui/components/Header.html';
+import '../../ui/components/ConnectionStatus.html';
 import './MainLayout.html';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
@@ -33,4 +34,14 @@ Template.MainLayout.onCreated(function appBodyOnCreated() {
     menuOpen: false,
     userMenuOpen: false,
   });
+});
+
+Template.MainLayout.helpers({
+  connected: function(){
+    if (showConnectionIssue.get()) {
+      return Meteor.status().connected;
+    }
+
+    return true;
+  }
 });
