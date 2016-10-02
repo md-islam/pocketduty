@@ -7,12 +7,38 @@ import {FlowRouter} from 'meteor/kadira:flow-router';
 import {BlazeLayout} from 'meteor/kadira:blaze-layout';
 import '../../ui/accounts/accounts-templates.js';
 
-import '../../ui/layouts/app-body.js';
+import '../../ui/layouts/MainLayout.js';
+import '../../ui/layouts/HomeLayout.js';
 
-FlowRouter.route('/' , {
-	name: 'App.login',
+Accounts.onLogin(function(){
+	FlowRouter.go('home');
+});
+
+Accounts.onLogout(function(){
+	FlowRouter.go('main');
+});
+
+FlowRouter.triggers.enter([function(context, redirect){
+	if(!Meteor.userId()) {
+		FlowRouter.go('main');
+	}
+}]);
+
+FlowRouter.route('/', {
+	name: 'main',
 	action() {
-		BlazeLayout.render('App_body')
-	},
+		//GAnalytics.pageview();
+		BlazeLayout.render('MainLayout');
+	}
+});
 
+FlowRouter.route('/home', {
+	name: 'home',
+	action() {
+		if(Meteor.userId()){
+			FlowRouter.go('home');
+		}
+		//GAnalytics.pageview();
+		BlazeLayout.render('HomeLayout');
+	}
 });

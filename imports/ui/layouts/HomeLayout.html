@@ -1,0 +1,34 @@
+ 
+ <template name="HomeLayout">
+ 	{{> Header}}
+ 	{{> SideNav}}
+ 	<main class="home-layout">
+		{{> Template.dynamic template=main}}
+ 	</main>
+
+ 	{{#unless connected}}
+        <div class="notifications">
+          <div class="notification">
+            <span class="icon-sync"></span>
+            <div class="meta">
+              <div class="title-notification">
+                Tring to connect
+              </div>
+              <div class="description">
+                Connection Issues
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/unless}}
+
+      <div class="content-overlay"></div>
+
+      <div id="content-container">
+          {{#if Template.subscriptionsReady}}
+            {{> Template.dynamic template=main}}
+          {{else}}
+            {{> App_loading}}
+          {{/if}}
+      </div>
+ </template>
