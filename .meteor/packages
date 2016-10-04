@@ -32,3 +32,17 @@ arillo:flow-router-helpers
 underscore
 aldeed:template-extension
 useraccounts:unstyled
+
+#adding some packages
+erasaur:meteor-lodash
+stolinski:stylus-multi
+fortawesome:fontawesome
+spiderable
+fastclick
+raix:handlebar-helpers
+meteortoys:allthings
+aldeed:autoform
+aldeed:collection2
+matb33:bootstrap-glyphicons
+zimme:active-route
+gwendall:auth-client-callbacks

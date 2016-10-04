@@ -1,0 +1,9 @@
+ 
+ <template name="HomeLayout">
+ 	{{> Header}}
+ 	{{> SideNav}}
+ 	<main class="home-layout">
+		{{> Template.dynamic template=main}}
+ 	</main>
+  {{> ConnectionStatus}}
+ </template>

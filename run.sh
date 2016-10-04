@@ -1,0 +1,1 @@
+MONGO_URL=mongodb://admin:123456@ds041526.mlab.com:41526/pocketduty meteor run --settings settings.json

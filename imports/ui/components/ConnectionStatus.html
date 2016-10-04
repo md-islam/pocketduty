@@ -1,0 +1,17 @@
+ <template name="ConnectionStatus">
+  {{#unless connected}}
+    <div class="notifications">
+      <div class="notification">
+        <span class="icon-sync"></span>
+        <div class="meta">
+          <div class="title-notification">
+            Trying to connect
+          </div>
+          <div class="description">
+            Connection Issues
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/unless}}
+</template>
