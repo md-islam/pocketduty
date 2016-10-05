@@ -9,9 +9,10 @@ import '../../ui/accounts/accounts-templates.js';
 import '../../ui/pages/Main.html';
 import '../../ui/layouts/MainLayout.js';
 import '../../ui/pages/Dashboard.html';
+import '../../ui/pages/NewDuty.html';
 
 
-// Home Page
+// Main Page (User not logged in)
 FlowRouter.route('/', {
     name: 'main',
     action() {
@@ -19,7 +20,7 @@ FlowRouter.route('/', {
     }
 });
 
-// Home Page
+// Home Page (User logged in)
 FlowRouter.route('/dashboard', {
     name: 'dashboard',
     action() {
@@ -29,6 +30,19 @@ FlowRouter.route('/dashboard', {
         BlazeLayout.render("MainLayout", {main: "Dashboard"});
     }
 });
+
+// // Home Page (New Duty)
+// FlowRouter.route('/newduty', {
+//     name: 'newduty',
+//     action() {
+//         if(!Meteor.userId()) {
+//         FlowRouter.go('main');
+//         }
+//         BlazeLayout.render("MainLayout", {main: "NewDuty"});
+//     }
+// });
+
+
 
 Accounts.onLogin(function(){
     FlowRouter.go('dashboard');

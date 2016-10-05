@@ -1,6 +1,9 @@
 <template name="Header">
     <header class="header">
         <h3 class="site-title"><a href="/"><img class="logo_img" alt="PocketDuty Logo" height="50"></a>PocketDuty</h3>
+        {{#if currentUser}}
+         <img src="{{currentUser.profile.picture}}" alt="Profile picture" width="42" height="42">
+        {{/if}}
         {{> loginButtons}}
     </header>
 </template>
