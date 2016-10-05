@@ -6,16 +6,16 @@
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {BlazeLayout} from 'meteor/kadira:blaze-layout';
 import '../../ui/accounts/accounts-templates.js';
-
+import '../../ui/pages/Main.html';
 import '../../ui/layouts/MainLayout.js';
-import '../../ui/layouts/HomeLayout.js';
+import '../../ui/pages/Dashboard.html';
 
 
 // Home Page
 FlowRouter.route('/', {
-    name: 'home',
+    name: 'main',
     action() {
-        BlazeLayout.render("HomeLayout", {main: "Home"});
+        BlazeLayout.render("MainLayout", {main: "Main"});
     }
 });
 
@@ -23,24 +23,23 @@ FlowRouter.route('/', {
 FlowRouter.route('/dashboard', {
     name: 'dashboard',
     action() {
-    	if(Meteor.userId()){
-			FlowRouter.go('home');
-		}
-        BlazeLayout.render("AppLayout", {main: "Dashboard"});
+        if(!Meteor.userId()) {
+        FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "Dashboard"});
     }
 });
 
+Accounts.onLogin(function(){
+    FlowRouter.go('dashboard');
+});
 
-// Accounts.onLogin(function(){
-//     FlowRouter.go('home');
-// });
+Accounts.onLogout(function(){
+    FlowRouter.go('main');
+});
 
-// Accounts.onLogout(function(){
-//     FlowRouter.go('main');
-// });
-
-// FlowRouter.triggers.enter([function(context, redirect){
-//     if(!Meteor.userId()) {
-//         FlowRouter.go('main');
-//     }
-// }]);
+FlowRouter.triggers.enter([function(context, redirect){
+    if(!Meteor.userId()) {
+        FlowRouter.go('main');
+    }
+}]);

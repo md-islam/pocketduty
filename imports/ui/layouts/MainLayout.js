@@ -9,6 +9,8 @@ import { $ } from 'meteor/jquery';
 import '../../ui/partials/Header.html';
 import '../../ui/components/ConnectionStatus.html';
 import './MainLayout.html';
+import '../partials/Header.html';
+import '../partials/AppNav.html';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
@@ -45,3 +47,5 @@ Template.MainLayout.helpers({
     return true;
   }
 });
+
+Template.ConnectionStatus.inheritsHelpersFrom('MainLayout');
