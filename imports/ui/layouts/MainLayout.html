@@ -1,10 +1,7 @@
-
 <template name="MainLayout">	
 	{{> Header}}
-		<main>
-			<div class="billboard">
-				<h3>Place for you to relax and we will take care of the rest</h3>
-			</div>
+		<main class="main-layout">
+			{{> Template.dynamic template=main}}
 		</main>
 		{{> ConnectionStatus}}
 </template>

@@ -10,35 +10,37 @@ import '../../ui/accounts/accounts-templates.js';
 import '../../ui/layouts/MainLayout.js';
 import '../../ui/layouts/HomeLayout.js';
 
-Accounts.onLogin(function(){
-	FlowRouter.go('home');
-});
 
-Accounts.onLogout(function(){
-	FlowRouter.go('main');
-});
-
-FlowRouter.triggers.enter([function(context, redirect){
-	if(!Meteor.userId()) {
-		FlowRouter.go('main');
-	}
-}]);
-
+// Home Page
 FlowRouter.route('/', {
-	name: 'main',
-	action() {
-		//GAnalytics.pageview();
-		BlazeLayout.render('MainLayout');
-	}
+    name: 'home',
+    action() {
+        BlazeLayout.render("HomeLayout", {main: "Home"});
+    }
 });
 
-FlowRouter.route('/home', {
-	name: 'home',
-	action() {
-		if(Meteor.userId()){
+// Home Page
+FlowRouter.route('/dashboard', {
+    name: 'dashboard',
+    action() {
+    	if(Meteor.userId()){
 			FlowRouter.go('home');
 		}
-		//GAnalytics.pageview();
-		BlazeLayout.render('HomeLayout');
-	}
+        BlazeLayout.render("AppLayout", {main: "Dashboard"});
+    }
 });
+
+
+// Accounts.onLogin(function(){
+//     FlowRouter.go('home');
+// });
+
+// Accounts.onLogout(function(){
+//     FlowRouter.go('main');
+// });
+
+// FlowRouter.triggers.enter([function(context, redirect){
+//     if(!Meteor.userId()) {
+//         FlowRouter.go('main');
+//     }
+// }]);

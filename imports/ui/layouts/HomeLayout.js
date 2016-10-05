@@ -6,8 +6,8 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
 
-import '../../ui/components/Header.html';
-import '../../ui/components/SideNav.html';
+import '../../ui/partials/Header.html';
+import '../../ui/partials/AppNav.html';
 import '../../ui/components/ConnectionStatus.html';
 import './HomeLayout.html';
 
