@@ -4,4 +4,6 @@
 import '../../api/duties/methods.js';
 import '../../api/duties/server/publications.js';
 import '../../api/shoppingDuties/methods.js';
-import '../../api/shoppingDuties/server/publications.js'
+import '../../api/shoppingDuties/server/publications.js';
+import '../../api/laundryDuties/methods.js';
+import '../../api/laundryDuties/server/publications.js';

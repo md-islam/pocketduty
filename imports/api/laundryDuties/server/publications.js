@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-import { ShoppingDuties } from '../laundryDuties.js';
+import { LaundryDuties } from '../laundryDuties.js';
 
 Meteor.publish('laundryDuties', function laundryDuties(){
   if(!this.userId){

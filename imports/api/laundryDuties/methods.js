@@ -11,7 +11,7 @@ import { AcceptableDutyStatuses } from '../duties/duties.js';
 export const LaundryDutyPrice = 10; 
 
 export const insertLaundryDuty = new ValidatedMethod({
-  name: 'laundyDuties.insert',
+  name: 'laundryDuties.insert',
   validate: LaundryDuties.simpleSchema().pick(['title', 'dueDate', 'description', 'loadNo']).validator({ clean: true, filter: false }),
   run({ title, dueDate, description, loadNo }) {
     if (!this.userId) {
