@@ -57,12 +57,14 @@ input[type="password"] {
     &:hover {
         background: $accent - 30;
         border-color: $accent - 30;
+        color: #fff;
     }
 }
 
 .btn-text {
     @extend .btn;
     background: transparent;
+    color: #1b66ff;
 }
 
 .btn-primary {
@@ -73,6 +75,10 @@ input[type="password"] {
         background: $accent - 30;
         border-color: $accent - 30;
     }
+}
+
+.btn-group {
+    text-align: center;
 }
 
 
@@ -194,6 +200,11 @@ input[type="password"] {
 
 .page-title {
     margin-top: 0;
+    text-align: center;
+}
+
+.page-subtitle {
+    margin-top : 10%;
     text-align: center;
 }
 
