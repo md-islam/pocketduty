@@ -2,4 +2,6 @@
 // We'd import all the duty methods here
 // For reference https://github.com/meteor/todos/blob/master/imports/startup/server/register-api.js
 import '../../api/duties/methods.js';
-import '../../api/duties/server/publications';
+import '../../api/duties/server/publications.js';
+import '../../api/shoppingDuties/methods.js';
+import '../../api/shoppingDuties/server/publications.js'

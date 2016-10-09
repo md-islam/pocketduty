@@ -8,8 +8,8 @@ import {BlazeLayout} from 'meteor/kadira:blaze-layout';
 import '../../ui/accounts/accounts-templates.js';
 import '../../ui/pages/Main.html';
 import '../../ui/layouts/MainLayout.js';
-import '../../ui/pages/Dashboard.html';
-import '../../ui/pages/NewDuty.html';
+import '../../ui/pages/Dashboard.js';
+import '../../ui/pages/NewDuty.js';
 
 
 // Main Page (User not logged in)
@@ -25,11 +25,22 @@ FlowRouter.route('/dashboard', {
     name: 'dashboard',
     action() {
         if(!Meteor.userId()) {
-        FlowRouter.go('main');
+            FlowRouter.go('main');
         }
         BlazeLayout.render("MainLayout", {main: "Dashboard"});
     }
 });
+
+// Create Duty Screen
+FlowRouter.route('/new_duty', {
+    name: 'new_duty',
+    action() {
+        if(!Meteor.userId()){
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "NewDuty"})
+    }
+})
 
 // // Home Page (New Duty)
 // FlowRouter.route('/newduty', {
