@@ -11,6 +11,7 @@ import '../../ui/layouts/MainLayout.js';
 import '../../ui/pages/Dashboard.js';
 import '../../ui/pages/NewDuty.js';
 import '../../ui/components/shoppingDuty.js';
+import '../../ui/pages/NewLaundryDuty.js';
 
 
 // Main Page (User not logged in)
@@ -43,6 +44,7 @@ FlowRouter.route('/new_duty', {
     }
 })
 
+
 // Create Shopping Duty Screen
 FlowRouter.route('/shopping_duty', {
     name: 'shopping_duty',
@@ -53,6 +55,31 @@ FlowRouter.route('/shopping_duty', {
         BlazeLayout.render("MainLayout", {main: "shoppingDuty"})
     }
 })
+
+// Create New Laundry Duty Screen
+FlowRouter.route('/new_laundry', {
+    name: 'new_laundry',
+    action() {
+        if(!Meteor.userId()){
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "NewLaundryDuty"})
+    }
+})
+
+
+// // Home Page (New Duty)
+// FlowRouter.route('/newduty', {
+//     name: 'newduty',
+//     action() {
+//         if(!Meteor.userId()) {
+//         FlowRouter.go('main');
+//         }
+//         BlazeLayout.render("MainLayout", {main: "NewDuty"});
+//     }
+// });
+
+
 
 
 Accounts.onLogin(function(){
