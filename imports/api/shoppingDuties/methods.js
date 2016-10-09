@@ -12,24 +12,26 @@ export const ShoppingDutyPrice = 10;
 
 export const insertShoppingDuty = new ValidatedMethod({
   name: 'shoppingDuties.insert',
-  validate: ShoppingDuties.simpleSchema().pick(['title', 'description', 'maxSpending']).validator({ clean: true, filter: false }),
-  run({ title, description, maxSpending }) {
+  validate: ShoppingDuties.simpleSchema().pick(['title', 'dueDate', 'description', 'maxSpending']).validator({ clean: true, filter: false }),
+  run({ title, dueDate, description, maxSpending }) {
     if (!this.userId) {
       throw new Meteor.Error('shoppingDuties.insert.accessDenied',
         'You must be signed in to create a new Shopping Duty');
     }
 
+    console.log(title);
     const shoppingDuty = {
       title,
       description,
       userId : this.userId,
+      dueDate,
       status: AcceptableDutyStatuses.New,
       dateCreated: new Date(),
       maxSpending,
       price: ShoppingDutyPrice
     };
 
-    ShoppingDuties.insert(todo);
+    ShoppingDuties.insert(shoppingDuty);
   },
 });
 
