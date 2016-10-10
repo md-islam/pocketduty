@@ -42,17 +42,16 @@ FlowRouter.route('/new_duty', {
     }
 })
 
-// // Home Page (New Duty)
-// FlowRouter.route('/newduty', {
-//     name: 'newduty',
-//     action() {
-//         if(!Meteor.userId()) {
-//         FlowRouter.go('main');
-//         }
-//         BlazeLayout.render("MainLayout", {main: "NewDuty"});
-//     }
-// });
-
+// Create Shopping Duty Screen
+FlowRouter.route('/shopping_duty', {
+    name: 'shopping_duty',
+    action() {
+        if(!Meteor.userId()){
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "shoppingDuty"})
+    }
+})
 
 
 Accounts.onLogin(function(){

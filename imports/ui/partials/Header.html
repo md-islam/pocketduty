@@ -1,9 +1,16 @@
 <template name="Header">
     <header class="header">
         <h3 class="site-title"><a href="/"><img class="logo_img" alt="PocketDuty Logo" height="50"></a>PocketDuty</h3>
+        
+      
         {{#if currentUser}}
          <img src="{{currentUser.profile.picture}}" alt="Profile picture" width="42" height="42">
+         <div class="btn-grouping">	
+        	<button type="employee-button" class="btn btn-default">Employee</button>
+       	 	<button type="employer-button" class="btn btn-default">Employer</button>
+       	</div>
         {{/if}}
         {{> loginButtons align="right"}}
+       
     </header>
 </template>

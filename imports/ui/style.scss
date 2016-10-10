@@ -44,15 +44,14 @@ input[type="password"] {
 }
 
 .btn, button {
-    background: $accent - 30;
+    background: #fff;
     text-transform: uppercase;
     text-decoration: none;
     display: inline-block;
-    font-weight: 800;
-    padding: 10px 51px 7px;
-    color: #fff;
+    font-weight: 500;
+    color: #000;
     letter-spacing: 1px;
-    border: solid 2px #1b66ff;
+    border: solid 1px #000;
     @include trans();
     &:hover {
         background: $accent - 30;
@@ -75,16 +74,6 @@ input[type="password"] {
         background: $accent - 30;
         border-color: $accent - 30;
     }
-}
-
-.btn-2group {
-    text-align: center;
-    vertical-align: center;
-    }
-
-.btn-grouping {
-    text-align: center;
-    vertical-align: center;
 }
 
 .shopping_btn {
@@ -120,6 +109,15 @@ input[type="password"] {
         margin-right: 25px;
         margin-left: 25px;
         margin-bottom: 50px;
+}
+
+.duties-screen {
+    margin-top: 5%;
+    text-align: center;
+}
+
+.nav-navbar-nav {
+    color: #fff;
 }
 
 .header {
@@ -239,7 +237,7 @@ input[type="password"] {
 }
 
 .page-title {
-    margin-top: 0;
+    margin-top: 20px;
     text-align: center;
 }
 
