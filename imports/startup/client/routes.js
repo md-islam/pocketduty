@@ -56,6 +56,7 @@ FlowRouter.route('/shopping_duty', {
     }
 })
 
+
 // Create New Laundry Duty Screen
 FlowRouter.route('/new_laundry', {
     name: 'new_laundry',
@@ -67,6 +68,16 @@ FlowRouter.route('/new_laundry', {
     }
 })
 
+// Create Duty Screen
+FlowRouter.route('/new_academic_duty', {
+    name: 'new_academic_duty',
+    action() {
+        if(!Meteor.userId()){
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "NewAcademicDuty"})
+    }
+})
 
 // // Home Page (New Duty)
 // FlowRouter.route('/newduty', {
