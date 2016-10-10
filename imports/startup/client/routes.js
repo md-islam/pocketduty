@@ -10,7 +10,7 @@ import '../../ui/pages/Main.html';
 import '../../ui/layouts/MainLayout.js';
 import '../../ui/pages/Dashboard.js';
 import '../../ui/pages/NewDuty.js';
-import '../../ui/components/shoppingDuty.js';
+import '../../ui/pages/NewShoppingDuty.js';
 import '../../ui/pages/NewLaundryDuty.js';
 import '../../ui/pages/NewAcademicDuty.js';
 
@@ -53,13 +53,13 @@ FlowRouter.route('/shopping_duty', {
         if(!Meteor.userId()){
             FlowRouter.go('main');
         }
-        BlazeLayout.render("MainLayout", {main: "shoppingDuty"})
+        BlazeLayout.render("MainLayout", {main: "NewShoppingDuty"})
     }
 })
 
 
 // Create New Laundry Duty Screen
-FlowRouter.route('/new_laundry', {
+FlowRouter.route('/new_laundry_duty', {
     name: 'new_laundry',
     action() {
         if(!Meteor.userId()){
