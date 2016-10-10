@@ -10,6 +10,7 @@ import '../../ui/pages/Main.html';
 import '../../ui/layouts/MainLayout.js';
 import '../../ui/pages/Dashboard.js';
 import '../../ui/pages/NewDuty.js';
+import '../../ui/components/shoppingDuty.js';
 
 
 // Main Page (User not logged in)

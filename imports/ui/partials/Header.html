@@ -5,9 +5,10 @@
       
         {{#if currentUser}}
          <img src="{{currentUser.profile.picture}}" alt="Profile picture" width="42" height="42">
+
          <div class="btn-grouping">	
-        	<button type="employee-button" class="btn btn-default">Employee</button>
-       	 	<button type="employer-button" class="btn btn-default">Employer</button>
+        	<a href="/"><button type="employee-button" class="btn btn-default">Employee</button></a>
+       	 	<a href="/"><button type="employer-button" class="btn btn-default">Employer</button></a>
        	</div>
         {{/if}}
         {{> loginButtons align="right"}}
