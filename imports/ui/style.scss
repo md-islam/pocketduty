@@ -77,10 +77,50 @@ input[type="password"] {
     }
 }
 
-.btn-group {
+.btn-2group {
     text-align: center;
+    vertical-align: center;
+    }
+
+.btn-grouping {
+    text-align: center;
+    vertical-align: center;
 }
 
+.shopping_btn {
+        content: url('/shopping_duty_icon.png');
+        margin-right: 25px;
+        margin-left: 25px;
+        margin-bottom: 50px;
+}
+
+.academic_btn {
+        content: url('/academic_duty_icon.png');
+        margin-right: 25px;
+        margin-left: 25px;
+        margin-bottom: 50px;
+}
+
+.laundry_btn {
+        content: url('/laundry_duty_icon.png');
+        margin-right: 25px;
+        margin-left: 25px;
+        margin-bottom: 50px;
+}
+
+.transport_btn {
+        content: url('/transport_duty_icon.png');
+        margin-right: 25px;
+        margin-left: 25px;
+        margin-bottom: 50px;
+}
+
+.mail_btn {
+        content: url('/mail_duty_icon.png');
+        margin-right: 25px;
+        margin-left: 25px;
+        margin-bottom: 50px;
+}
 
 .header {
     background: white;
