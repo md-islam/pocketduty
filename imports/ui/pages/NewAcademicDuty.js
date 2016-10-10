@@ -7,4 +7,4 @@ Template.NewAcademicDuty.onCreated(function NewAcademicDutyCreated() {
 	this.autorun(() => {
 		this.subscribe('academicDuties', {});
 	});
-}
+});

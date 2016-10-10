@@ -12,6 +12,7 @@ import '../../ui/pages/Dashboard.js';
 import '../../ui/pages/NewDuty.js';
 import '../../ui/components/shoppingDuty.js';
 import '../../ui/pages/NewLaundryDuty.js';
+import '../../ui/pages/NewAcademicDuty.js';
 
 
 // Main Page (User not logged in)

@@ -12,8 +12,8 @@ export const AcademicDutyPrice = 10;
 
 export const insertAcademicDuty = new ValidatedMethod({
   name: 'academicDuties.insert',
-    validate: AcademicDuties.simpleSchema().pick(['title', 'description', 'dateOfClass', 'classRoomNumber', 'timeRangeOfClass']).validator({ clean: true, filter: false }),
-    run({ title, description, dateOfClass, classRoomNumber, timeRangeOfClass}) {
+    validate: AcademicDuties.simpleSchema().pick(['title','dueDate', 'description', 'dateOfClass', 'classRoomNumber', 'timeRangeOfClass']).validator({ clean: true, filter: false }),
+    run({ title, dueDate, description, dateOfClass, classRoomNumber, timeRangeOfClass}) {
     if (!this.userId) {
       throw new Meteor.Error('academicDuties.insert.accessDenied',
         'You must be signed in to create a new Shopping Duty');
@@ -22,6 +22,7 @@ export const insertAcademicDuty = new ValidatedMethod({
     const academicDuty = {
       title,
       description,
+      dueDate,
       userId : this.userId,
       status: AcceptableDutyStatuses.New,
       dateCreated: new Date(),
@@ -70,7 +71,7 @@ export const updateAcademicDuty = new ValidatedMethod({
 export const removeAcademicDuty = new ValidatedMethod({
   name: 'academicDuties.remove',
   validate: new SimpleSchema({
-    todoId: AcademicDutyPriceDuties.simpleSchema().schema('_id'),
+    todoId: AcademicDuties.simpleSchema().schema('_id'),
   }).validator({ clean: true, filter: false }),
   run({ todoId }) {
     const todo = AcademicDuties.findOne(todoId);
