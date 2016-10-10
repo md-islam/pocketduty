@@ -1,7 +1,11 @@
 <template name="Dashboard">
     <h1 class="page-title">Dashboard</h1>
     	{{> AppNav}}
-	{{#each shoppingDuty in shoppingDuties}}
-		{{> ShoppingDuty (shoppingDuty)}}
-	{{/each}}
+    <div class="container">	
+    	<div class="row">
+			{{#each shoppingDuty in shoppingDuties}}
+				{{> ShoppingDuty (shoppingDuty)}}
+			{{/each}}
+		</div>
+	</div>
 </template>
