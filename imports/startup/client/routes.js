@@ -9,6 +9,7 @@ import '../../ui/accounts/accounts-templates.js';
 import '../../ui/pages/Main.html';
 import '../../ui/layouts/MainLayout.js';
 import '../../ui/pages/Dashboard.js';
+import '../../ui/pages/LaborDashboard.js';
 import '../../ui/pages/NewDuty.js';
 import '../../ui/pages/NewShoppingDuty.js';
 import '../../ui/pages/NewLaundryDuty.js';
@@ -23,9 +24,9 @@ FlowRouter.route('/', {
     }
 });
 
-// Home Page (User logged in)
-FlowRouter.route('/dashboard', {
-    name: 'dashboard',
+// Employer Home Page (User logged in)
+FlowRouter.route('/employer', {
+    name: 'employer',
     action() {
         if(!Meteor.userId()) {
             FlowRouter.go('main');
@@ -34,8 +35,19 @@ FlowRouter.route('/dashboard', {
     }
 });
 
+// Employee Home Page (User logged in)
+FlowRouter.route('/employee', {
+    name: 'employee',
+    action() {
+        if(!Meteor.userId()) {
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "LaborDashboard"});
+    }
+});
+
 // Create Duty Screen
-FlowRouter.route('/new_duty', {
+FlowRouter.route('/employer/new_duty', {
     name: 'new_duty',
     action() {
         if(!Meteor.userId()){
@@ -47,7 +59,7 @@ FlowRouter.route('/new_duty', {
 
 
 // Create Shopping Duty Screen
-FlowRouter.route('/shopping_duty', {
+FlowRouter.route('/employer/new_duty/new_shopping_duty', {
     name: 'shopping_duty',
     action() {
         if(!Meteor.userId()){
@@ -59,7 +71,7 @@ FlowRouter.route('/shopping_duty', {
 
 
 // Create New Laundry Duty Screen
-FlowRouter.route('/new_laundry_duty', {
+FlowRouter.route('/employer/new_duty/new_laundry_duty', {
     name: 'new_laundry',
     action() {
         if(!Meteor.userId()){
@@ -70,7 +82,7 @@ FlowRouter.route('/new_laundry_duty', {
 })
 
 // Create Duty Screen
-FlowRouter.route('/new_academic_duty', {
+FlowRouter.route('/employer/new_duty/new_academic_duty', {
     name: 'new_academic_duty',
     action() {
         if(!Meteor.userId()){
@@ -95,7 +107,7 @@ FlowRouter.route('/new_academic_duty', {
 
 
 Accounts.onLogin(function(){
-    FlowRouter.go('dashboard');
+    FlowRouter.go('main');
 });
 
 Accounts.onLogout(function(){

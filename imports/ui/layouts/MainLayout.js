@@ -11,6 +11,7 @@ import '../../ui/components/ConnectionStatus.html';
 import './MainLayout.html';
 import '../partials/Header.html';
 import '../partials/AppNav.html';
+import '../partials/EmployeeNav.html';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
