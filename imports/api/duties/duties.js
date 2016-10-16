@@ -17,6 +17,7 @@ export const DutySchema = new SimpleSchema({
 	dateExecuted: {type: Date, optional: true, autoform: {type: "hidden"}},
 	dueDate: {type: Date},
 	userId : {type: String, regEx: SimpleSchema.RegEx.Id ,autoform: {type: "hidden"}},
+	laborerId: {type: String, autoform: {type: "hidden"}},
 	status: {type: String, allowedValues: AcceptableDutyStatuses.statuses, autoform: {type: "hidden"}},
 	title: {type: String},
 	description : {type: String},

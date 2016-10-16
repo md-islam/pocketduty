@@ -12,6 +12,7 @@ AutoForm.hooks({
 				dueDate: this.insertDoc.dueDate, 
 				description: this.insertDoc.description,
 				list : this.insertDoc.list, 
+				//laborerId: "none",
 				maxSpending: this.insertDoc.maxSpending}, (err, res) => {
 					if (err) {
 						throw err;

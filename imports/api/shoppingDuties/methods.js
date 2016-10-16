@@ -12,7 +12,7 @@ export const ShoppingDutyPrice = 10;
 
 export const insertShoppingDuty = new ValidatedMethod({
   name: 'shoppingDuties.insert',
-  validate: ShoppingDuties.simpleSchema().pick(['title', 'dueDate', 'description', 'maxSpending' ,'list', 'list.$', 'list.$.description']).validator({ clean: true, filter: false }),
+  validate: ShoppingDuties.simpleSchema().pick(['title', 'dueDate', 'description', 'maxSpending' , 'list', 'list.$', 'list.$.description']).validator({ clean: true, filter: false }),
   run({ title, dueDate, description, maxSpending, list}) {
     if (!this.userId) {
       throw new Meteor.Error('shoppingDuties.insert.accessDenied',
@@ -24,6 +24,7 @@ export const insertShoppingDuty = new ValidatedMethod({
       title,
       description,
       userId : this.userId,
+      laborerId: "none",
       dueDate,
       list,
       status: AcceptableDutyStatuses.New,
@@ -87,6 +88,22 @@ export const removeShoppingDuty = new ValidatedMethod({
   },
 });
 
+export const assignShoppingDuty = new ValidatedMethod({
+  name: 'shoppingDuties.assign',
+  validate: new SimpleSchema({
+    shoppingDutyId: ShoppingDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ shoppingDutyId }) {
+    const duty = ShoppingDuties.findOne(shoppingDutyId);
+
+    if (duty.userId = this.userId) {
+      throw new Meteor.Error('shoppingDuties.remove.accessDenied',
+        'Cannot assign shoppingDuties that is yours');
+    }
+
+    ShoppingDuties.update(shoppingDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.Assigned}});
+  },
+});
 // export const assignDutyToLaborer = new ValidatedMethod({
 //   name: 'shoppingDuties.assign',
 //   validate: new SimpleSchema({
@@ -109,6 +126,7 @@ const SHOPPING_DUTIES_METHODS = _.pluck([
   insertShoppingDuty,
   updateShoppingDuty,
   removeShoppingDuty,
+  assignShoppingDuty,
 ], 'name');
 
 if (Meteor.isServer) {
