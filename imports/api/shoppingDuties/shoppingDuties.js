@@ -55,6 +55,7 @@ ShoppingDuties.publicFields = {
   dueDate: 1,
   dateExecuted: 1,
   userId: 1,
+  laborerId: 1,
   status: 1, // This field will be used for filtering unassigned Duties
   title: 1,
   description: 1,
