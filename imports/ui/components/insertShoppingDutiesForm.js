@@ -10,7 +10,8 @@ AutoForm.hooks({
 			insertShoppingDuty.call({
 				title: this.insertDoc.title, 
 				dueDate: this.insertDoc.dueDate, 
-				description: this.insertDoc.description, 
+				description: this.insertDoc.description,
+				list : this.insertDoc.list, 
 				maxSpending: this.insertDoc.maxSpending}, (err, res) => {
 					if (err) {
 						throw err;
@@ -27,7 +28,8 @@ AutoForm.hooks({
 				newTitle: this.updateDoc.$set.title, 
 				newDueDate: this.updateDoc.$set.dueDate, 
 				newDescription: this.updateDoc.$set.description, 
-				newMaxSpending: this.updateDoc.$set.maxSpending}, (err, res) => {
+				newMaxSpending: this.updateDoc.$set.maxSpending,
+				newList : this.updateDoc.$set.list}, (err, res) => {
 					if (err) {
 						throw err;
 					}

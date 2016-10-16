@@ -12,8 +12,8 @@ export const ShoppingDutyPrice = 10;
 
 export const insertShoppingDuty = new ValidatedMethod({
   name: 'shoppingDuties.insert',
-  validate: ShoppingDuties.simpleSchema().pick(['title', 'dueDate', 'description', 'maxSpending']).validator({ clean: true, filter: false }),
-  run({ title, dueDate, description, maxSpending }) {
+  validate: ShoppingDuties.simpleSchema().pick(['title', 'dueDate', 'description', 'maxSpending' ,'list', 'list.$', 'list.$.description']).validator({ clean: true, filter: false }),
+  run({ title, dueDate, description, maxSpending, list}) {
     if (!this.userId) {
       throw new Meteor.Error('shoppingDuties.insert.accessDenied',
         'You must be signed in to create a new Shopping Duty');
@@ -25,6 +25,7 @@ export const insertShoppingDuty = new ValidatedMethod({
       description,
       userId : this.userId,
       dueDate,
+      list,
       status: AcceptableDutyStatuses.New,
       dateCreated: new Date(),
       maxSpending,
@@ -43,9 +44,12 @@ export const updateShoppingDuty = new ValidatedMethod({
     newTitle: ShoppingDuties.simpleSchema().schema('title'),
     newDescription : ShoppingDuties.simpleSchema().schema('description'),
     newMaxSpending : ShoppingDuties.simpleSchema().schema('maxSpending'),
-    newDueDate: ShoppingDuties.simpleSchema().schema('dueDate')
+    newDueDate: ShoppingDuties.simpleSchema().schema('dueDate'),
+    newList : ShoppingDuties.simpleSchema().schema('list'),
+    'newList.$' : ShoppingDuties.simpleSchema().schema('list.$'),
+    'newList.$.description' : ShoppingDuties.simpleSchema().schema('list.$.description')
   }).validator({ clean: true, filter: false }),
-  run({ shoppingDutyId, newDueDate, newTitle, newDescription, newMaxSpending }) {
+  run({ shoppingDutyId, newDueDate, newTitle, newDescription, newMaxSpending, newList }) {
     // This is complex auth stuff - perhaps denormalizing a userId onto shoppingDuties
     // would be correct here?
     const shoppingDuty = ShoppingDuties.findOne(shoppingDutyId);
@@ -59,7 +63,8 @@ export const updateShoppingDuty = new ValidatedMethod({
         title: (_.isUndefined(newTitle) ? shoppingDuty.title : newTitle),
         description: (_.isUndefined(newDescription) ? shoppingDuty.description : newDescription),
         maxSpending: (_.isUndefined(newMaxSpending) ? shoppingDuty.maxSpending : newMaxSpending),
-        dueDate: (_.isUndefined(newDueDate) ? shoppingDuty.dueDate : newDueDate)
+        dueDate: (_.isUndefined(newDueDate) ? shoppingDuty.dueDate : newDueDate),
+        list: newList
       },
     });
   },

@@ -35,6 +35,13 @@ ShoppingDuties.deny({
 ShoppingDuties.schema = new SimpleSchema([DutySchema, {
   maxSpending : {
     type: Number
+  },
+  list : {
+    type: [Object],
+    minCount: 1
+  },
+  'list.$.description' : {
+    type : String
   }
 }]);
 
@@ -52,7 +59,8 @@ ShoppingDuties.publicFields = {
   title: 1,
   description: 1,
   price: 1,
-  maxSpending: 1
+  maxSpending: 1,
+  list: 1
 };
 
 // TODO This factory has a name - do we have a code style for this?
