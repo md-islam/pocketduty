@@ -7,7 +7,7 @@ import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
 import { AcademicDuties } from './academicDuties.js';
 import { AcceptableDutyStatuses } from '../duties/duties.js';
 
-//Arbitraryily set default academic duty price to $10 dollars.
+//Arbitrarily set default academic duty price to $10 dollars.
 export const AcademicDutyPrice = 10; 
 
 export const insertAcademicDuty = new ValidatedMethod({
@@ -16,7 +16,7 @@ export const insertAcademicDuty = new ValidatedMethod({
     run({ title, dueDate, description, dateOfClass, classRoomNumber, timeRangeOfClass}) {
     if (!this.userId) {
       throw new Meteor.Error('academicDuties.insert.accessDenied',
-        'You must be signed in to create a new Shopping Duty');
+        'You must be signed in to create a new Academic Duty');
     }
 
     const academicDuty = {
@@ -45,24 +45,27 @@ export const updateAcademicDuty = new ValidatedMethod({
     newDescription : AcademicDuties.simpleSchema().schema('description'),
     newDateOfClass : AcademicDuties.simpleSchema().schema('dateOfClass'),
     newClassRoomNumber : AcademicDuties.simpleSchema().schema('classRoomNumber'),
-    newTimeRangeOfClass : AcademicDuties.simpleSchema().schema('timeRangeOfClass')
+    newTimeRangeOfClass : AcademicDuties.simpleSchema().schema('timeRangeOfClass'),
+    newDueDate: AcademicDuties.simpleSchema().schema('dueDate')
   }).validator({ clean: true, filter: false }),
-  run({ academicDutyId, newTitle, newDescription, dateOfClass, classRoomNumber, timeRangeOfClass}) {
+  run({ academicDutyId, newTitle, newDueDate, newDescription, newDateOfClass, newClassRoomNumber, newTimeRangeOfClass}) {
     // This is complex auth stuff - perhaps denormalizing a userId onto shoppingDuties
     // would be correct here?
-    const academicDuty = AcademicDuties.findOne(todoId);
+    const academicDuty = AcademicDuties.findOne(academicDutyId);
+    console.log(academicDuty);
 
-    if (!academicDuty.editableBy(this.userId)) {
+    if (academicDuty.userId != this.userId) {
       throw new Meteor.Error('academicDuties.updateDuty.accessDenied',
         'Cannot edit academicDuty that is not yours');
     }
     AcademicDuties.update(academicDutyId, {
       $set: {
-        title: (_.isUndefined(newText) ? academicDuty.title : newTitle),
+        title: (_.isUndefined(newTitle) ? academicDuty.title : newTitle),
         description: (_.isUndefined(newDescription) ? academicDuty.description : newDescription),
         dateOfClass: (_.isUndefined(newDateOfClass) ? academicDuty.dateOfClass : newDateOfClass),
         classRoomNumber: (_.isUndefined(newDateOfClass) ? academicDuty.classRoomNumber : newClassRoomNumber),
-        timeRangeOfClass: (_.isUndefined(newDateOfClass) ? academicDuty.timeRangeOfClass : newTimeRangeOfClass)
+        timeRangeOfClass: (_.isUndefined(newDateOfClass) ? academicDuty.timeRangeOfClass : newTimeRangeOfClass),
+        dueDate: (_.isUndefined(newDueDate) ? academicDuty.dueDate : newDueDate)
       },
     });
   },
@@ -71,17 +74,17 @@ export const updateAcademicDuty = new ValidatedMethod({
 export const removeAcademicDuty = new ValidatedMethod({
   name: 'academicDuties.remove',
   validate: new SimpleSchema({
-    todoId: AcademicDuties.simpleSchema().schema('_id'),
+    academicDutyId: AcademicDuties.simpleSchema().schema('_id'),
   }).validator({ clean: true, filter: false }),
-  run({ todoId }) {
-    const todo = AcademicDuties.findOne(todoId);
+  run({ academicDutyId }) {
+    const duty = AcademicDuties.findOne(academicDutyId);
 
-    if (!todo.editableBy(this.userId)) {
+    if (duty.userId != this.userId) {
       throw new Meteor.Error('academicDuties.remove.accessDenied',
         'Cannot remove academicDuties that is not yours');
     }
 
-    AcademicDuties.remove(todoId);
+    AcademicDuties.remove(academicDutyId);
   },
 });
 

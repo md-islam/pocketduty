@@ -13,7 +13,7 @@ AcceptableDutyStatuses.statuses =  [AcceptableDutyStatuses.New, AcceptableDutySt
 
 export const DutySchema = new SimpleSchema({
 	_id : {type: String, regEx : SimpleSchema.RegEx.Id, autoform: {type: "hidden"}},
-	dateCreated: {type: Date, denyUpdate: true, /*autoform: {type: "hidden"}*/},
+	dateCreated: {type: Date, denyUpdate: true, autoform: {type: "hidden"}},
 	dateExecuted: {type: Date, optional: true, autoform: {type: "hidden"}},
 	dueDate: {type: Date},
 	userId : {type: String, regEx: SimpleSchema.RegEx.Id ,autoform: {type: "hidden"}},
@@ -21,4 +21,4 @@ export const DutySchema = new SimpleSchema({
 	title: {type: String},
 	description : {type: String},
 	price: {type: Number, autoform: {type: "hidden"}}
-});
+});	

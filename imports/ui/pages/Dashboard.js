@@ -4,7 +4,7 @@ import { AcademicDuties} from '../../api/academicDuties/academicDuties.js';
 import { LaundryDuties} from '../../api/laundryDuties/laundryDuties.js';
 import './Dashboard.html';
 import '../components/shoppingDuty.html';
-import '../components/academicDuty.html';
+import '../components/academicDuty.js';
 import '../components/laundryDuty.html';
 
 Template.Dashboard.onCreated(function(){

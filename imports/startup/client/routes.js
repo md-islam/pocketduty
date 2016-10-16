@@ -14,6 +14,7 @@ import '../../ui/pages/NewDuty.js';
 import '../../ui/pages/NewShoppingDuty.js';
 import '../../ui/pages/NewLaundryDuty.js';
 import '../../ui/pages/NewAcademicDuty.js';
+import '../../ui/pages/EditAcademicDuty.js';
 
 
 // Main Page (User not logged in)
@@ -81,7 +82,7 @@ FlowRouter.route('/employer/new_duty/new_laundry_duty', {
     }
 })
 
-// Create Duty Screen
+// Create New Academic Duty Screen
 FlowRouter.route('/employer/new_duty/new_academic_duty', {
     name: 'new_academic_duty',
     action() {
@@ -90,7 +91,17 @@ FlowRouter.route('/employer/new_duty/new_academic_duty', {
         }
         BlazeLayout.render("MainLayout", {main: "NewAcademicDuty"})
     }
-})
+});
+
+FlowRouter.route('/edit/academic_duty/:_id', {
+   name: 'academic_duty.edit',
+    action() {
+        if(!Meteor.userId()){
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "EditAcademicDuty"})
+    }
+});
 
 // // Home Page (New Duty)
 // FlowRouter.route('/newduty', {

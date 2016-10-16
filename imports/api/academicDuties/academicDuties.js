@@ -42,7 +42,7 @@ AcademicDuties.schema = new SimpleSchema([DutySchema, {
          115
       ],
       defaultValue: 75,
-      label: "Choose a number"
+      label: "Choose duration of the lecture"
    },
    dateOfClass: {
       type: Date,
@@ -50,12 +50,16 @@ AcademicDuties.schema = new SimpleSchema([DutySchema, {
       label: "Date of the class",
       min: new Date("2014-01-01T00:00:00.000Z"),
       autoform: {
-         value: new Date("2014-10-18T00:00:00.000Z")
+         value: new Date("2016-10-20T00:00:00.000Z")
       }
    },
     classRoomNumber: {
-      type: Number,
-      min: 1
+      type: String,
+      label: "Classroom number",
+      max: 50, 
+      autoform: {
+         value: "Engr 329"
+      }
    }
 }]);
 
@@ -66,6 +70,7 @@ AcademicDuties.attachSchema(AcademicDuties.schema);
 // them here to keep them private to the server.
 AcademicDuties.publicFields = {
   dateCreated: 1,
+  dueDate: 1,
   dateExecuted: 1,
   userId: 1,
   status: 1, // This field will be used for filtering unassigned Duties

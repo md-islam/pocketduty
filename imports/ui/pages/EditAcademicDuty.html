@@ -1,0 +1,11 @@
+<template name="EditAcademicDuty">
+    <h1 class="page-title">Edit Academic Duty</h1>
+     	{{> AppNav}}
+     	{{#if Template.subscriptionsReady}}
+ 	    	{{#with getDocument }}
+ 	    		{{> updateAcademicDutiesForm}}
+ 	    	{{/with}}
+     	{{else}}
+     		Loading...
+     	{{/if}}
+ </template>

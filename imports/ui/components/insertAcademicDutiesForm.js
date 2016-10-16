@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import { AcademicDuties } from '../../api/academicDuties/academicDuties.js';
-import { insertAcademicDuty } from '../../api/academicDuties/methods.js';
+import { insertAcademicDuty, updateAcademicDuty } from '../../api/academicDuties/methods.js';
 import './insertAcademicDutiesForm.html';
 
 AutoForm.hooks({
@@ -22,11 +22,35 @@ AutoForm.hooks({
 			);
 			return false;
 		}
-	}
+	},
+  	updateAcademicDutiesForm: {
+ 		beginSubmit: function(){
+			updateAcademicDuty.call({
+ 				academicDutyId: this.updateDoc.$set._id,
+ 				newTitle: this.updateDoc.$set.title, 
+ 				newDueDate: this.updateDoc.$set.dueDate, 
+ 				newDescription: this.updateDoc.$set.description, 
+ 				dateOfClass: this.updateDoc.$set.dateOfClass,
+				classRoomNumber: this.updateDoc.$set.classRoomNumber,
+ 				timeRangeOfClass: this.updateDoc.$set.timeRangeOfClass}, (err, res) => {
+ 					if (err) {
+ 						throw err;
+ 					}
+ 					console.log(res);
+ 			});
+ 			return false;
+ 		}
+ 	}
 });
 
 Template.insertAcademicDutiesForm.helpers({
 	academicDutyCollection(){
 		return AcademicDuties;
 	}
-})
+});
+
+Template.updateAcademicDutiesForm.helpers({
+ 	academicDutyCollection(){
+ 		return AcademicDuties;
+ 	}
+});
