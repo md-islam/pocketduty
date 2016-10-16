@@ -42,22 +42,24 @@ export const updateShoppingDuty = new ValidatedMethod({
     shoppingDutyId: ShoppingDuties.simpleSchema().schema('_id'),
     newTitle: ShoppingDuties.simpleSchema().schema('title'),
     newDescription : ShoppingDuties.simpleSchema().schema('description'),
-    newMaxSpending : ShoppingDuties.simpleSchema().schema('maxSpending')
+    newMaxSpending : ShoppingDuties.simpleSchema().schema('maxSpending'),
+    newDueDate: ShoppingDuties.simpleSchema().schema('dueDate')
   }).validator({ clean: true, filter: false }),
-  run({ shoppingDutyId, newTitle, newDescription, maxSpending }) {
+  run({ shoppingDutyId, newDueDate, newTitle, newDescription, newMaxSpending }) {
     // This is complex auth stuff - perhaps denormalizing a userId onto shoppingDuties
     // would be correct here?
-    const shoppingDuty = ShoppingDuties.findOne(todoId);
-
-    if (!shoppingDuty.editableBy(this.userId)) {
+    const shoppingDuty = ShoppingDuties.findOne(shoppingDutyId);
+    console.log(shoppingDuty);
+    if (shoppingDuty.userId != this.userId) {
       throw new Meteor.Error('shoppingDuties.updateDuty.accessDenied',
         'Cannot edit shoppingDuty that is not yours');
     }
     ShoppingDuties.update(shoppingDutyId, {
       $set: {
-        title: (_.isUndefined(newText) ? shoppingDuty.title : newTitle),
+        title: (_.isUndefined(newTitle) ? shoppingDuty.title : newTitle),
         description: (_.isUndefined(newDescription) ? shoppingDuty.description : newDescription),
-        maxSpending: (_.isUndefined(maxSpending) ? shoppingDuty.maxSpending : newMaxSpending),
+        maxSpending: (_.isUndefined(newMaxSpending) ? shoppingDuty.maxSpending : newMaxSpending),
+        dueDate: (_.isUndefined(newDueDate) ? shoppingDuty.dueDate : newDueDate)
       },
     });
   },
@@ -66,17 +68,17 @@ export const updateShoppingDuty = new ValidatedMethod({
 export const removeShoppingDuty = new ValidatedMethod({
   name: 'shoppingDuties.remove',
   validate: new SimpleSchema({
-    todoId: ShoppingDuties.simpleSchema().schema('_id'),
+    shoppingDutyId: ShoppingDuties.simpleSchema().schema('_id'),
   }).validator({ clean: true, filter: false }),
-  run({ todoId }) {
-    const todo = ShoppingDuties.findOne(todoId);
+  run({ shoppingDutyId }) {
+    const duty = ShoppingDuties.findOne(shoppingDutyId);
 
-    if (!todo.editableBy(this.userId)) {
+    if (duty.userId != this.userId) {
       throw new Meteor.Error('shoppingDuties.remove.accessDenied',
         'Cannot remove shoppingDuties that is not yours');
     }
 
-    ShoppingDuties.remove(todoId);
+    ShoppingDuties.remove(shoppingDutyId);
   },
 });
 

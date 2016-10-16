@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ShoppingDuties } from '../../api/shoppingDuties/shoppingDuties.js';
-import { insertShoppingDuty } from '../../api/shoppingDuties/methods.js';
+import { insertShoppingDuty, updateShoppingDuty } from '../../api/shoppingDuties/methods.js';
 import './insertShoppingDutiesForm.html';
 
 AutoForm.hooks({
@@ -19,6 +19,22 @@ AutoForm.hooks({
 				});
 			return false;
 		}
+	},
+	updateShoppingDutiesForm: {
+		beginSubmit: function(){
+			updateShoppingDuty.call({
+				shoppingDutyId: this.updateDoc.$set._id,
+				newTitle: this.updateDoc.$set.title, 
+				newDueDate: this.updateDoc.$set.dueDate, 
+				newDescription: this.updateDoc.$set.description, 
+				newMaxSpending: this.updateDoc.$set.maxSpending}, (err, res) => {
+					if (err) {
+						throw err;
+					}
+					console.log(res);
+			});
+			return false;
+		}
 	}
 });
 
@@ -27,3 +43,9 @@ Template.insertShoppingDutiesForm.helpers({
 		return ShoppingDuties;
 	}
 });
+
+Template.updateShoppingDutiesForm.helpers({
+	shoppingDutyCollection(){
+		return ShoppingDuties;
+	}
+})
