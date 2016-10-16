@@ -10,7 +10,7 @@ import { AcceptableDutyStatuses } from '../../api/duties/duties.js';
 
 Template.LaborDashboard.onCreated(function(){
 	this.autorun(() => {
-		this.subscribe('shoppingDuties', {});
+		this.subscribe('laborShoppingDuties', {});
 		this.subscribe('academicDuties', {});
 		this.subscribe('laundryDuties', {})
 	});
@@ -19,7 +19,7 @@ Template.LaborDashboard.onCreated(function(){
 Template.LaborDashboard.helpers({
 	shoppingDuties() {
 		console.log("Getting shopping duties");
-		duties = ShoppingDuties.find({userId: { $ne: Meteor.userId() }, status: AcceptableDutyStatuses.New}, { sort: {dateCreated: -1}});
+		duties = ShoppingDuties.find();
 		return duties;
 	},
 	academicDuties() {

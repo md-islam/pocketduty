@@ -15,6 +15,16 @@ Meteor.publish('shoppingDuties', function shoppingDuties(){
   })
 });
 
+Meteor.publish('laborShoppingDuties', function shoppingDuties(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return ShoppingDuties.find({userId: { $ne: this.userId() }}, { sort: {dateCreated: -1}}, {
+    fields : ShoppingDuties.publicFields
+  })
+});
+
 // Meteor.publishComposite('todos.inList', function todosInList(params) {
 //   new SimpleSchema({
 //     listId: { type: String },
