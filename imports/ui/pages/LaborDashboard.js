@@ -10,9 +10,10 @@ import { AcceptableDutyStatuses } from '../../api/duties/duties.js';
 
 Template.LaborDashboard.onCreated(function(){
 	this.autorun(() => {
+		console.log("Yo yo yo");
 		this.subscribe('laborShoppingDuties', {});
 		this.subscribe('academicDuties', {});
-		this.subscribe('laundryDuties', {})
+		this.subscribe('laundryDuties', {});
 	});
 });
 
