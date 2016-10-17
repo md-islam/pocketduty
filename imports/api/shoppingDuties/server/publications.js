@@ -15,12 +15,12 @@ Meteor.publish('shoppingDuties', function shoppingDuties(){
   })
 });
 
-Meteor.publish('laborShoppingDuties', function shoppingDuties(){
+Meteor.publish('laborShoppingDuties', function laborShoppingDuties(){
   if(!this.userId){
     return this.ready();
   }
 
-  return ShoppingDuties.find({userId: { $ne: this.userId() }}, { sort: {dateCreated: -1}}, {
+  return ShoppingDuties.find({userId: { $ne: this.userId }}, { sort: {dateCreated: -1}}, {
     fields : ShoppingDuties.publicFields
   })
 });
