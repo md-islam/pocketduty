@@ -15,6 +15,7 @@ import '../../ui/pages/NewShoppingDuty.js';
 import '../../ui/pages/NewLaundryDuty.js';
 import '../../ui/pages/NewAcademicDuty.js';
 import '../../ui/pages/EditShoppingDuty.js';
+import '../../ui/pages/NewTransportDuty.js';
 
 
 // Main Page (User not logged in)
@@ -113,6 +114,19 @@ FlowRouter.route('/edit/shopping_duty/:_id', {
         BlazeLayout.render("MainLayout", {main: "EditShoppingDuty"})
     }
 })
+
+// Create transport duty route
+FlowRouter.route('/employer/new_duty/new_transport_duty', {
+  name: 'new_transport_duty',
+  action () {
+    if (!Meteor.userId()) {
+      FlowRouter.go('main');
+    }
+    BlazeLayout.render("MainLayout", {
+      main: "NewTransportDuty"
+    })
+  }
+});
 
 
 Accounts.onLogin(function(){

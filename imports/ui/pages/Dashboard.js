@@ -1,17 +1,25 @@
 import {Template} from 'meteor/templating';
+
+
 import { ShoppingDuties} from '../../api/shoppingDuties/shoppingDuties.js';
 import { AcademicDuties} from '../../api/academicDuties/academicDuties.js';
 import { LaundryDuties} from '../../api/laundryDuties/laundryDuties.js';
+import { TransportDuties} from '../../api/transportDuties/transportDuties.js';
+
+
 import './Dashboard.html';
 import '../components/shoppingDuty.js';
 import '../components/academicDuty.html';
 import '../components/laundryDuty.html';
+import '../components/transportDuty.html';
+
 
 Template.Dashboard.onCreated(function(){
 	this.autorun(() => {
 		this.subscribe('shoppingDuties', {});
 		this.subscribe('academicDuties', {});
-		this.subscribe('laundryDuties', {})
+		this.subscribe('laundryDuties', {});
+		this.subscribe('transportDuties', {});
 	});
 });
 
@@ -26,5 +34,11 @@ Template.Dashboard.helpers({
 	},
 	laundryDuties() {
 		return LaundryDuties.find({userId: Meteor.userId()});
+	}, 
+	transportDuties () {
+		console.log("Getting transport duties");
+
+		let duties = TransportDuties.find({userId: Meteor.userId()});
+		return duties;
 	}
 })
