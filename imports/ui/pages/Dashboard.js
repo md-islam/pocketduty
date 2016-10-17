@@ -16,6 +16,7 @@ import '../components/mailDuty.js';
 import '../components/mailDuty.html';
 
 
+
 Template.Dashboard.onCreated(function(){
 	this.autorun(() => {
 		this.subscribe('shoppingDuties', {});
