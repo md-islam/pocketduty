@@ -12,8 +12,9 @@ export const TransportDutyPrice = 10;
 
 export const insertTransportDuty = new ValidatedMethod({
   name: 'transportDuties.insert',
-  validate: TransportDuties.simpleSchema().pick(['title', 'dueDate', 'description', 'maxSpending']).validator({ clean: true, filter: false }),
-  run({ title, dueDate, description, maxSpending }) {
+
+  validate: TransportDuties.simpleSchema().pick(['pickupLocation', 'pickupTime', 'dropoffLocation', 'dueDate', 'passengerNumber']).validator({ clean: true, filter: false }),
+  run({ pickupLocation, pickupTime, dropoffLocation, dueDate, passengerNumber }) {
 
     if (!this.userId) {
       throw new Meteor.Error('transportDuties.insert.accessDenied',
@@ -21,14 +22,16 @@ export const insertTransportDuty = new ValidatedMethod({
     }
 
     const transportDuty = {
-      title,
-      description,
-      userId : this.userId,
+      userId: this.userId,
       dueDate,
       status: AcceptableDutyStatuses.New,
       dateCreated: new Date(),
-      maxSpending,
-      price: TransportDutyPrice
+      passengerNumber,
+      price: TransportDutyPrice,
+      pickupLocation,
+      dropoffLocation,
+      pickupTime,
+      laborerId: "none"
     };
 
     TransportDuties.insert(transportDuty);
@@ -36,56 +39,9 @@ export const insertTransportDuty = new ValidatedMethod({
 });
 
 
-export const updateTransportDuty = new ValidatedMethod({
-  name: 'transportDuties.updateDuty',
-  validate: new SimpleSchema({
-    transportDutyId: TransportDuties.simpleSchema().schema('_id'),
-    newTitle: TransportDuties.simpleSchema().schema('title'),
-    newDescription : TransportDuties.simpleSchema().schema('description'),
-    newMaxSpending : TransportDuties.simpleSchema().schema('maxSpending')
-  }).validator({ clean: true, filter: false }),
-  run({ transportDutyId, newTitle, newDescription, maxSpending }) {
-    // This is complex auth stuff - perhaps denormalizing a userId onto transportDuties
-    // would be correct here?
-    const transportDuty = TransportDuties.findOne(todoId);
-
-    if (!transportDuty.editableBy(this.userId)) {
-      throw new Meteor.Error('transportDuties.updateDuty.accessDenied',
-        'Cannot edit transportDuty that is not yours');
-    }
-    TransportDuties.update(transportDutyId, {
-      $set: {
-        title: (_.isUndefined(newText) ? transportDuty.title : newTitle),
-        description: (_.isUndefined(newDescription) ? transportDuty.description : newDescription),
-        maxSpending: (_.isUndefined(maxSpending) ? transportDuty.maxSpending : newMaxSpending),
-      },
-    });
-  },
-});
-
-export const removeTransportDuty = new ValidatedMethod({
-  name: 'transportDuties.remove',
-  validate: new SimpleSchema({
-    todoId: TransportDuties.simpleSchema().schema('_id'),
-  }).validator({ clean: true, filter: false }),
-  run({ todoId }) {
-    const todo = TransportDuties.findOne(todoId);
-
-    if (!todo.editableBy(this.userId)) {
-      throw new Meteor.Error('transportDuties.remove.accessDenied',
-        'Cannot remove transportDuties that is not yours');
-    }
-
-    TransportDuties.remove(todoId);
-  },
-});
-// });
-
 // Get list of all method names on transportDuties
 const TRANSPORT_DUTIES_METHODS = _.pluck([
   insertTransportDuty,
-  updateTransportDuty,
-  removeTransportDuty,
 ], 'name');
 
 if (Meteor.isServer) {

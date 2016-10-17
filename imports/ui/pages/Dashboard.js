@@ -11,7 +11,7 @@ import './Dashboard.html';
 import '../components/academicDuty.js';
 import '../components/shoppingDuty.js';
 import '../components/laundryDuty.html';
-import '../components/transportDuty.html';
+import '../components/transportDuty.js';
 
 
 Template.Dashboard.onCreated(function(){
@@ -34,10 +34,12 @@ Template.Dashboard.helpers({
 	},
 	laundryDuties() {
 		return LaundryDuties.find({userId: Meteor.userId()});
-	}, 
+	},
 	transportDuties () {
 		console.log("Getting transport duties");
-
+		console.log('bro',TransportDuties.find().fetch());
+		window.ShoppingDuties = ShoppingDuties;
+		window.TransportDuties = TransportDuties;
 		let duties = TransportDuties.find({userId: Meteor.userId()});
 		return duties;
 	}

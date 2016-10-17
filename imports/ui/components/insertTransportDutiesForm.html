@@ -1,7 +1,23 @@
 <template name="insertTransportDutiesForm">
-	<div class="container">
+	<div class="container" style="margin-left: 100px;">
 		<div class="row">
 			<div class="col-md-8">
+
+				<div class="form-group">
+					<label class="control-label">Pickup Time</label>
+					<input name="pickupTime" class="form-control" id="pickupTime" type="text" placeholder="Pickup Time" />
+				</div>
+
+				<div class="form-group">
+					<label class="control-label">Pickup Location</label>
+					<input name="pickupLocation" class="form-control" id="pickupLocation" type="text" placeholder="Pickup location" />
+				</div>
+
+				<div class="form-group">
+					<label class="control-label">Dropoff Location</label>
+					<input name="dropoffLocation" class="form-control" id="dropoffLocation" type="text" placeholder="Dropoff location" />
+				</div>
+
 				{{> quickForm collection=transportDutyCollection id="insertTransportDutyForm" type="method" meteormethod="insertTransportDuty"}}
 			</div>
 		</div>
