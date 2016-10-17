@@ -3,3 +3,4 @@
 import './useraccounts-configuration.js';
 import '../../api/duties/methods.js';
 import '../../api/shoppingDuties/methods.js';
+import '../../api/transportDuties/methods.js';
