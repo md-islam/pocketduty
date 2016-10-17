@@ -9,3 +9,5 @@ import '../../api/laundryDuties/methods.js';
 import '../../api/laundryDuties/server/publications.js';
 import '../../api/academicDuties/methods.js';
 import '../../api/academicDuties/server/publications.js';
+import '../../api/transportDuties/methods.js';
+import '../../api/transportDuties/server/publications.js';

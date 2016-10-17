@@ -4,14 +4,12 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 import { DutySchema, AcceptableDutyStatuses } from '../duties/duties.js';
 
+
 class TransportDutiesCollection extends Mongo.Collection {
   insert(doc, callback) {
     const ourDoc = doc;
-    console.log('doc',doc);
     ourDoc.createdAt = ourDoc.dateCreated || new Date();
-    // ourDoc.maxSpending = doc.maxSpending.replace(/[0-9]*/);
     const result = super.insert(ourDoc, callback);
-
     return result;
   }
   update(selector, modifier) {
@@ -35,18 +33,51 @@ TransportDuties.deny({
 });
 
 TransportDuties.schema = new SimpleSchema([DutySchema, {
-  description : {
-    type: String,
-    label: "Shopping List"
+  dueDate: {
+    type: Date,
+    label: "Due Date",
+    optional: true
   },
-  maxSpending : {
+  passengerNumber : {
     type: Number,
-    // allowedValues: ["$10", "$20","$30","$40","$50","$60","$70","$80","$90","$100"],
-    allowedValues: [10,20,30,40,50,60,70,80,90,100],
+    allowedValues: [1, 2, 3, 4, 5, 6],
+    label: "Passenger Number",
     autoform: {
       afFieldInput: {
-        firstOption: "(Select a Price)"
+        firstOption: "(Select number)"
       }
+    }
+  },
+  pickupLocation : {
+    type: String,
+    autoform: {
+      type: "hidden"
+    }
+  },
+  dropoffLocation : {
+    type: String,
+    autoform: {
+      type: "hidden"
+    }
+  },
+  pickupTime : {
+    type: String,
+    autoform: {
+      type: "hidden"
+    }
+  },
+  title : {
+    type: String,
+    optional: true,
+    autoform: {
+      type: "hidden"
+    }
+  },
+  description : {
+    type: String,
+    optional: true,
+    autoform: {
+      type: "hidden"
     }
   }
 }]);
@@ -61,10 +92,10 @@ TransportDuties.publicFields = {
   dateExecuted: 1,
   userId: 1,
   status: 1, // This field will be used for filtering unassigned Duties
-  title: 1,
-  description: 1,
-  price: 1,
-  maxSpending: 1
+  passengerNumber: 1,
+  pickupLocation: 1,
+  dropoffLocation: 1,
+  pickupTime: 1
 };
 
 // TODO This factory has a name - do we have a code style for this?
