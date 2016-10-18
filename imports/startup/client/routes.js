@@ -166,6 +166,21 @@ FlowRouter.route('/employer/new_duty/new_transport_duty', {
   }
 });
 
+//Create mail duty route
+
+FlowRouter.route('/employer/new_duty/new_mailing_duty',{
+    name:'new_mail_duty',
+    action(){
+        if(!Meteor.userId()){
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout",{
+            main:"NewMailDuty"
+        })
+    }
+});
+
+
 
 // Create transport duty route
 FlowRouter.route('/employer/new_duty/new_transport_duty', {
