@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ShoppingDuties } from '../../api/shoppingDuties/shoppingDuties.js';
-import { removeShoppingDuty } from '../../api/shoppingDuties/methods.js';
+import { removeShoppingDuty, assignShoppingDuty } from '../../api/shoppingDuties/methods.js';
 import './laborShoppingDuty.html';
 
 Template.LaborShoppingDuty.onCreated(function(){
