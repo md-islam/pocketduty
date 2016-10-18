@@ -96,7 +96,7 @@ export const assignShoppingDuty = new ValidatedMethod({
   run({ shoppingDutyId }) {
     const duty = ShoppingDuties.findOne(shoppingDutyId);
 
-    if (duty.userId = this.userId) {
+    if (duty.userId == this.userId) {
       throw new Meteor.Error('shoppingDuties.remove.accessDenied',
         'Cannot assign shoppingDuties that is yours');
     }
