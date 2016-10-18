@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-
+import { AcceptableDutyStatuses } from '../../duties/duties.js';
 import { ShoppingDuties } from '../shoppingDuties.js';
 
 Meteor.publish('shoppingDuties', function shoppingDuties(){
@@ -21,6 +21,16 @@ Meteor.publish('laborShoppingDuties', function laborShoppingDuties(){
   }
 
   return ShoppingDuties.find({userId: { $ne: this.userId }}, { sort: {dateCreated: -1}}, {
+    fields : ShoppingDuties.publicFields
+  })
+});
+
+Meteor.publish('laborShoppingIncomplete', function laborShoppingDuties(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return ShoppingDuties.find({userId: { $ne: this.userId }, status: AcceptableDutyStatuses.Assigned}, { sort: {dateCreated: -1}}, {
     fields : ShoppingDuties.publicFields
   })
 });

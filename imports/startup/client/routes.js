@@ -10,6 +10,7 @@ import '../../ui/pages/Main.html';
 import '../../ui/layouts/MainLayout.js';
 import '../../ui/pages/Dashboard.js';
 import '../../ui/pages/LaborDashboard.js';
+import '../../ui/pages/LaborIncomplete.js';
 import '../../ui/pages/NewDuty.js';
 import '../../ui/pages/NewShoppingDuty.js';
 import '../../ui/pages/NewLaundryDuty.js';
@@ -45,6 +46,28 @@ FlowRouter.route('/employee', {
             FlowRouter.go('main');
         }
         BlazeLayout.render("MainLayout", {main: "LaborDashboard"});
+    }
+});
+
+// Employee Incomplete task page
+FlowRouter.route('/employee/incomplete-task', {
+    name: 'incomplete-task',
+    action() {
+        if(!Meteor.userId()) {
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "LaborIncomplete"});
+    }
+});
+
+// Employee Completed task page
+FlowRouter.route('/employee/completed-task', {
+    name: 'completed-task',
+    action() {
+        if(!Meteor.userId()) {
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "LaborCompleted"});
     }
 });
 

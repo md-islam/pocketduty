@@ -1,0 +1,24 @@
+<template name="LaborIncomplete">
+    <h1 class="page-title">Dashboard</h1>
+    	{{> EmployeeNav}}
+    <div class="container" style="margin-left: 100px;">	
+        <h1 class="page-title">Shopping duty</h1>
+    	<div class="row">
+			{{#each shoppingDuty in shoppingDuties}}
+				{{> LaborShoppingIncomplete (shoppingDuty)}}
+			{{/each}}
+		</div>
+        <h1 class="page-title">Acedamic duty</h1>
+        <div class="row">
+            {{#each academicDuty in academicDuties}}
+                {{> AcademicDuty (academicDuty)}}
+            {{/each}}
+        </div>
+        <h1 class="page-title">Laundry duty</h1>
+        <div class="row">
+            {{#each laundryDuty in laundryDuties}}
+                {{> LaundryDuty (laundryDuty)}}
+            {{/each}}
+        </div>
+	</div>
+</template>
