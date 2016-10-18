@@ -31,3 +31,12 @@ Template.LaborDashboard.helpers({
 	}
 })
 
+Template.LaborDashboard.events({
+		'click .shopping' : function(event){
+			console.log("clicked shopping check box");
+			var x = event.target.checked;
+			console.log(x);
+			//this.subscribe('laborShoppingDuties', {});
+		}
+})
+

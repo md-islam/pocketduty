@@ -2,7 +2,13 @@
     <h1 class="page-title">Dashboard</h1>
     	{{> EmployeeNav}}
     <div class="container" style="margin-left: 100px;">	
-
+        <div class="page-title">
+            <input type="checkbox" class="shopping" checked="checked"> Shopping Duties
+            <input type="checkbox" class="acedamic" checked="checked"> Acedamic Duties
+            <input type="checkbox" class="laundry" checked="checked"> Laundry Duties
+            <input type="checkbox" class="mail" checked="checked"> Mailing Duties
+            <input type="checkbox" class="delivery" checked="checked"> Delivery Duties
+        </div>
         <h1 class="page-title">Shopping duty</h1>
     	<div class="row">
 			{{#each shoppingDuty in shoppingDuties}}

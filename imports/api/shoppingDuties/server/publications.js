@@ -15,10 +15,13 @@ Meteor.publish('shoppingDuties', function shoppingDuties(){
   })
 });
 
-Meteor.publish('laborShoppingDuties', function laborShoppingDuties(){
+Meteor.publish('laborShoppingDuties', function laborShoppingDuties(checkbox){
   if(!this.userId){
     return this.ready();
   }
+  // if(!checkbox){
+  //   return this.stop();
+  // }
 
   return ShoppingDuties.find({userId: { $ne: this.userId },  status: AcceptableDutyStatuses.New}, { sort: {dateCreated: -1}}, {
     fields : ShoppingDuties.publicFields
