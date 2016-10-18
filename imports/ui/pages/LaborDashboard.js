@@ -6,7 +6,7 @@ import './LaborDashboard.html';
 import '../components/laborShoppingDuty.js';
 import '../components/academicDuty.html';
 import '../components/laundryDuty.html';
-import { AcceptableDutyStatuses } from '../../api/duties/duties.js';
+//import { AcceptableDutyStatuses } from '../../api/duties/duties.js';
 
 Template.LaborDashboard.onCreated(function(){
 	this.autorun(() => {

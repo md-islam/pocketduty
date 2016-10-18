@@ -97,11 +97,45 @@ export const assignShoppingDuty = new ValidatedMethod({
     const duty = ShoppingDuties.findOne(shoppingDutyId);
 
     if (duty.userId == this.userId) {
-      throw new Meteor.Error('shoppingDuties.remove.accessDenied',
+      throw new Meteor.Error('shoppingDuties.assign.accessDenied',
         'Cannot assign shoppingDuties that is yours');
     }
 
     ShoppingDuties.update(shoppingDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.Assigned}});
+  },
+});
+
+export const unassignShoppingDuty = new ValidatedMethod({
+  name: 'shoppingDuties.unassign',
+  validate: new SimpleSchema({
+    shoppingDutyId: ShoppingDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ shoppingDutyId }) {
+    const duty = ShoppingDuties.findOne(shoppingDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('shoppingDuties.unassign.accessDenied',
+        'Cannot assign shoppingDuties that is yours');
+    }
+
+    ShoppingDuties.update(shoppingDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.New}});
+  },
+});
+
+export const completeShoppingDuty = new ValidatedMethod({
+  name: 'shoppingDuties.complete',
+  validate: new SimpleSchema({
+    shoppingDutyId: ShoppingDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ shoppingDutyId }) {
+    const duty = ShoppingDuties.findOne(shoppingDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('shoppingDuties.complete.accessDenied',
+        'Cannot assign shoppingDuties that is yours');
+    }
+
+    ShoppingDuties.update(shoppingDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.Complete}});
   },
 });
 // export const assignDutyToLaborer = new ValidatedMethod({

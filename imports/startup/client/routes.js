@@ -11,6 +11,7 @@ import '../../ui/layouts/MainLayout.js';
 import '../../ui/pages/Dashboard.js';
 import '../../ui/pages/LaborDashboard.js';
 import '../../ui/pages/LaborIncomplete.js';
+import '../../ui/pages/LaborCompleted.js';
 import '../../ui/pages/NewDuty.js';
 import '../../ui/pages/NewShoppingDuty.js';
 import '../../ui/pages/NewLaundryDuty.js';

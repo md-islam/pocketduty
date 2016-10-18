@@ -20,17 +20,27 @@ Meteor.publish('laborShoppingDuties', function laborShoppingDuties(){
     return this.ready();
   }
 
-  return ShoppingDuties.find({userId: { $ne: this.userId }}, { sort: {dateCreated: -1}}, {
+  return ShoppingDuties.find({userId: { $ne: this.userId },  status: AcceptableDutyStatuses.New}, { sort: {dateCreated: -1}}, {
     fields : ShoppingDuties.publicFields
   })
 });
 
-Meteor.publish('laborShoppingIncomplete', function laborShoppingDuties(){
+Meteor.publish('laborShoppingIncomplete', function laborShoppingIncomplete(){
   if(!this.userId){
     return this.ready();
   }
 
   return ShoppingDuties.find({userId: { $ne: this.userId }, status: AcceptableDutyStatuses.Assigned}, { sort: {dateCreated: -1}}, {
+    fields : ShoppingDuties.publicFields
+  })
+});
+
+Meteor.publish('laborShoppingCompleted', function laborShoppingCompleted(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return ShoppingDuties.find({userId: { $ne: this.userId }, status: AcceptableDutyStatuses.Complete}, { sort: {dateCreated: -1}}, {
     fields : ShoppingDuties.publicFields
   })
 });
