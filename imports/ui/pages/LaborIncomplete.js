@@ -3,21 +3,21 @@ import { ShoppingDuties} from '../../api/shoppingDuties/shoppingDuties.js';
 import { AcademicDuties} from '../../api/academicDuties/academicDuties.js';
 import { LaundryDuties} from '../../api/laundryDuties/laundryDuties.js';
 import './LaborIncomplete.html';
-import '../components/LaborShoppingIncomplete.js';
+import '../components/laborShoppingIncomplete.js';
 import '../components/academicDuty.html';
 import '../components/laundryDuty.html';
 //import { AcceptableDutyStatuses } from '../../api/duties/duties.js';
 
-Template.LaborDashboard.onCreated(function(){
+Template.LaborIncomplete.onCreated(function(){
 	this.autorun(() => {
 		console.log("Yo yo yo");
-		this.subscribe('laborShoppingcIncomplete', {});
+		this.subscribe('laborShoppingIncomplete', {});
 		this.subscribe('academicDuties', {});
 		this.subscribe('laundryDuties', {});
 	});
 });
 
-Template.LaborDashboard.helpers({
+Template.LaborIncomplete.helpers({
 	shoppingDuties() {
 		console.log("Getting shopping duties");
 		duties = ShoppingDuties.find();
