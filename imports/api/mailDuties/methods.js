@@ -7,28 +7,30 @@ import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
 import { MailDuties } from './mailDuties.js'
 import { AcceptableDutyStatuses } from '../duties/duties.js';
 
-//Arbitraryily set default transport duty price to $10 dollars.
+//Arbitraryily set default mail duty price to $10 dollars.
 export const MailDutyPrice = 10;
 
 
 export const insertMailDuty = new ValidatedMethod({
 	name: 'mailDuties.insert',
-	validate: MailDuties.simpleSchema().pick(['title','dueDate','description','pickUpLocation','dropOffLocatopn']).validator({clean:true, filter: false}),
-	run({title, dueDate, description, pickUpLocation, dropOffLocatopn}){
+	validate: MailDuties.simpleSchema().pick(['pickUpLocation','dropOffLocation','pickUpTime','deliveryType','servicePrice', 'dueDate']).validator({clean:true, filter: false}),
+	run({pickUpLocation, dropOffLocation, pickUpTime, deliveryType, servicePrice, dueDate}){
 		if(!this.userId){
 			throw new Meteor.Error('mailDuties.insert.accessDenied',
         'You must be signed in to create a new Mail Duty');
 		}
 		const mailDuty = {
-			title, 
-			description,
+			pickUpLocation, 
+			dropOffLocation,
 			userId : this.userId,
 			status: AcceptableDutyStatuses.New,
 			dueDate,
 			dateCreated: new Date(),
-			pickUpLocation,
-			dropOffLocatopn,
-			price: MailDutyPrice	
+			pickUpTime,
+			deliveryType,
+			servicePrice,
+			price: MailDutyPrice,
+			laborerId: "blank for now"	
 		};
 		 MailDuties.insert(mailDuty);
 		},
