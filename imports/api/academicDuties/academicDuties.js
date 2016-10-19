@@ -56,17 +56,15 @@ AcademicDuties.schema = new SimpleSchema([DutySchema, {
     classRoomNumber: {
       type: String,
       label: "Classroom number",
-      max: 50, 
-      autoform: {
-         value: "Engr 329"
-      }
+      max: 50 
+
    }
 }]);
 
 AcademicDuties.attachSchema(AcademicDuties.schema);
 
 // This represents the keys from Academicduties objects that should be published
-// to the client. If we add secret properties to ShoppingDuties objects, don't list
+// to the client. If we add secret properties to AcademicDuties objects, don't list
 // them here to keep them private to the server.
 AcademicDuties.publicFields = {
   dateCreated: 1,

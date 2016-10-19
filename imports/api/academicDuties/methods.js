@@ -19,6 +19,7 @@ export const insertAcademicDuty = new ValidatedMethod({
         'You must be signed in to create a new Academic Duty');
     }
 
+    console.log(title);
     const academicDuty = {
       title,
       description,
@@ -26,7 +27,7 @@ export const insertAcademicDuty = new ValidatedMethod({
       userId : this.userId,
       status: AcceptableDutyStatuses.New,
       dateCreated: new Date(),
-      dateOfClass,
+      dateOfClass: new Date(),
       classRoomNumber,
       timeRangeOfClass,
       price: AcademicDutyPrice

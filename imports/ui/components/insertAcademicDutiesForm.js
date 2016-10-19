@@ -25,6 +25,7 @@ AutoForm.hooks({
 	},
   	updateAcademicDutiesForm: {
  		beginSubmit: function(){
+ 			console.log("Calling update submit");
 			updateAcademicDuty.call({
  				academicDutyId: this.updateDoc.$set._id,
  				newTitle: this.updateDoc.$set.title, 

@@ -17,11 +17,11 @@ Template.Dashboard.onCreated(function(){
 
 Template.Dashboard.helpers({
 	shoppingDuties() {
-		console.log("Getting shopping duties");
 		duties = ShoppingDuties.find({userId: Meteor.userId()});
 		return duties;
 	},
 	academicDuties() {
+		console.log("Getting academic duties");
 		return AcademicDuties.find({userId: Meteor.userId()});
 	},
 	laundryDuties() {
