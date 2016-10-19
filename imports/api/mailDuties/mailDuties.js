@@ -6,7 +6,7 @@ import { Mongo } from 'meteor/mongo';
 import { Factory } from 'meteor/dburles:factory';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { DutySchema } from '../duties/duties.js';
-import faker from 'faker';
+
 
 
 // export const PackageSize = {
@@ -53,22 +53,71 @@ MailDuties.schema = new SimpleSchema([DutySchema, {
 	pickUpLocation:{
 		type: String,
 		label: "Pick up location",
-		max: 200
+		max: 200,
+		autoform:{
+			type:"hidden"
+		}
 	},
 	dropOffLocatopn:{
 		type: String,
 		label: "Drop off location",
-		max: 200
-	},
-	mailing:{ //This will be a checkbox
-		label: "Must be mailed",
-		type: Boolean,
-		optional: true
+		max: 200,
+		autoform:{
+			type:"hidden"
+		},
+		optional:true
 	}, 
+	pickUpTime:{
+		type: String,
+		autoform:{
+			type:"hidden"
+		}
+	},	
+	deliveryType:{ //This will be a dropdown
+		label: "Delivery type",
+		type: String,
+		autoform:{
+			options:[{label: "Drop off item(s)", value: "drop_off"},
+          {label: "Ship item(s)-- [extra charge]", value: "ship"}
+          ]
+		},
+		allowedValues: ["ship","drop_off"]
+
+	}, 
+
+	servicePrice:{
+		type: Number,
+		label: "Service price",
+		allowedValues:[4,10,17],  //allowed values is skipped, if options is providing the values
+		autoform:{
+			options:[{label: "Small (less than 2 folders or a small package)-- $4", value: 4},
+          {label: "Medium (more than 2 folders or a package) -- $10", value: 10},
+          {label: "Large (more than 4 pounds)-- $17", value: 17}]
+		}
+	},
+	dueDate: {
+    type: Date,
+    label: "Delivery due date",
+    optional: true
+  },
+  title : {
+    type: String,
+    optional: true,
+    autoform: {
+      type: "hidden"
+    }
+  },
+  description : {
+    type: String,
+    optional: true,
+    autoform: {
+      type: "hidden"
+    }
+  } 
 
 }]);
 
-MailDuties.attachSchema(MaidDuties.schema);
+MailDuties.attachSchema(MailDuties.schema);
 
 
 
