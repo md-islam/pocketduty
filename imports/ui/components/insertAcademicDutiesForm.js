@@ -25,15 +25,14 @@ AutoForm.hooks({
 	},
   	updateAcademicDutiesForm: {
  		beginSubmit: function(){
- 			console.log("Calling update submit");
 			updateAcademicDuty.call({
  				academicDutyId: this.updateDoc.$set._id,
  				newTitle: this.updateDoc.$set.title, 
  				newDueDate: this.updateDoc.$set.dueDate, 
  				newDescription: this.updateDoc.$set.description, 
- 				newDateOfClass: this.updateDoc.$set.dateOfClass,
-				newClassRoomNumber: this.updateDoc.$set.classRoomNumber,
- 				newTimeRangeOfClass: this.updateDoc.$set.timeRangeOfClass}, (err, res) => {
+ 				dateOfClass: this.updateDoc.$set.dateOfClass,
+				classRoomNumber: this.updateDoc.$set.classRoomNumber,
+ 				timeRangeOfClass: this.updateDoc.$set.timeRangeOfClass}, (err, res) => {
  					if (err) {
  						throw err;
  					}
