@@ -53,13 +53,8 @@ aldeed:simple-schema
 mdg:validated-method
 dburles:factory
 twbs:bootstrap
-<<<<<<< HEAD
 jeremy:geocomplete
 dburles:google-maps
 kevohagan:sweetalert
 tsega:bootstrap3-datetimepicker
 tanis:bootstrap-social
-
-=======
-tanis:bootstrap-social
->>>>>>> origin/homepage-fix
