@@ -31,9 +31,9 @@ AutoForm.hooks({
  				newTitle: this.updateDoc.$set.title, 
  				newDueDate: this.updateDoc.$set.dueDate, 
  				newDescription: this.updateDoc.$set.description, 
- 				dateOfClass: this.updateDoc.$set.dateOfClass,
-				classRoomNumber: this.updateDoc.$set.classRoomNumber,
- 				timeRangeOfClass: this.updateDoc.$set.timeRangeOfClass}, (err, res) => {
+ 				newDateOfClass: this.updateDoc.$set.dateOfClass,
+				newClassRoomNumber: this.updateDoc.$set.classRoomNumber,
+ 				newTimeRangeOfClass: this.updateDoc.$set.timeRangeOfClass}, (err, res) => {
  					if (err) {
  						throw err;
  					}
