@@ -58,14 +58,13 @@ MailDuties.schema = new SimpleSchema([DutySchema, {
 			type:"hidden"
 		}
 	},
-	dropOffLocatopn:{
+	dropOffLocation:{
 		type: String,
 		label: "Drop off location",
 		max: 200,
 		autoform:{
 			type:"hidden"
-		},
-		optional:true
+		}		
 	}, 
 	pickUpTime:{
 		type: String,
