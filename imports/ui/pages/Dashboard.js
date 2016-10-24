@@ -5,12 +5,15 @@ import { ShoppingDuties} from '../../api/shoppingDuties/shoppingDuties.js';
 import { AcademicDuties} from '../../api/academicDuties/academicDuties.js';
 import { LaundryDuties} from '../../api/laundryDuties/laundryDuties.js';
 import { TransportDuties} from '../../api/transportDuties/transportDuties.js';
+import { MailDuties } from '../../api/mailDuties/mailDuties.js';
 
 
 import './Dashboard.html';
 import '../components/shoppingDuty.js';
 import '../components/academicDuty.html';
 import '../components/laundryDuty.html';
+import '../components/mailDuty.js';
+import '../components/mailDuty.html';
 import '../components/transportDuty.js';
 
 
@@ -20,6 +23,7 @@ Template.Dashboard.onCreated(function(){
 		this.subscribe('academicDuties', {});
 		this.subscribe('laundryDuties', {});
 		this.subscribe('transportDuties', {});
+		this.subscribe('mailDuties', {});
 	});
 });
 
@@ -42,5 +46,10 @@ Template.Dashboard.helpers({
 		window.TransportDuties = TransportDuties;
 		let duties = TransportDuties.find({userId: Meteor.userId()});
 		return duties;
+	},
+	mailDuties(){
+		console.log("mailDuties getting duties");
+		console.log('msildutiesfetch', MailDuties.find().fetch());
+		return MailDuties.find({userId: Meteor.userId()});
 	}
 })
