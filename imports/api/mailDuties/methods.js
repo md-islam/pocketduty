@@ -30,7 +30,7 @@ export const insertMailDuty = new ValidatedMethod({
 			deliveryType,
 			servicePrice,
 			price: MailDutyPrice,
-			laborerId: "blank for now"	
+			laborerId: "none"	
 		};
 		 MailDuties.insert(mailDuty);
 		},
