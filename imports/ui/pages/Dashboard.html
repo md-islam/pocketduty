@@ -22,5 +22,10 @@
         {{> TransportDuty (transportDuty)}}
       {{/each}}
     </div>
+    <div class="row">
+      {{#each mailDuty in mailDuties}}
+        {{> MailDuty (mailDuty)}}
+      {{/each}}
+    </div>
 	</div>
 </template>

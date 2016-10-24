@@ -7,10 +7,13 @@ import { LaundryDuties} from '../../api/laundryDuties/laundryDuties.js';
 import { TransportDuties} from '../../api/transportDuties/transportDuties.js';
 import { MailDuties } from '../../api/mailDuties/mailDuties.js';
 
+
 import './Dashboard.html';
 import '../components/academicDuty.js';
 import '../components/shoppingDuty.js';
 import '../components/laundryDuty.html';
+import '../components/mailDuty.js';
+import '../components/mailDuty.html';
 import '../components/transportDuty.js';
 import '../components/mailDuty.js';
 import '../components/mailDuty.html';

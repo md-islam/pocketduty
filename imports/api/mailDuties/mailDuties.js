@@ -129,8 +129,9 @@ MailDuties.publicFields = {
 	description: 1,
 	price: 1,
 	pickUpLocation:1,
-	dropOffLocatopn:1,
-	mailing:1
+	dropOffLocation:1,
+	deliveryType:1,
+	pickUpTime:1
 };
 
 
