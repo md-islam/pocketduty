@@ -1,9 +1,3 @@
-<template name="DutiesScreen">
-
-<!-- Custon CSS -->
-<link rel="stylesheet" type="text/css" href="../stylesheets/duties-screen.css">
-
-<!-- <style type="text/css">
 .shopping_btn {
         content: url('/shopping_duty_icon.png');
         margin-right: 25px;
@@ -50,19 +44,3 @@
         text-align: center;
         padding-bottom: 20px;
         }
-</style> -->
-
-    <div class="duties-screen">
-        <h2 class="page-title">Select a Duty to create</h2>
-        <div class="btn-grouping">
-            <a href="/employer/new_duty/new_academic_duty"><img class="academic_btn" height="200px"></a>
-			<a href="/employer/new_duty/new_shopping_duty"><img class="shopping_btn" height="200px"></a>
-        	<a href="/employer/new_duty/new_mailing_duty"><img class="mail_btn" height="200px"></a>
-		</div>
-		<div class="btn-grouping">
-            <a href="/employer/new_duty/new_laundry_duty"><img class="laundry_btn" height="200px"></a>
-			<a href="/employer/new_duty/new_transport_duty"><img class="transport_btn" height="200px"></a>
-		</div>
-        
-    </div>
-</template>

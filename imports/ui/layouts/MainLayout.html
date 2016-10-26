@@ -1,11 +1,8 @@
 <template name="MainLayout">
-
 	{{> Header}}
-	 {{> AppNav}}
-
+	{{> AppNav}}
 		<main class="main-layout">
 			{{> Template.dynamic template=main}}
 		</main>
 		{{> ConnectionStatus}}
-
 </template>

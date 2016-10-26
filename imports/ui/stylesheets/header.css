@@ -1,0 +1,25 @@
+#logo {
+    color: #fff;
+}
+.navbar-collapse {
+    padding-top: 18px;
+}
+#log-button {
+    padding-right: 10px;
+}
+.btn {
+    color: #fff;
+    background-color: transparent;
+    border-width: 1px;
+    border-color: #fff;
+}
+.btn:hover {
+    border-width: 1px;
+    border-color: #d19b3d;
+    color: #fff;
+}
+#fbpic {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #fff;
+}
