@@ -36,15 +36,33 @@ export const insertMailDuty = new ValidatedMethod({
 		},
 	});
 
+//remove --> will do this later
+export const removeMailDuty = new ValidatedMethod({
+  name: 'mailDuties.remove',
+  validate: new SimpleSchema({
+    mailDutyId: MailDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ mailDutyId }) {
+    const mailDuty = MailDuties.findOne(mailDutyId);
+
+    if (mailDuty.userId != this.userId) {
+      throw new Meteor.Error('mailDuties.remove.accessDenied',
+        'Cannot remove this mail duty in a private list that is not yours');
+    }
+
+    MailDuties.remove(mailDutyId);
+  },
+});
 
 //update --> will do this later 
 
-//remove --> will do this later
+
 
 
 // Get list of all method names on Lists
 const MAIL_DUTIES_METHODS = _.pluck([
-  insertMailDuty  
+  insertMailDuty,
+  removeMailDuty
 ], 'name');
 
 if (Meteor.isServer) {
