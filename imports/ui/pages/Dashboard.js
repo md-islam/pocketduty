@@ -37,9 +37,11 @@ Template.Dashboard.helpers({
 		return duties;
 	},
 	academicDuties() {
+		console.log("Getting academic duties");
 		return AcademicDuties.find({userId: Meteor.userId()});
 	},
 	laundryDuties() {
+		console.log("Getting laundry duties");
 		return LaundryDuties.find({userId: Meteor.userId()});
 	},
 	transportDuties () {

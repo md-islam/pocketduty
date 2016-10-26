@@ -1,4 +1,22 @@
 <template name="PastDuties">
     <h1 class="page-title">Past Duties</h1>
     	{{> AppNav}}
+
+    <div class="container" style="margin-left: 100px;">	
+    	<div class="row">
+			{{#each shoppingDuty in shoppingDuties}}
+				{{> ShoppingDuty (shoppingDuty)}}
+			{{/each}}
+		</div>
+        <div class="row">
+            {{#each academicDuty in academicDuties}}
+                {{> AcademicDuty (academicDuty)}}
+            {{/each}}
+        </div>
+        <div class="row">
+            {{#each laundryDuty in laundryDuties}}
+                {{> LaundryDuty (laundryDuty)}}
+            {{/each}}
+        </div>
+	</div>
 </template>

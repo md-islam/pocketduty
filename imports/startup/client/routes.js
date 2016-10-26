@@ -21,7 +21,8 @@ import '../../ui/pages/EditShoppingDuty.js';
 import '../../ui/pages/NewTransportDuty.js';
 import '../../ui/pages/NewMailDuty.js'; 
 import '../../ui/components/updateMailDutiesForm.js';
-
+import '../../ui/pages/ActiveDuties.js';
+import '../../ui/pages/PastDuties.js';
 
 // Main Page (User not logged in)
 FlowRouter.route('/', {
@@ -128,6 +129,28 @@ FlowRouter.route('/edit/academic_duty/:_id', {
             FlowRouter.go('main');
         }
         BlazeLayout.render("MainLayout", {main: "EditAcademicDuty"})
+    }
+});
+
+// Active duties(User logged in)
+FlowRouter.route('/employer/active_duties', {
+    name: 'active_duties',
+    action() {
+        if(!Meteor.userId()) {
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "ActiveDuties"});
+    }
+});
+
+// Past duties(User logged in)
+FlowRouter.route('/employer/past_duties', {
+    name: 'past_duties',
+    action() {
+        if(!Meteor.userId()) {
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "PastDuties"});
     }
 });
 
