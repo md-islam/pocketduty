@@ -18,6 +18,11 @@
                 {{> LaundryDuty (laundryDuty)}}
             {{/each}}
         </div>
+        <div class="row">
+            {{#each transportDuty in transportDuties}}
+                {{> TransportDuty (transportDuty)}}
+            {{/each}}
+        </div>
         <!-- <div>
   			<li>{{text}}</li>
   		</div> -->
