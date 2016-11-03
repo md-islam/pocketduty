@@ -1,5 +1,4 @@
 <template name="MailDuty">
-
 <div class="panel panel-default">
 	<div class="panel-heading"> <b>MAIL DUTY</b></div>
 	<div class="panel-body">
@@ -12,14 +11,10 @@
 	<div class="panel-footer">
 		<div class="row">
 			<div class="btn-group">
-				<a type="button" href="#" class="btn btn-primary"> Edit </a>
-				<button class="btn btn-danger" id="mailDutyDeleteButton"> Delete</button>
+				<a type="button" href="{{pathFor 'mail_duty.edit' _id=this._id}}" class="btn btn-primary" id="mailDutyEditButton"> Edit </a>
+				<button class="btn btn-danger" id="mailDutyDeleteButton"> Delete </button>
 			</div>
 		</div>
 	</div>
 </div>
-
 </template>
-
-
-

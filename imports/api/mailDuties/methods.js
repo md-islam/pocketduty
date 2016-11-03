@@ -11,30 +11,6 @@ import { AcceptableDutyStatuses } from '../duties/duties.js';
 export const MailDutyPrice = 10;
 
 
-export const insertMailDuty = new ValidatedMethod({
-	name: 'mailDuties.insert',
-	validate: MailDuties.simpleSchema().pick(['pickUpLocation','dropOffLocation','pickUpTime','deliveryType','servicePrice', 'dueDate']).validator({clean:true, filter: false}),
-	run({pickUpLocation, dropOffLocation, pickUpTime, deliveryType, servicePrice, dueDate}){
-		if(!this.userId){
-			throw new Meteor.Error('mailDuties.insert.accessDenied',
-        'You must be signed in to create a new Mail Duty');
-		}
-		const mailDuty = {
-			pickUpLocation, 
-			dropOffLocation,
-			userId : this.userId,
-			status: AcceptableDutyStatuses.New,
-			dueDate,
-			dateCreated: new Date(),
-			pickUpTime,
-			deliveryType,
-			servicePrice,
-			price: MailDutyPrice,
-			laborerId: "none"	
-		};
-		 MailDuties.insert(mailDuty);
-		},
-	});
 
 //remove --> will do this later
 export const removeMailDuty = new ValidatedMethod({
@@ -54,7 +30,78 @@ export const removeMailDuty = new ValidatedMethod({
   },
 });
 
+
+// MailDuties.publicFields = {
+//   dateCreated:1,
+//   dateExecuted:1,
+//   userId:1,
+//   status: 1, //This field will be used for filtering unassigned duties. 
+//   title: 1,
+//   description: 1,
+//   price: 1,
+//   pickUpLocation:1,
+//   dropOffLocation:1,
+//   deliveryType:1,
+//   pickUpTime:1
+// };
+
 //update --> will do this later 
+export const updateMailDuty = new ValidatedMethod({
+  name: 'mailDuties.update',
+  validate: new SimpleSchema({
+    mailDutyId: MailDuties.simpleSchema().schema('_id'),
+    newPickUpLocation: MailDuties.simpleSchema().schema('pickUpLocation'),
+    newDropOffLocation: MailDuties.simpleSchema().schema('dropOffLocation'),
+    newPickUpTime: MailDuties.simpleSchema().schema('pickUpTime'),
+    newDeliveryType: MailDuties.simpleSchema().schema('deliveryType'),
+    newServicePrice: MailDuties.simpleSchema().schema('servicePrice'),
+    newDueDate: MailDuties.simpleSchema().schema('dueDate')
+  }).validator({clean: true, filter: false}),
+  run({mailDutyId, newPickUpLocation, newDropOffLocation, newPickUpTime, newDeliveryType, newServicePrice}){
+      const mailDuty = MailDuties.findOne(mailDutyId);
+      if(mailDuty.userId != this.userId){
+              throw new Meteor.Error('mailDuties.update.accessDenied',
+        'Cannot edit mailDuty that is not yours')
+      }
+      MailDuties.update(mailDutyId, {
+        $set: {
+          pickUpLocation: (_.isUndefined(newPickUpLocation) ? mailDuty.pickUpLocation : newPickUpLocation),
+          dropOffLocation: (_.isUndefined(newDropOffLocation) ? mailDuty.dropOffLocation : newDropOffLocation),
+          pickUpTime: (_.isUndefined(newPickUpTime) ? mailDuty.pickUpTime : newPickUpTime),
+          deliveryType: (_.isUndefined(newDeliveryType) ? mailDuty.deliveryType : newDeliveryType),
+          servicePrice: (_.isUndefined(newServicePrice) ? mailDuty.servicePrice : newServicePrice)
+        }
+      })
+  }
+});
+
+export const insertMailDuty = new ValidatedMethod({
+  name: 'mailDuties.insert',
+  validate: MailDuties.simpleSchema().pick(['pickUpLocation','dropOffLocation','pickUpTime','deliveryType','servicePrice', 'dueDate']).validator({clean:true, filter: false}),
+  run({pickUpLocation, dropOffLocation, pickUpTime, deliveryType, servicePrice, dueDate}){
+    if(!this.userId){
+      throw new Meteor.Error('mailDuties.insert.accessDenied',
+        'You must be signed in to create a new Mail Duty');
+    }
+    const mailDuty = {
+      pickUpLocation, 
+      dropOffLocation,
+      userId : this.userId,
+      status: AcceptableDutyStatuses.New,
+      dueDate,
+      dateCreated: new Date(),
+      pickUpTime,
+      deliveryType,
+      servicePrice,
+      price: MailDutyPrice,
+      laborerId: "none" 
+    };
+     MailDuties.insert(mailDuty);
+    },
+  });
+
+
+
 
 
 
