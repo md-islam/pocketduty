@@ -11,8 +11,8 @@ import {
 Template.insertMailDutiesForm.onRendered(function() {
 	this.autorun(function() {
 		if (GoogleMaps.loaded()) {
-			$("#mailDropOffLocation").geocomplete();
-			$("#mailPickUpLocation").geocomplete();
+			$("#mailDropOffLocationUpdateForm").geocomplete();
+			$("#mailPickUpLocationHelpUpForm").geocomplete();
 		}
 	});
 
@@ -20,6 +20,8 @@ Template.insertMailDutiesForm.onRendered(function() {
 	$('#mailTimePickerFieldID').datetimepicker({
 		format: 'LT'
 	});
+
+	
 
 });
 
@@ -51,7 +53,7 @@ AutoForm.hooks({
 					sweetAlert({
 						type: "error",
 						title: "Error!",
-						text: "Oh no! Something went wrong!"
+						text: "Make sure you have entered all fields"
 					});
 					throw err;
 				}
@@ -63,7 +65,7 @@ AutoForm.hooks({
 			console.log("submission success");
 			sweetAlert({
 				type: "success",
-				title: "Success!",
+				title: "Duty Created!",
 				text: "The mail duty has been successfully added!"
 			}, function(){
 				console.log("redirecting to employer page...")
@@ -79,6 +81,7 @@ AutoForm.hooks({
 
 Template.insertMailDutiesForm.helpers({
 	mailDutyCollection() {
+		console.log(MailDuties);
 		return MailDuties;
 	}
 });

@@ -17,6 +17,7 @@ import '../../ui/pages/NewAcademicDuty.js';
 import '../../ui/pages/EditShoppingDuty.js';
 import '../../ui/pages/NewTransportDuty.js';
 import '../../ui/pages/NewMailDuty.js'; 
+import '../../ui/components/updateMailDutiesForm.js';
 
 
 // Main Page (User not logged in)
@@ -116,6 +117,19 @@ FlowRouter.route('/edit/shopping_duty/:_id', {
     }
 })
 
+
+
+FlowRouter.route('/employer/edit/mail_duty/:_id',{
+    name: 'mail_duty.edit',
+    action(){
+        if(!Meteor.userId()){
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "updateMailDutiesForm"})
+
+    }
+});
+
 // Create transport duty route
 FlowRouter.route('/employer/new_duty/new_transport_duty', {
   name: 'new_transport_duty',
@@ -130,6 +144,8 @@ FlowRouter.route('/employer/new_duty/new_transport_duty', {
 });
 
 //Create mail duty route
+
+
 
 FlowRouter.route('/employer/new_duty/new_mailing_duty', {
   name: 'new_mail_duty',

@@ -49,7 +49,7 @@ Template.Dashboard.helpers({
 	},
 	mailDuties(){
 		console.log("mailDuties getting duties");
-		console.log('msildutiesfetch', MailDuties.find().fetch());
+		console.log('maildutiesfetch', MailDuties.find().fetch());
 		return MailDuties.find({userId: Meteor.userId()});
 	}
 })
