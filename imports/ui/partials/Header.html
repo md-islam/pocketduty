@@ -1,17 +1,100 @@
 <template name="Header">
-    <header class="header">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" type="text/css" href="../stylesheets/header.css">
+
+<style>
+#logo {
+    margin: 2px;
+}
+#log-button {
+    padding-right: 10px;
+}
+.btn {
+    color: #000;
+    background-color: transparent;
+    border-width: 1px;
+    border-color: #000;
+}
+.btn:hover {
+    border-width: 1px;
+    border-color: #e63;
+    color: #e63;
+}
+#fbpic {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000;
+}
+.navbar {
+    padding-right: 10px;
+}
+.navbar-nav {
+    padding-right: 20px;
+}
+</style>    
+<div class="container-fluid"> 
+    
+    <nav class="navbar navbar-default navbar-fixed-top">
+       
+        <!-- ITEMS THAT ARE PERMENANTLY DISPLAYED -->
+        <div class="container-fluid">
+            <div class="navbar-header">   
+                <!--Toggles navbar when displayed on smaller screen-->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" arial-expended="false">
+                    <!--To hide info from screen readers--> 
+                    <span class="sr-only"></span>   
+                    <!--3 bars drawn inside of the expand button-->
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar">
+                    </span>
+                </button>
+
+                <!-- Logo -->
+                <h3 id="logo"><img src="/logo.jpeg" height="50">Pocket Duty</h3>
+
+                <!--END OF Toggles navbar when displayed on smaller screen-->
+            </div>
+            <!-- END OF ITEMS THAT ARE PERMENANTLY DISPLAYED -->
+        
+            <!-- START COLLAPSE MENU -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                {{#if currentUser}}
+            
+                    <a href="/employee"><button type="employee-button" class="btn">Employee</button></a>
+                    <a href="/employer"><button type="employer-button" class="btn">Employer</button></a>
+                
+                    <img id="fbpic" src="{{currentUser.profile.picture}}" alt="Profile picture" width="50" height="50">
+                    {{/if}}
+                    {{> loginButtons align="right"}}
+                
+                </ul> 
+            </div> 
+        </div>
+        <!-- END OF COLLAPSE MENU -->
+      
+    </nav>
+</div>
+
+
+
+
+<!-- OLD HEARDER -->
+    <!-- <header class="header">
         <h3 class="site-title"><a href="/"><img class="logo_img" alt="PocketDuty Logo" height="50"></a>PocketDuty</h3>
         
-      
+        {{> loginButtons align="right"}}
         {{#if currentUser}}
          <img src="{{currentUser.profile.picture}}" alt="Profile picture" width="42" height="42">
 
-         <div class="btn-grouping">	
-        	<a href="/employee"><button type="employee-button" class="btn btn-default">Employee</button></a>
-       	 	<a href="/employer"><button type="employer-button" class="btn btn-default">Employer</button></a>
-       	</div>
+         <div class="btn-grouping"> 
+            <a href="/employee"><button type="employee-button" class="btn btn-default">Employee</button></a>
+            <a href="/employer"><button type="employer-button" class="btn btn-default">Employer</button></a>
+        </div>
         {{/if}}
-        {{> loginButtons align="right"}}
+        
        
-    </header>
+    </header> -->
 </template>

@@ -1,21 +1,3 @@
-<!-- <template name="EmployeeNav">
-    <div class="app-nav">
-        <ul>
-            <li><a href="/employee"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-            <li><a href="/employee/incomplete-task"><i class="fa fa-spinner"></i> <span>Incomplete Duties</span></a></li>
-            <li><a href="/employee/completed-task"><i class="fa fa-check-square-o"></i> <span>Completed Duties</span></a></li>
-            <li><a href="account_settings"><i class="fa fa-gear"></i> <span>Account Settings</span></a></li>
-        </ul>
-    </div>
-</template> -->
-
-<template name="EmployeeNav">
-
-<!-- Custom CSS -->
-    <link href="../stylesheets/app-nav.css" rel="stylesheet">
-
-<style type="text/css">
-/*.nav-side-menu {*/
 .nav-list{
   overflow: auto;
   font-family: verdana;
@@ -42,8 +24,8 @@
 }
 
 .nav-list {
-	margin-top: -14px;
-	color: #000;
+  margin-top: -14px;
+  color: #000;
 }
 /*.nav-side-menu ul,
 .nav-side-menu li {*/
@@ -178,7 +160,7 @@
     text-align: center;
   }
   .brand {
-  	color: #8a8d91;
+    color: #8a8d91;
     text-align: left !important;
     font-size: 22px;
     padding-left: 20px;
@@ -191,32 +173,3 @@
     display: block;
   }
 }
-
-
-</style>
-
-<div class="app-nav">
-  <!-- <div class="nav-side-menu"> -->
-  <div class="nav nav-list">
-  <!-- <div class="nav sidebar-nav"> -->
-    <div class="brand">Employee Menu</div>
-    <!-- <div class="sidebar-brand">Dashboard</div> -->
-    <i class="fa fa-tachometer fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-  
-    <div class="menu-list">
-          
-        <ul id="menu-content" class="menu-content collapse out">
-            
-            <li class="list-group-item-info"><a href="/employee" ><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-           	
-           	<li class="list-group-item-success"><a href="/employee/incomplete-task"><i class="fa fa-spinner"></i> <span>Incomplete Duties</span></a></li>
-            
-            <li class="list-group-item-warning"><a href="/employee/completed-task"><i class="fa fa-check-square-o"></i> <span>Completed Duties</span></a></li>
-            
-            <li class="list-group-item-danger"><a href="account_settings"><i class="fa fa-gear"></i> <span>Account Settings</span></a></li>
-        </ul>
-
-    </div>
-  </div>
-</div>
-</template>
