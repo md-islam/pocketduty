@@ -1,4 +1,249 @@
 <template name="AppNav">
+
+<!-- Custom CSS -->
+    <link href="../stylesheets/app-nav.css" rel="stylesheet">
+
+<style type="text/css">
+/*.nav-side-menu {*/
+.nav-list{
+  overflow: auto;
+  font-family: verdana;
+  font-size: 16px;
+  font-weight: 100;
+  background-color: #f8f8f8;
+  position: fixed;
+  /*top: 80px;*/
+  width: 190px;
+  height: 100%;
+  color: #fff;
+}
+/*.nav-side-menu .brand {*/
+  .nav-list .brand{
+  background-color: #f8f8f8;
+  line-height: 40px;
+  display: block;
+  text-align: center;
+  font-size: 16px;
+}
+/*.nav-side-menu .toggle-btn {*/
+  .nav-list .toggle-btn{
+  display: none;
+}
+
+.nav-list {
+	margin-top: -14px;
+	color: #000;
+}
+/*.nav-side-menu ul,
+.nav-side-menu li {*/
+  .nav-list ul,
+  .nav-list li { 
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  line-height: 40px;
+  cursor: pointer;
+  /*    
+    .collapsed{
+       .arrow:before{
+                 font-family: FontAwesome;
+                 content: "\f053";
+                 display: inline-block;
+                 padding-left:10px;
+                 padding-right: 10px;
+                 vertical-align: middle;
+                 float:right;
+            }
+     }
+*/
+}
+/*.nav-side-menu ul :not(collapsed) .arrow:before,
+.nav-side-menu li :not(collapsed) .arrow:before {*/
+  .nav-list ul :not(collapsed) .arrow:before,
+    .nav-list li :not(collapsed) .arrow:before {
+  font-family: FontAwesome;
+  content: "\f078";
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: middle;
+  float: right;
+}
+/*.nav-side-menu ul .active,
+.nav-side-menu li .active {*/
+  .nav-list ul .active,
+  .nav-list li .active {
+  border-left: 3px solid #3db1ff;
+  background-color: #2065b5;
+}
+/*.nav-side-menu ul .sub-menu li.active,
+.nav-side-menu li .sub-menu li.active {*/
+  .nav-list ul .sub-menu li.active,
+  .nav-list ul li .sub-menu li.active {
+
+  color: #3db1ff;
+}
+/*.nav-side-menu ul .sub-menu li.active a,
+.nav-side-menu li .sub-menu li.active a {*/
+  .nav-list ul .sub-menu li.active a,
+  .nav-list ul li .sub-menu li.active a {
+  color: #3db1ff;
+}
+/*.nav-side-menu ul .sub-menu li,
+.nav-side-menu li .sub-menu li {*/
+  .nav-list ul .sub-menu li,
+  .nav-list ul li .sub-menu li{
+  background-color: #3db1ff;
+  border: none;
+  line-height: 28px;
+  border-bottom: 1px solid #0073ff;
+  margin-left: 0px;
+}
+/*.nav-side-menu ul .sub-menu li:hover,
+.nav-side-menu li .sub-menu li:hover {*/
+  .nav-list ul .sub-menu li:hover,
+  .nav-list ul li .sub-menu li:hover; {
+  background-color: #3db1ff;
+}
+/*.nav-side-menu ul .sub-menu li:before,
+.nav-side-menu li .sub-menu li:before {*/
+  .nav-list ul .sub-menu li:before,
+  .nav-list ul li .sub-menu li:before {
+  font-family: FontAwesome;
+  content: "\f105";
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+/*.nav-side-menu li {*/
+  .nav-list li{
+  padding-left: 0px;
+  border-left: 3px solid #3db1ff;
+  border-bottom: 1px solid #000;
+}
+/*.nav-side-menu li a {*/
+  .nav-list li a{
+  text-decoration: none;
+  color: #000;
+}
+/*.nav-side-menu li a i {*/
+  .nav-list li a i {
+  padding-left: 10px;
+  width: 20px;
+  padding-right: 20px;
+}
+/*.nav-side-menu li:hover {*/
+  .nav-list li:hover{
+  border-left: 3px solid #000;
+  background-color: #fff;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+@media (max-width: 767px) {
+  /*.nav-side-menu {*/
+    .nav-list {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  /*.nav-side-menu .toggle-btn {*/
+    .nav-list .toggle-btn {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    right: 26px;
+    top: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #cbcfd3;
+    z-index: 10 !important;
+    background-color: #f8f8f8;
+    color: #8a8d91;
+    width: 40px;
+    text-align: center;
+  }
+  .brand {
+  	color: #8a8d91;
+    text-align: left !important;
+    font-size: 22px;
+    padding-left: 20px;
+    line-height: 40px !important;
+  }
+}
+@media (min-width: 767px) {
+  /*.nav-side-menu .menu-list .menu-content {*/
+    .nav-list .menu-list .menu-content {
+    display: block;
+  }
+}
+
+</style>
+
+<div class="app-nav">
+  <!-- <div class="nav-side-menu"> -->
+  <div class="nav nav-list">
+  <!-- <div class="nav sidebar-nav"> -->
+    <div class="brand">Employer Menu</div>
+    <!-- <div class="sidebar-brand">Dashboard</div> -->
+    <i class="fa fa-tachometer fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li class="list-group-item-info">
+                  <a href="dashboard">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
+
+                <li class="list-group-item-success">
+                  <a href="new_duty">
+                  <i class="fa fa-plus-circle fa-lg"></i> New Duty
+                  </a>
+                </li>
+
+
+                <li class="list-group-item-warning">
+                  <a href="active_duties">
+                  <i class="fa fa-spinner fo-lg"></i> Active Duties
+                  </a>
+                  </li>
+
+
+                 <li class="list-group-item-danger">
+                  <a href="past_duties">
+                  <i class="fa fa-check-square-o fa-lg"></i> Past Duties
+                  </a>
+                  </li>
+
+                 <li>
+                  <a href="account_settings">
+                  <i class="fa fa-gear fa-lg"></i> Account Settings
+                  </a>
+                </li>
+            </ul>
+     </div>
+</div>
+
+
+<!-- OLD NAV BAR -->
+    <!-- <div class="app-nav">
+        <ul>
+            <li><a href="/employer"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li><a href="/employer/new_duty"><i class="fa fa-plus-circle"></i> <span>New Duty</span></a></li>
+            <li><a href="/employer/active_duties"><i class="fa fa-spinner"></i> <span>Active Duties</span></a></li>
+            <li><a href="/employer/past_duties"><i class="fa fa-check-square-o"></i> <span>Past Duties</span></a></li>
+            <li><a href="/account_settings"><i class="fa fa-gear"></i> <span>Account Settings</span></a></li>
+        </ul>
+    </div> -->
+</div>
+</template>
+
+<!-- <template name="AppNav">
     <div class="app-nav">
         <ul>
             <li><a href="/employer"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
@@ -8,4 +253,4 @@
             <li><a href="/account_settings"><i class="fa fa-gear"></i> <span>Account Settings</span></a></li>
         </ul>
     </div>
-</template>
+</template> -->
