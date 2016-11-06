@@ -8,6 +8,7 @@ import '../components/academicDuty.html';
 import '../components/laundryDuty.html';
 //import { AcceptableDutyStatuses } from '../../api/duties/duties.js';
 
+
 Template.LaborDashboard.onCreated(function(){
 	this.autorun(() => {
 		console.log("Yo yo yo");

@@ -23,8 +23,6 @@ import '../../ui/pages/NewMailDuty.js';
 import '../../ui/components/updateMailDutiesForm.js';
 
 
-
-
 // Main Page (User not logged in)
 FlowRouter.route('/', {
     name: 'main',
@@ -157,7 +155,6 @@ FlowRouter.route('/edit/shopping_duty/:_id', {
 
 
 
-
 // Create transport duty route
 FlowRouter.route('/employer/new_duty/new_transport_duty', {
   name: 'new_transport_duty',
@@ -172,9 +169,11 @@ FlowRouter.route('/employer/new_duty/new_transport_duty', {
 });
 
 
+
 //ADD AND UPDATE MAIL DUTY ROUTES
 
 //ADD MAIL DUTY ROUTE
+
 FlowRouter.route('/employer/new_duty/new_mailing_duty', {
   name: 'new_mail_duty',
   action () {
@@ -188,6 +187,7 @@ FlowRouter.route('/employer/new_duty/new_mailing_duty', {
     })
   }
 });
+
 
 //EDIT MAIL DUTY ROUTE
 FlowRouter.route('/employer/edit/mail_duty/:_id',{
