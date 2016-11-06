@@ -124,10 +124,28 @@ export const updateTransportDuty = new ValidatedMethod({
   },
 });
 
+export const removeTransportDuty = new ValidatedMethod({
+  name: 'transportDuties.remove',
+  validate: new SimpleSchema({
+    transportDutyId: TransportDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ transportDutyId }) {
+    const duty = TransportDuties.findOne(transportDutyId);
+
+    if (duty.userId != this.userId) {
+      throw new Meteor.Error('transportDuties.remove.accessDenied',
+        'Cannot remove transportDuties that is not yours');
+    }
+
+   TransportDuties.remove(transportDutyId);
+  },
+});
+
 // Get list of all method names on transportDuties
 const TRANSPORT_DUTIES_METHODS = _.pluck([
   insertTransportDuty,
-  updateTransportDuty
+  updateTransportDuty,
+  removeTransportDuty
 ], 'name');
 
 if (Meteor.isServer) {
