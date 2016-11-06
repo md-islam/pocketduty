@@ -23,6 +23,7 @@ import '../../ui/pages/NewMailDuty.js';
 import '../../ui/components/updateMailDutiesForm.js';
 import '../../ui/pages/ActiveDuties.js';
 import '../../ui/pages/PastDuties.js';
+import '../../ui/pages/EditTransportDuty.js';
 
 // Main Page (User not logged in)
 FlowRouter.route('/', {

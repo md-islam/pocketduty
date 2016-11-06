@@ -28,8 +28,7 @@ export const TransportDuties = new TransportDutiesCollection('TransportDuties');
 // Deny all client-side updates since we will be using methods to manage this collection
 TransportDuties.deny({
   insert() { return true; },
-  update() { return true; },
-  remove() { return true; },
+  update() { return true; }//
 });
 
 TransportDuties.schema = new SimpleSchema([DutySchema, {
