@@ -48,22 +48,16 @@ TransportDuties.schema = new SimpleSchema([DutySchema, {
     }
   },
   pickupLocation : {
-    type: String,
-    autoform: {
-      type: "hidden"
-    }
+    type: String
   },
   dropoffLocation : {
-    type: String,
-    autoform: {
-      type: "hidden"
-    }
+    type: String
   },
   pickupTime : {
-    type: String,
-    autoform: {
-      type: "hidden"
-    }
+    type: String
+    // autoform: {
+    //   type: "hidden"
+    // }
   },
   title : {
     type: String,

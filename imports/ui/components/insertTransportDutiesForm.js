@@ -6,33 +6,41 @@ import './insertTransportDutiesForm.html';
 Template.insertTransportDutiesForm.onRendered(function() {
   this.autorun(function () {
     if (GoogleMaps.loaded()) {
-      $("#pickupLocation").geocomplete();
-			$("#dropoffLocation").geocomplete();
+     $("[name='pickupLocation']").geocomplete();
+	  $("[name='dropoffLocation']").geocomplete();
     }
 
-		$('#pickupTime').datetimepicker({
+		$("[name='pickupTime']").datetimepicker({
       format: 'LT'
     });
   });
 });
 
+
+Template.updateTransportDutiesForm.onRendered(function() {
+  this.autorun(function () {
+   if (GoogleMaps.loaded()) {
+     $("[name='pickupLocation']").geocomplete();
+	  $("[name='dropoffLocation']").geocomplete();
+    }
+
+		$("[name='pickupTime']").datetimepicker({
+      format: 'LT'
+    });
+  });
+});
+
+
 AutoForm.hooks({
 	insertTransportDutyForm: {
 		beginSubmit: function () {
 
-			// Check fields outside of autoform
-			if (this.insertDoc.dueDate !== "" &&
-					this.insertDoc.passengerNumber !== "" &&
-					$("#pickupLocation").val() !== "" &&
-					$("#dropoffLocation").val() !== "" &&
-					$("#pickupTime").val() !== "") {
-
 				insertTransportDuty.call({
 					dueDate: this.insertDoc.dueDate,
 					passengerNumber: this.insertDoc.passengerNumber,
-					pickupLocation: $("#pickupLocation").val(),
-					dropoffLocation: $("#dropoffLocation").val(),
-					pickupTime: $("#pickupTime").val()
+					pickupLocation: this.insertDoc.pickupTime,
+					dropoffLocation: this.insertDoc.dropoffLocation,
+					pickupTime: this.insertDoc.pickupTime
 				}, (err, res) => {
 					if (err) {
 						sweetAlert({
@@ -50,30 +58,21 @@ AutoForm.hooks({
 						});
 					}
 				});
-
-			} else {
-				alert("You need to fill in all fields!");
-			}
-
-			return false;
-		}
-	},
-	updateTransportDutyForm: {
+				
+				return false;
+			} 		
+		},
+	
+	updateTransportDutiesForm: {
 		beginSubmit: function () {
 
-			// Check fields outside of autoform
-			if (this.insertDoc.dueDate !== "" &&
-					this.insertDoc.passengerNumber !== "" &&
-					$("#pickupLocation").val() !== "" &&
-					$("#dropoffLocation").val() !== "" &&
-					$("#pickupTime").val() !== "") {
-
-				insertTransportDuty.call({
-					dueDate: this.insertDoc.dueDate,
-					passengerNumber: this.insertDoc.passengerNumber,
-					pickupLocation: $("#pickupLocation").val(),
-					dropoffLocation: $("#dropoffLocation").val(),
-					pickupTime: $("#pickupTime").val()
+				updateTransportDuty.call({
+					transportDutyId: this.updateDoc.$set._id,
+					newDueDate: this.updateDoc.$set.dueDate,
+					newPassengerNumber: this.updateDoc.$set.passengerNumber,
+					newPickupLocation: this.updateDoc.$set.pickupTime,
+					newDropOffLocation: this.updateDoc.$set.dropoffLocation,
+					newPickupTime: this.updateDoc.$set.pickupTime
 				}, (err, res) => {
 					if (err) {
 						sweetAlert({
@@ -91,11 +90,6 @@ AutoForm.hooks({
 						});
 					}
 				});
-
-			} else {
-				alert("You need to fill in all fields!");
-			}
-
 			return false;
 		}
 	}
