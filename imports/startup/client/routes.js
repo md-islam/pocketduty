@@ -175,9 +175,6 @@ FlowRouter.route('/edit/shopping_duty/:_id', {
     }
 })
 
-
-
-
 // Create transport duty route
 FlowRouter.route('/employer/new_duty/new_transport_duty', {
   name: 'new_transport_duty',
@@ -190,6 +187,16 @@ FlowRouter.route('/employer/new_duty/new_transport_duty', {
     })
   }
 });
+
+FlowRouter.route('/edit/transport_duty/:_id', {
+    name: 'transport_duty.edit',
+    action() {
+        if(!Meteor.userId()){
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "EditTransportDuty"})
+    }
+})
 
 
 

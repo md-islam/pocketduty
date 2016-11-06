@@ -23,3 +23,15 @@
 		</div>
 	</div>
 </template>
+
+
+
+<template name="updateTransportDutiesForm">
+	<div class="container" style="margin-left: 100px;">
+		<div class="row">
+			<div class="col-md-8">
+				{{> quickForm collection=transportDutyCollection id="updateTransportDutiesForm" singleMethodArgument=true doc=this type="method-update" meteormethod="updateTransportDuty"}}
+			</div>
+		</div>
+	</div>
+</template>

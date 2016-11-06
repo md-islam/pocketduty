@@ -46,9 +46,6 @@ Template.Dashboard.helpers({
 	},
 	transportDuties () {
 		console.log("Getting transport duties");
-		console.log('bro',TransportDuties.find().fetch());
-		window.ShoppingDuties = ShoppingDuties;
-		window.TransportDuties = TransportDuties;
 		let duties = TransportDuties.find({userId: Meteor.userId()});
 		return duties;
 	},

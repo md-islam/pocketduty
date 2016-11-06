@@ -1,6 +1,6 @@
 <template name="TransportDuty">
 	<div class="panel panel-default">
-		<div class="panel-heading"> <b>TRANSPORT DUTY</b></div>
+		<div class="panel-heading"> <b>TRANSPORT DUTY</b> - {{title}} </div>
 		<div class="panel-body">
 			<div>Pickup Location: {{pickupLocation}}</div>
 			<div>Pickup Time: {{pickupTime}}</div>
@@ -10,7 +10,7 @@
 		<div class="panel-footer">
 			<div class="row">
 				<div class="btn-group">
-					<a type="button" href="#" class="btn btn-primary"> Edit </a>
+					<a type="button" href="{{pathFor 'transport_duty.edit' _id=_id}}" class="btn btn-primary"> Edit </a>
 					<button class="btn btn-danger"> Delete</button>
 				</div>
 			</div>

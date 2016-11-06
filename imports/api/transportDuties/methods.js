@@ -92,9 +92,42 @@ export const completeTransportDuty = new ValidatedMethod({
   },
 });
 
+export const updateTransportDuty = new ValidatedMethod({
+  name: 'transportDuties.updateDuty',
+  validate: new SimpleSchema({
+    transportDutyId: TransportDuties.simpleSchema().schema('_id'),
+    newPickupLocation: TransportDuties.simpleSchema().schema('pickupLocation'),
+    newPickupTime : TransportDuties.simpleSchema().schema('pickupTime'),
+    newDropOffLocation : TransportDuties.simpleSchema().schema('dropoffLocation'),
+    newDueDate: TransportDuties.simpleSchema().schema('dueDate'),
+    newPassengerNumber : TransportDuties.simpleSchema().schema('passengerNumber')
+  }).validator({ clean: true, filter: false }),
+  run({ transportDutyId, newPickupLocation, newPickupTime,  newDropOffLocation, newDueDate, newPassengerNumber}) {
+    // This is complex auth stuff - perhaps denormalizing a userId onto transportDuties
+    // would be correct here?
+    const transportDuty = TransportDuties.findOne(transportDutyId);
+    console.log(transportDuty);
+    if (transportDuty.userId != this.userId) {
+      throw new Meteor.Error('transportDuties.updateDuty.accessDenied',
+        'Cannot edit transportDuty that is not yours');
+    }
+    
+    TransportDuties.update(transportDutyId, {
+      $set: {
+        dueDate: (_.isUndefined(newDueDate) ? transportDuty.dueDate: newDueDate),
+        pickupLocation: (_.isUndefined(newPickupLocation) ? transportDuty.pickupLocation : newPickupLocation),
+        pickupTime: (_.isUndefined(newPickupTime) ? transportDuty.pickupTime :  newPickupTime),
+        dropoffLocation: (_.isUndefined(newDropOffLocation) ? transportDuty.dropoffLocation : newDropOffLocation),
+        passengerNumber: (_.isUndefined(newPassengerNumber) ? transportDuty.passengerNumber : newPassengerNumber)
+      },
+    });
+  },
+});
+
 // Get list of all method names on transportDuties
 const TRANSPORT_DUTIES_METHODS = _.pluck([
   insertTransportDuty,
+  updateTransportDuty
 ], 'name');
 
 if (Meteor.isServer) {

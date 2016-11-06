@@ -1,0 +1,11 @@
+<template name="EditTransportDuty">
+    <h1 class="page-title">Edit Transport Duty</h1>
+    	{{> AppNav}}
+    	{{#if Template.subscriptionsReady}}
+	    	{{#with getDocument }}
+	    		{{> updateTransportDutiesForm}}
+	    	{{/with}}
+    	{{else}}
+    		Loading...
+    	{{/if}}
+</template>
