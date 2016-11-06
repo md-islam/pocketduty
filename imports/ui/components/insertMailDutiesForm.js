@@ -1,18 +1,15 @@
-import {
-	MailDuties
-} from '../../api/mailDuties/mailDuties.js';
+import { MailDuties } from '../../api/mailDuties/mailDuties.js';
 import './insertMailDutiesForm.html';
 
-import {
-	insertMailDuty
-} from '../../api/mailDuties/methods.js'
+import { insertMailDuty } from '../../api/mailDuties/methods.js'
 
 
 Template.insertMailDutiesForm.onRendered(function() {
 	this.autorun(function() {
 		if (GoogleMaps.loaded()) {
-			$("#mailDropOffLocationUpdateForm").geocomplete();
-			$("#mailPickUpLocationHelpUpForm").geocomplete();
+			console.log("googlemaps");
+			$("#mailPickUpLocation").geocomplete();
+			$("#mailDropOffLocation").geocomplete();
 		}
 	});
 

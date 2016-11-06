@@ -7,9 +7,17 @@ import {
 
 
 
-Template.updateMailDutiesForm.onCreated(function(){
+Template.updateMailDutiesForm.onRendered(function(){
 	this.autorun(() => {
 		this.subscribe('mailDuties', {});
+		if (GoogleMaps.loaded()) {
+			console.log("googlemaps");
+			$("#mailPickUpLocationUpdateForm").geocomplete();
+			$("#mailDropOffLocationUpdateForm").geocomplete();
+		}
+	});
+	$('#mailTimePickerFieldIDUpdateForm').datetimepicker({
+		format: 'LT'
 	});
 });
 
