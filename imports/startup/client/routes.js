@@ -19,6 +19,8 @@ import '../../ui/pages/NewAcademicDuty.js';
 import '../../ui/pages/EditAcademicDuty.js';
 import '../../ui/pages/EditShoppingDuty.js';
 import '../../ui/pages/NewTransportDuty.js';
+import '../../ui/pages/NewMailDuty.js'; 
+import '../../ui/components/updateMailDutiesForm.js';
 
 
 // Main Page (User not logged in)
@@ -150,6 +152,7 @@ FlowRouter.route('/edit/shopping_duty/:_id', {
     }
 })
 
+
 // Create transport duty route
 FlowRouter.route('/employer/new_duty/new_transport_duty', {
   name: 'new_transport_duty',
@@ -162,6 +165,36 @@ FlowRouter.route('/employer/new_duty/new_transport_duty', {
     })
   }
 });
+
+
+//mail duty add and update routes
+//Create mail duty route
+FlowRouter.route('/employer/new_duty/new_mailing_duty', {
+  name: 'new_mail_duty',
+  action () {
+    if (!Meteor.userId()) {
+      FlowRouter.go('main');
+    }
+
+    console.log("mail_duty_route");
+    BlazeLayout.render('MainLayout', {
+      main: "NewMailDuty"
+    })
+  }
+});
+
+//Edit mail duty route 
+FlowRouter.route('/employer/edit/mail_duty/:_id',{
+    name: 'mail_duty.edit',
+    action(){
+        if(!Meteor.userId()){
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "updateMailDutiesForm"})
+
+    }
+});
+
 
 
 Accounts.onLogin(function(){

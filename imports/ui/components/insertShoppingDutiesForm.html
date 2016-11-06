@@ -17,3 +17,13 @@
 		</div>
 	</div>
 </template>
+
+<template name="updateShoppingDutiesForm">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				{{> quickForm collection=shoppingDutyCollection id="updateShoppingDutiesForm" singleMethodArgument=true doc=this type="method-update" meteormethod="updateShoppingDuty"}}
+			</div>
+		</div>
+	</div>
+</template>
