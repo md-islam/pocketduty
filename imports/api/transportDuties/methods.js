@@ -38,6 +38,59 @@ export const insertTransportDuty = new ValidatedMethod({
   },
 });
 
+//Assign transport duty
+export const assignTransportDuty = new ValidatedMethod({
+  name: 'transportDuties.assign',
+  validate: new SimpleSchema({
+    transportDutyId: TransportDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ transportDutyId }) {
+    const duty = TransportDuties.findOne(transportDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('transportDuties.assign.accessDenied',
+        'Cannot assign shoppingDuties that is yours');
+    }
+
+    TransportDuties.update(transportDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.Assigned}});
+  },
+});
+
+//Unassign transport duty
+export const unassignTransportDuty = new ValidatedMethod({
+  name: 'transportDuties.unassign',
+  validate: new SimpleSchema({
+    transportDutyId: TransportDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ transportDutyId }) {
+    const duty = TransportDuties.findOne(transportDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('transportDuties.unassign.accessDenied',
+        'Cannot assign shoppingDuties that is yours');
+    }
+
+    TransportDuties.update(transportDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.New}});
+  },
+});
+
+//Complete transport duty
+export const completeTransportDuty = new ValidatedMethod({
+  name: 'transportDuties.complete',
+  validate: new SimpleSchema({
+    transportDutyId: TransportDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ transportDutyId }) {
+    const duty = TransportDuties.findOne(transportDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('transportDuties.complete.accessDenied',
+        'Cannot assign shoppingDuties that is yours');
+    }
+
+    TransportDuties.update(transportDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.Complete}});
+  },
+});
 
 // Get list of all method names on transportDuties
 const TRANSPORT_DUTIES_METHODS = _.pluck([

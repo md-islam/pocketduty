@@ -4,6 +4,7 @@ import { AcademicDuties} from '../../api/academicDuties/academicDuties.js';
 import { LaundryDuties} from '../../api/laundryDuties/laundryDuties.js';
 import './LaborDashboard.html';
 import '../components/laborShoppingDuty.js';
+import '../components/laborTransportDuty.js';
 import '../components/academicDuty.html';
 import '../components/laundryDuty.html';
 //import { AcceptableDutyStatuses } from '../../api/duties/duties.js';
@@ -12,23 +13,31 @@ import '../components/laundryDuty.html';
 Template.LaborDashboard.onCreated(function(){
 	this.autorun(() => {
 		console.log("Yo yo yo");
-		this.subscribe('laborShoppingDuties', {});
-		this.subscribe('academicDuties', {});
-		this.subscribe('laundryDuties', {});
+		this.subscribe('academicDuties', {});	//Academic
+		this.subscribe('laundryDuties', {});	//Laundry
+		this.subscribe('academicDuties', {});	//Mailing
+		this.subscribe('laborShoppingDuties', {});	//Shopping
+		this.subscribe('laborTransportDuties', {});	//Transport
 	});
 });
 
 Template.LaborDashboard.helpers({
-	shoppingDuties() {
+	academicDuties() {	//Academic
+		return AcademicDuties.find({userId: { $ne: Meteor.userId() }}, { sort: {dateCreated: -1}});
+	},
+	laundryDuties() {	//Laundry
+		return LaundryDuties.find({userId: { $ne: Meteor.userId() }}, { sort: {dateCreated: -1}});
+	},
+	mailingDuties() {	//Mailing
+		return LaundryDuties.find({userId: { $ne: Meteor.userId() }}, { sort: {dateCreated: -1}});
+	},
+	shoppingDuties() {	//Shopping
 		console.log("Getting shopping duties");
 		duties = ShoppingDuties.find();
 		return duties;
 	},
-	academicDuties() {
-		return AcademicDuties.find({userId: { $ne: Meteor.userId() }}, { sort: {dateCreated: -1}});
-	},
-	laundryDuties() {
-		return LaundryDuties.find({userId: { $ne: Meteor.userId() }}, { sort: {dateCreated: -1}});
+	transportDuties() {	//Transport
+		return LaundryDuties.find();
 	}
 })
 
