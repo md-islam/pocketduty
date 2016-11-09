@@ -207,13 +207,13 @@
           
         <ul id="menu-content" class="menu-content collapse out">
             
-            <li class="list-group-item-info"><a href="/employee" ><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li class="list-group-item-info"><a href="{{pathFor 'employee'}}" ><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
            	
-           	<li class="list-group-item-success"><a href="/employee/incomplete-task"><i class="fa fa-spinner"></i> <span>Incomplete Duties</span></a></li>
+           	<li class="list-group-item-success"><a href="{{pathFor 'incomplete-task'}}"><i class="fa fa-spinner"></i> <span>Incomplete Duties</span></a></li>
             
-            <li class="list-group-item-warning"><a href="/employee/completed-task"><i class="fa fa-check-square-o"></i> <span>Completed Duties</span></a></li>
+            <li class="list-group-item-warning"><a href="{{pathFor 'completed-task'}}"><i class="fa fa-check-square-o"></i> <span>Completed Duties</span></a></li>
             
-            <li class="list-group-item-danger"><a href="account_settings"><i class="fa fa-gear"></i> <span>Account Settings</span></a></li>
+            <!-- <li class="list-group-item-danger"><a href="{{pathFor 'account_settings'}}"><i class="fa fa-gear"></i> <span>Account Settings</span></a></li> -->
         </ul>
 
     </div>

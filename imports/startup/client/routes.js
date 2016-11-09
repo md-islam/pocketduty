@@ -19,6 +19,9 @@ import '../../ui/pages/NewAcademicDuty.js';
 import '../../ui/pages/EditAcademicDuty.js';
 import '../../ui/pages/EditShoppingDuty.js';
 import '../../ui/pages/NewTransportDuty.js';
+// import '../../ui/pages/AccountSettings.html';
+import '../../ui/pages/ActiveDuties.html';
+import '../../ui/pages/PastDuties.html';
 
 
 // Main Page (User not logged in)
@@ -59,6 +62,28 @@ FlowRouter.route('/employee/incomplete-task', {
             FlowRouter.go('main');
         }
         BlazeLayout.render("MainLayout", {main: "LaborIncomplete"});
+    }
+});
+
+// Employee Dashboard
+FlowRouter.route('/employee/labor_dashboard', {
+    name: 'labor_dashboard',
+    action() {
+        if(!Meteor.userId()) {
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "LaborDashboard"});
+    }
+});
+
+// Employer Dashboard
+FlowRouter.route('/employer/employer_dashboard', {
+    name: 'employer_dashboard',
+    action() {
+        if(!Meteor.userId()) {
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "Dashboard"});
     }
 });
 
@@ -119,6 +144,17 @@ FlowRouter.route('/employer/new_duty/new_academic_duty', {
     }
 });
 
+// Create transport duty route
+FlowRouter.route('/employer/new_duty/new_transport_duty', {
+  name: 'new_transport_duty',
+  action () {
+    if (!Meteor.userId()) {
+      FlowRouter.go('main');
+    }
+    BlazeLayout.render("MainLayout", {main: "NewTransportDuty"})
+    }
+});
+
 FlowRouter.route('/edit/academic_duty/:_id', {
    name: 'academic_duty.edit',
     action() {
@@ -129,16 +165,6 @@ FlowRouter.route('/edit/academic_duty/:_id', {
     }
 });
 
-// // Home Page (New Duty)
-// FlowRouter.route('/newduty', {
-//     name: 'newduty',
-//     action() {
-//         if(!Meteor.userId()) {
-//         FlowRouter.go('main');
-//         }
-//         BlazeLayout.render("MainLayout", {main: "NewDuty"});
-//     }
-// });
 
 FlowRouter.route('/edit/shopping_duty/:_id', {
     name: 'shopping_duty.edit',
@@ -150,19 +176,38 @@ FlowRouter.route('/edit/shopping_duty/:_id', {
     }
 })
 
-// Create transport duty route
-FlowRouter.route('/employer/new_duty/new_transport_duty', {
-  name: 'new_transport_duty',
-  action () {
-    if (!Meteor.userId()) {
-      FlowRouter.go('main');
+// Employer Active Duties
+FlowRouter.route('/employer/active_duties', {
+    name: 'active_duties',
+    action() {
+        if(!Meteor.userId()) {
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "ActiveDuties"});
     }
-    BlazeLayout.render("MainLayout", {
-      main: "NewTransportDuty"
-    })
-  }
 });
 
+// Employer Past Duties
+FlowRouter.route('/employer/past_duties', {
+    name: 'past_duties',
+    action() {
+        if(!Meteor.userId()) {
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "PastDuties"});
+    }
+});
+
+// Employer Account Settings
+// FlowRouter.route('/employer/account_settings', {
+//     name: 'account_settings',
+//     action() {
+//         if(!Meteor.userId()) {
+//             FlowRouter.go('main');
+//         }
+//         BlazeLayout.render("MainLayout", {main: "AccountSettings"});
+//     }
+// });
 
 Accounts.onLogin(function(){
     FlowRouter.go('main');
