@@ -24,7 +24,6 @@ import '../../ui/components/updateMailDutiesForm.js';
 import '../../ui/pages/ActiveDuties.js';
 import '../../ui/pages/PastDuties.js';
 import '../../ui/pages/EditTransportDuty.js';
-// import '../../ui/pages/AccountSettings.html';
 
 
 // Main Page (User not logged in)
@@ -247,10 +246,33 @@ FlowRouter.route('/employer/new_duty/new_mailing_duty', {
     console.log("mail_duty_route");
     BlazeLayout.render('MainLayout', {
       main: "NewMailDuty"
-    })
-  }
+    });
+
+    }
+
 });
 
+// Employer Past Duties
+FlowRouter.route('/employer/past_duties', {
+    name: 'past_duties',
+    action() {
+        if(!Meteor.userId()) {
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "PastDuties"});
+    }
+});
+
+// Employer Account Settings
+// FlowRouter.route('/employer/account_settings', {
+//     name: 'account_settings',
+//     action() {
+//         if(!Meteor.userId()) {
+//             FlowRouter.go('main');
+//         }
+//         BlazeLayout.render("MainLayout", {main: "AccountSettings"});
+//     }
+// });
 
 //EDIT MAIL DUTY ROUTE
 FlowRouter.route('/employer/edit/mail_duty/:_id',{
