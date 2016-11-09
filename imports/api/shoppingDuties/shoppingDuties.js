@@ -5,6 +5,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { DutySchema } from '../duties/duties.js';
 
 
+
 class ShoppingDutiesCollection extends Mongo.Collection {
   insert(doc, callback) {
     const ourDoc = doc;
@@ -15,7 +16,7 @@ class ShoppingDutiesCollection extends Mongo.Collection {
   update(selector, modifier) {
     const result = super.update(selector, modifier);
     return result;
-  }
+  }   
   remove(selector) {
     const todos = this.find(selector).fetch();
     const result = super.remove(selector);

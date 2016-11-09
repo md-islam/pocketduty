@@ -37,7 +37,7 @@ useraccounts:unstyled
 
 #adding some packages
 erasaur:meteor-lodash
-stolinski:stylus-multi
+#stolinski:stylus-multi
 fortawesome:fontawesome
 fourseven:scss
 spiderable

@@ -7,12 +7,16 @@ import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
 import { ShoppingDuties } from './shoppingDuties.js';
 import { AcceptableDutyStatuses } from '../duties/duties.js';
 
+
+
 //Arbitraryily set default shopping duty price to $10 dollars.
 export const ShoppingDutyPrice = 10; 
 
 export const insertShoppingDuty = new ValidatedMethod({
   name: 'shoppingDuties.insert',
-  validate: ShoppingDuties.simpleSchema().pick(['title', 'dueDate', 'description', 'maxSpending' , 'list', 'list.$', 'list.$.description']).validator({ clean: true, filter: false }),
+  validate: ShoppingDuties.simpleSchema().pick(['title', 'dueDate', 'description', 'maxSpending' , 'list', 'list.$', 'list.$.description'])
+  .validator({ clean: true, filter: false }),
+  
   run({ title, dueDate, description, maxSpending, list}) {
     if (!this.userId) {
       throw new Meteor.Error('shoppingDuties.insert.accessDenied',
@@ -24,6 +28,7 @@ export const insertShoppingDuty = new ValidatedMethod({
       title,
       description,
       userId : this.userId,
+      
       laborerId: "none",
       dueDate,
       list,
@@ -154,6 +159,10 @@ export const completeShoppingDuty = new ValidatedMethod({
 
 //   }
 // });
+
+
+// 
+
 
 // Get list of all method names on shoppingDuties
 const SHOPPING_DUTIES_METHODS = _.pluck([

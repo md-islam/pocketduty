@@ -2,7 +2,6 @@
 // For reference https://github.com/meteor/todos/blob/master/imports/startup/client/routes.js
 // In this file we should import the appropriate UI templates and route to them.
 // In the todo example, we populate the App_body main template with the 
-
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {BlazeLayout} from 'meteor/kadira:blaze-layout';
 import '../../ui/accounts/accounts-templates.js';
@@ -18,12 +17,16 @@ import '../../ui/pages/NewLaundryDuty.js';
 import '../../ui/pages/NewAcademicDuty.js';
 import '../../ui/pages/EditAcademicDuty.js';
 import '../../ui/pages/EditShoppingDuty.js';
+
+import '../../ui/pages/EditLaundryDuty.js';
+
 import '../../ui/pages/NewTransportDuty.js';
 import '../../ui/pages/NewMailDuty.js'; 
 import '../../ui/components/updateMailDutiesForm.js';
 import '../../ui/pages/ActiveDuties.js';
 import '../../ui/pages/PastDuties.js';
 import '../../ui/pages/EditTransportDuty.js';
+
 
 
 // Main Page (User not logged in)
@@ -210,6 +213,7 @@ FlowRouter.route('/edit/shopping_duty/:_id', {
     }
 })
 
+
 // Employer Active Duties
 FlowRouter.route('/employer/active_duties', {
     name: 'active_duties',
@@ -218,6 +222,28 @@ FlowRouter.route('/employer/active_duties', {
             FlowRouter.go('main');
         }
         BlazeLayout.render("MainLayout", {main: "ActiveDuties"});
+
+
+
+FlowRouter.route('/edit/laundry_duty/:_id', {
+    name: 'laundry_duty.edit',
+    action() {
+        if(!Meteor.userId()){
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "EditLaundryDuty"})
+    }
+})
+
+
+
+// Create transport duty route
+FlowRouter.route('/employer/new_duty/new_transport_duty', {
+  name: 'new_transport_duty',
+  action () {
+    if (!Meteor.userId()) {
+      FlowRouter.go('main');
+
     }
 });
 

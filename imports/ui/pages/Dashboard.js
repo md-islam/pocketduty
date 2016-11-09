@@ -17,7 +17,8 @@ import '../components/mailDuty.html';
 import '../components/transportDuty.js';
 import '../components/mailDuty.js';
 import '../components/mailDuty.html';
-
+import '../components/laundryDuty.js';
+ 
 
 
 Template.Dashboard.onCreated(function(){

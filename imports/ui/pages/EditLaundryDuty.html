@@ -1,0 +1,11 @@
+<template name="EditLaundryDuty">
+    <h1 class="page-title">Edit Laundry Duty</h1>
+    	{{> AppNav}}
+    	{{#if Template.subscriptionsReady}}
+	    	{{#with getDocument }}
+	    		{{> updateLaundryDutiesForm}}
+	    	{{/with}}
+    	{{else}}
+    		Loading...
+    	{{/if}}
+</template>

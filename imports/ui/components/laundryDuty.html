@@ -5,5 +5,14 @@
 			<div> {{description}}</div>
 			<div> {{price}}</div>
 		</div>
+	<div class="panel-footer">
+			<div class="row">
+				<div class="btn-group">
+					<a type="button" href="{{pathFor 'laundry_duty.edit' _id=_id}}" class="btn btn-primary"> Edit </a>
+					<button class="btn btn-danger"> Delete</button>
+				</div>
+			</div>
+		</div>
 	</div>
+
 </template>

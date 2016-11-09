@@ -12,8 +12,10 @@ export const LaundryDutyPrice = 10;
 
 export const insertLaundryDuty = new ValidatedMethod({
   name: 'laundryDuties.insert',
-  validate: LaundryDuties.simpleSchema().pick(['title', 'dueDate', 'description', 'loadNo']).validator({ clean: true, filter: false }),
-  run({ title, dueDate, description, loadNo }) {
+  validate: LaundryDuties.simpleSchema().pick(['title', 'dueDate', 'description', 'loadNo'])
+  .validator({ clean: true, filter: false }),
+
+  run({ laundryDutyId, title, dueDate, description, loadNo }) {
     if (!this.userId) {
       throw new Meteor.Error('laundryDuties.insert.accessDenied',
         'You must be signed in to create a new Laundry Duty');
@@ -27,7 +29,8 @@ export const insertLaundryDuty = new ValidatedMethod({
       dueDate,
       dateCreated: new Date(),
       loadNo,
-      price: LaundryDutyPrice
+      price: LaundryDutyPrice,
+      laborerId : "none"
     };
 
     LaundryDuties.insert(laundryDuty);
@@ -40,23 +43,25 @@ export const updateLaundryDuty = new ValidatedMethod({
   validate: new SimpleSchema({
     laundryDutyId: LaundryDuties.simpleSchema().schema('_id'),
     newTitle: LaundryDuties.simpleSchema().schema('title'),
+    newDueDate : LaundryDuties.simpleSchema().schema('dueDate'),
     newDescription : LaundryDuties.simpleSchema().schema('description'),
-    newMaxSpending : LaundryDuties.simpleSchema().schema('loadNo')
+    newLoadNo : LaundryDuties.simpleSchema().schema('loadNo')
   }).validator({ clean: true, filter: false }),
-  run({ laundryDutyId, newTitle, newDescription, loadNo }) {
+  run({ laundryDutyId, newTitle,  newLoadNo ,newDescription, newDueDate}) {
     // This is complex auth stuff - perhaps denormalizing a userId onto laundryDuties
     // would be correct here?
-    const laundryDuty = LaundryDuties.findOne(todoId);
+    const laundryDuty = LaundryDuties.findOne(laundryDutyId);
 
-    if (!laundryDuty.editableBy(this.userId)) {
+    if (laundryDuty.userId != this.userId) {
       throw new Meteor.Error('laundryDuties.updateDuty.accessDenied',
         'Cannot edit laundryDuty that is not yours');
     }
     LaundryDuties.update(laundryDutyId, {
       $set: {
-        title: (_.isUndefined(newText) ? laundryDuty.title : newTitle),
+        title: (_.isUndefined(newTitle) ? laundryDuty.title : newTitle),
+        loadNo: (_.isUndefined(newLoadNo) ? laundryDuty.loadNo : newLoadNo),
         description: (_.isUndefined(newDescription) ? laundryDuty.description : newDescription),
-        loadNo: (_.isUndefined(loadNo) ? laundryDuty.loadNo : newMaxSpending),
+        dueDate: (_.isUndefined(newDueDate)  ?  laundryDuty.dueDate : newDueDate)
       },
     });
   },
@@ -65,17 +70,17 @@ export const updateLaundryDuty = new ValidatedMethod({
 export const removeLaundryDuty = new ValidatedMethod({
   name: 'laundryDuties.remove',
   validate: new SimpleSchema({
-    todoId: LaundryDuties.simpleSchema().schema('_id'),
+   laundryDutyId: LaundryDuties.simpleSchema().schema('_id'),
   }).validator({ clean: true, filter: false }),
-  run({ todoId }) {
-    const todo = LaundryDuties.findOne(todoId);
+  run({ laundryDutyId }) {
+    const duty = LaundryDuties.findOne(laundryDutyId);
 
-    if (!todo.editableBy(this.userId)) {
+    if (duty.userId != this.userId ) {
       throw new Meteor.Error('laundryDuties.remove.accessDenied',
         'Cannot remove laundryDuties that is not yours');
     }
 
-    LaundryDuties.remove(todoId);
+    LaundryDuties.remove(laundryDutyId);
   },
 });
 

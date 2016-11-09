@@ -1,6 +1,8 @@
 import { Template } from 'meteor/templating';
 import { LaundryDuties } from '../../api/laundryDuties/laundryDuties.js';
-import { insertLaundryDuty } from '../../api/laundryDuties/methods.js';
+import { insertLaundryDuty, updateLaundryDuty } from '../../api/laundryDuties/methods.js';
+
+
 import './insertLaundryDutiesForm.html';
 
 
@@ -20,10 +22,35 @@ AutoForm.hooks({
 				});
 			return false;
 		}
+	},
+
+updateLaundryDutiesForm: {
+		beginSubmit: function(){
+			updateLaundryDuty.call({
+				laundryDutyId: this.updateDoc.$set._id,
+				newTitle: this.updateDoc.$set.title, 
+				newDueDate: this.updateDoc.$set.dueDate, 
+				newDescription: this.updateDoc.$set.description, 
+				// newMaxSpending: this.updateDoc.$set.maxSpending,
+				newLoadNo : this.updateDoc.$set.loadNo }, (err, res) => {
+					if (err) {
+						throw err;
+					}
+					console.log(res);
+			});
+			return false;
+		}
 	}
+
 });
 
 Template.insertLaundryDutiesForm.helpers({
+	laundryDutyCollection(){
+		return LaundryDuties;
+	}
+})
+
+Template.updateLaundryDutiesForm.helpers({
 	laundryDutyCollection(){
 		return LaundryDuties;
 	}

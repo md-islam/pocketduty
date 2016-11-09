@@ -43,7 +43,7 @@ LaundryDuties.deny({
 LaundryDuties.schema = new SimpleSchema([DutySchema, {
   loadNo : {
     type: String,
-    allowedValues: LoadSize.loadNo
+    allowedValues: LoadSize.loadNo  
   }
 }]);
 
@@ -60,7 +60,9 @@ LaundryDuties.publicFields = {
   title: 1,
   description: 1,
   price: 1,
-  maxSpending: 1
+  maxSpending: 1, 
+  dueDate: 1,
+  loadNo: 1
 };
 
 // TODO This factory has a name - do we have a code style for this?
