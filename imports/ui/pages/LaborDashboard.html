@@ -1,8 +1,11 @@
 <template name="LaborDashboard">
- <!--    <h1 class="page-title">Dashboard</h1> -->
-    	{{> EmployeeNav}}
-    <div class="container" style="margin-left: 200px; margin-right: 10%">	
 
+    <div class="space" style="height: 69px;"></div>
+        {{> EmployeeNav}}
+    
+    	
+    <div class="container" style="margin-left: 200px; margin-right: 5%">	
+    <h1 class="page-title">Dashboard</h1>
         <div class="page-title">
             <input type="checkbox" class="shopping" checked="checked"> Shopping Duties
             <input type="checkbox" class="acedamic" checked="checked"> Acedamic Duties
@@ -11,35 +14,44 @@
             <input type="checkbox" class="delivery" checked="checked"> Delivery Duties
         </div> -->
 
-         <h1 class="page-title">Acedamic duty</h1>
+         <h2 class="page-title">Acedamic duty</h2>
         <div class="row">
             {{#each academicDuty in academicDuties}}
                 {{> AcademicDuty (academicDuty)}}
             {{/each}}
         </div>
 
-        <h1 class="page-title">Laundry duty</h1>
+        <h2 class="page-title">Laundry duty</h2>
         <div class="row">
             {{#each laundryDuty in laundryDuties}}
                 {{> LaundryDuty (laundryDuty)}}
             {{/each}}
         </div>
 
-        <h1 class="page-title">Mailing duty</h1>
+        <h2 class="page-title">Mailing duty</h2>
         <div class="row">
             {{#each laundryDuty in laundryDuties}}
                 {{> LaundryDuty (laundryDuty)}}
             {{/each}}
         </div>
 
-        <h1 class="page-title">Shopping duty</h1>
+        <h2 class="page-title">Shopping duty</h2>
+
     	<div class="row">
 			{{#each shoppingDuty in shoppingDuties}}
 				{{> LaborShoppingDuty (shoppingDuty)}}
 			{{/each}}
 		</div>
 
-        <h1 class="page-title">Transport duty</h1>
+        <h2 class="page-title">Transport duty</h2>
+
+        <h2 class="page-title">Acedamic duty</h2>
+        <div class="row">
+            {{#each academicDuty in academicDuties}}
+                {{> AcademicDuty (academicDuty)}}
+            {{/each}}
+        </div>
+        <h2 class="page-title">Laundry duty</h2>
         <div class="row">
             {{#each laundryDuty in laundryDuties}}
                 {{> LaundryDuty (laundryDuty)}}
