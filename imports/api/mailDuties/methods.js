@@ -93,7 +93,7 @@ export const insertMailDuty = new ValidatedMethod({
       pickUpTime,
       deliveryType,
       servicePrice,
-      price: MailDutyPrice,
+      price: servicePrice,
       laborerId: "none" 
     };
      MailDuties.insert(mailDuty);
