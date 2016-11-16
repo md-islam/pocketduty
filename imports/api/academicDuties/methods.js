@@ -29,7 +29,8 @@ export const insertAcademicDuty = new ValidatedMethod({
       dateOfClass,
       classRoomNumber,
       timeRangeOfClass,
-      price: AcademicDutyPrice
+      price: AcademicDutyPrice,
+      laborerId: "none"
     };
 
     AcademicDuties.insert(academicDuty);
