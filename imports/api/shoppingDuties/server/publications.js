@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { AcceptableDutyStatuses } from '../../duties/duties.js';
 import { ShoppingDuties } from '../shoppingDuties.js';
-//import { AcademicDuties } from '../academicDuties.js';
+
 
 Meteor.publish('shoppingDuties', function shoppingDuties(){
   if(!this.userId){
@@ -69,25 +69,7 @@ Meteor.publish('employerShoppingComplete', function employerShoppingComplete(){
   })
 });
 
-Meteor.publish('employerAcademicAssigned', function employerAcademicAssigned(){
-  if(!this.userId){
-    return this.ready();
-  }
 
-  return ShoppingDuties.find({userId: this.userId, status: AcceptableDutyStatuses.Assigned}, { sort: {dateCreated: -1}}, {
-    fields : ShoppingDuties.publicFields
-  })
-});
-
-Meteor.publish('employerAcademicComplete', function employerAcademicComplete(){
-  if(!this.userId){
-    return this.ready();
-  }
-
-  return ShoppingDuties.find({userId: this.userId, status: AcceptableDutyStatuses.Complete}, { sort: {dateCreated: -1}}, {
-    fields : ShoppingDuties.publicFields
-  })
-});
 
 // Meteor.publishComposite('todos.inList', function todosInList(params) {
 //   new SimpleSchema({

@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-
+import { AcceptableDutyStatuses } from '../../duties/duties.js';
 import { LaundryDuties } from '../laundryDuties.js';
 
 Meteor.publish('laundryDuties', function laundryDuties(){
@@ -11,6 +11,26 @@ Meteor.publish('laundryDuties', function laundryDuties(){
   return LaundryDuties.find({
     userId : this.userId
   }, {
+    fields : LaundryDuties.publicFields
+  })
+});
+
+Meteor.publish('employerLaundryAssigned', function employerLaundryAssigned(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return LaundryDuties.find({userId: this.userId, status: AcceptableDutyStatuses.Assigned}, { sort: {dateCreated: -1}}, {
+    fields : LaundryDuties.publicFields
+  })
+});
+
+Meteor.publish('employerLaundryComplete', function employerLaundryComplete(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return LaundryDuties.find({userId: this.userId, status: AcceptableDutyStatuses.Complete}, { sort: {dateCreated: -1}}, {
     fields : LaundryDuties.publicFields
   })
 });

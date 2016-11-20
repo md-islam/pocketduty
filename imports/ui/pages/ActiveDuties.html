@@ -20,13 +20,15 @@
             {{/each}}
         </div>
         <div class="row">
+            {{#each mailDuty in mailDuties}}
+                {{> MailDuty (mailDuty)}}
+            {{/each}}
+        </div>
+        <div class="row">
             {{#each transportDuty in transportDuties}}
                 {{> TransportDuty (transportDuty)}}
             {{/each}}
         </div>
-        <!-- <div>
-  			<li>{{text}}</li>
-  		</div> -->
   	</div>
 
 </template>
