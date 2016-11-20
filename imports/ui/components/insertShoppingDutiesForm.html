@@ -17,3 +17,25 @@
 		</div>
 	</div>
 </template>
+
+<template name='paypal-payment'>
+	<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" class="paypal-button" method="post" style="opacity:" target="_top">
+    <div class="hide" id="errorBox"></div>
+    <input name="button" type="hidden" value="buynow"> 
+  	<input name="business" type="hidden" value="stuffgetter@domain.com"> 
+  	<input name="item_name" type="hidden" value="stuff">
+    <input name="quantity" type="hidden" value="1"> 
+    <input name="amount" type="hidden" value="2.00"> 
+    <input name="currency_code" type="hidden" value="USD"> 
+    <input name="shipping" type="hidden" value="0.00"> 
+    <input name="tax" type="hidden" value="0.00">
+    <input name="notify_url" type="hidden" value="http://localhost:3000/paypalCallback">
+    <input type="hidden" name="return" value="http://localhost:3000/paypal-trans-complete">
+    <input name="env" type="hidden" value="www.sandbox"> 
+    <input name="cmd" type="hidden" value="_xclick"> 
+    <input name="bn" type="hidden" value="JavaScriptButton_buynow"> 
+    <button style='border-color:transparent;background-color:transparent;'>
+    	<img type="submit" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/buy-logo-large.png" alt="Buy now with PayPal" />
+    </button>
+  </form>
+</template>

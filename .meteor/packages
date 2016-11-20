@@ -63,3 +63,6 @@ coffeescript
 ui
 yogiben:autoform-modals
 momentjs:moment
+meteorhacks:npm
+meteorhacks:async
+npm-container
