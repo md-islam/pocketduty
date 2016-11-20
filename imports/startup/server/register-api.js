@@ -13,4 +13,4 @@ import '../../api/transportDuties/methods.js';
 import '../../api/transportDuties/server/publications.js';
 import '../../api/mailDuties/methods.js';
 import '../../api/mailDuties/server/publications.js';
-
+import '../../api/paypal/method.js';

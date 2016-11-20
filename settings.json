@@ -2,12 +2,13 @@
   "public": {},
   "paypal":{
     "port" : 3000,
-  "api" : {
-    "host" : "api.sandbox.paypal.com",
-    "port" : "",
-    "client_id" : "AXRcvQTfy3D8eM7-SeHbXozMAxluFKHEZkexTzdabggcCOJWxiSbobfpi7SosBp66wYDcjxQftLs0065",
-    "client_secret" : "EK2OUFpwgZ8xqf09o_EzJSjDsMAgtv0loDw9gGKjCvlEUyGIafIbEDFbaY0vXcSiT-JE5O9hAeVwkkMR"
-  }
+    "api" : {
+      "username" : "ductrungnguyen92-facilitator@gmail.com",
+      "host" : "api.sandbox.paypal.com",
+      "port" : "",
+      "client_id" : "AXRcvQTfy3D8eM7-SeHbXozMAxluFKHEZkexTzdabggcCOJWxiSbobfpi7SosBp66wYDcjxQftLs0065",
+      "client_secret" : "EK2OUFpwgZ8xqf09o_EzJSjDsMAgtv0loDw9gGKjCvlEUyGIafIbEDFbaY0vXcSiT-JE5O9hAeVwkkMR"
+    }
   },
   "private": {
     "oAuth": {

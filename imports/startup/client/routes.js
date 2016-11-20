@@ -2,9 +2,10 @@
 // For reference https://github.com/meteor/todos/blob/master/imports/startup/client/routes.js
 // In this file we should import the appropriate UI templates and route to them.
 // In the todo example, we populate the App_body main template with the 
+import {Meteor} from 'meteor/meteor';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {BlazeLayout} from 'meteor/kadira:blaze-layout';
-import {generate_URL_for_payment_authorization} from '../../api/paypal/method.js';
+import {GenerateUrl} from '../../api/paypal/method.js';
 import '../../ui/accounts/accounts-templates.js';
 import '../../ui/pages/Main.html';
 import '../../ui/layouts/MainLayout.js';
@@ -18,9 +19,7 @@ import '../../ui/pages/NewLaundryDuty.js';
 import '../../ui/pages/NewAcademicDuty.js';
 import '../../ui/pages/EditAcademicDuty.js';
 import '../../ui/pages/EditShoppingDuty.js';
-
 import '../../ui/pages/EditLaundryDuty.js';
-
 import '../../ui/pages/NewTransportDuty.js';
 import '../../ui/pages/NewMailDuty.js'; 
 import '../../ui/components/updateMailDutiesForm.js';
@@ -364,15 +363,23 @@ FlowRouter.route('/paypal/payment/:invoice_no/:amount/', {
     action(){
         var amount = parseInt(FlowRouter.getParam("amount"));
 
-        var url = generate_URL_for_payment_authorization(FlowRouter.getParam("invoice_no"),FlowRouter.getParam("amount"));
-        if (url == null)
-        {
-            this.response.end("error");
-        }
-        else
-        {
-            Windows.Location(url);
-        }
+        var url = GenerateUrl.call(
+            {invoice_no: FlowRouter.getParam("invoice_no"), amount: parseInt(FlowRouter.getParam("amount"))}, 
+            (error, res) => {
+                if(error){
+                    console.error(error);
+                }
+                location.assign(res);
+            });
+        // console.log(url);
+        // if (url == null)
+        // {
+        //     this.response.end("error");
+        // }
+        // else
+        // {
+        //     Windows.Location(url);
+        // }
     }
 });
 

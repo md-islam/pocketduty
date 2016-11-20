@@ -1,13 +1,15 @@
 import { Meteor } from 'meteor/meteor';
+import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { _ } from 'meteor/underscore';
 import { Async } from 'meteor/meteorhacks:async';
 
-// cred=  {
-//     //username  : 'ductrungnguyen92-facilitator@gmail.com',
-//     client_id : "AXRcvQTfy3D8eM7-SeHbXozMAxluFKHEZkexTzdabggcCOJWxiSbobfpi7SosBp66wYDcjxQftLs0065",
-//     client_secret : "EK2OUFpwgZ8xqf09o_EzJSjDsMAgtv0loDw9gGKjCvlEUyGIafIbEDFbaY0vXcSiT-JE5O9hAeVwkkMR"
-// };
-const cred = Meteor.settings.paypal;
+cred=  {
+    "username": "ductrungnguyen92-facilitator_api1.gmail.com", 
+    "password": "KPXXDNEJ62C4JCQ5", 
+    "signature": "AFcWxV21C7fd0v3bYYYRCpSSRl31AxhPNTYOHBzBx4reLoEtmCwagqly"
+};
+
 
 opts= {
     sandbox : true,
@@ -15,7 +17,6 @@ opts= {
 };
 //this function is an internal function
 function EC_url_request_payment_authorization(transaction, callback){
-
     PayPalEC = Meteor.npmRequire('paypal-ec');
     var ec = new PayPalEC(cred, opts );
 
@@ -54,7 +55,6 @@ function EC_url_request_payment_authorization(transaction, callback){
 
 // this function is an internal function
 function EC_do_actual_payment(params, callback){
-
     PayPalEC = Meteor.npmRequire('paypal-ec');
     var ec = new PayPalEC(cred, opts );
 
@@ -71,7 +71,7 @@ function EC_do_actual_payment(params, callback){
 }
 
 
-    export const generate_URL_for_payment_authorization = function (invoice_no, amount) {
+    const generate_URL_for_payment_authorization = function (invoice_no, amount) {
 
         var transaction =
         {
@@ -82,7 +82,7 @@ function EC_do_actual_payment(params, callback){
             "quantity": 1,
             "itemprice": amount
         };
-
+        console.log("Async package: " + Async);
         var gists = Async.runSync(function (done) {
             EC_url_request_payment_authorization(transaction, function (error, url) {
                 done(null, url);
@@ -92,7 +92,18 @@ function EC_do_actual_payment(params, callback){
         return gists.result;
     };
 
-
+export const GenerateUrl = new ValidatedMethod({
+    name: "generateUrl",
+    validate: new SimpleSchema({invoice_no: {type: String}, amount: {type: Number}}).validator(),
+    run({invoice_no, amount}) {
+        if(Meteor.isClient){
+            return;
+        }
+        var result = generate_URL_for_payment_authorization(invoice_no, amount);
+        console.log(result);
+        return result;
+    }
+});
     export const paypal_return = function(invoice_no,amount, token, payerID){
 
         var params={
