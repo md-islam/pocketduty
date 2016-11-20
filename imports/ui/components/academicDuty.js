@@ -12,10 +12,21 @@ Template.AcademicDuty.events({
  		removeAcademicDuty.call({
  			academicDutyId : this._id
  		}, function(err, response){
- 			if(err){
- 				throw err;
- 			}
- 			console.log(response);
+ 			if (err) {
+						sweetAlert({
+							type: "error",
+							title: "Error!",
+							text: "Oh no! Something went wrong!"
+						});
+
+						throw err;
+					} else {
+						sweetAlert({
+							type: "success",
+							title: "Success!",
+							text: "The academic duty has been successfully deleted!"
+						});
+					}
  		})
  	}
  }); 

@@ -13,14 +13,26 @@ AutoForm.hooks({
 				dateOfClass: this.insertDoc.dateOfClass,
 				classRoomNumber: this.insertDoc.classRoomNumber,
 				dueDate: this.insertDoc.dueDate,
-				timeRangeOfClass: this.insertDoc.timeRangeOfClass}, (err, res) => {
-					if(err) {
+				timeRangeOfClass: this.insertDoc.timeRangeOfClass
+			}, (err, res) => {
+					if (err) {
+						sweetAlert({
+							type: "error",
+							title: "Error!",
+							text: "Oh no! Something went wrong!"
+						});
+
 						throw err;
+					} else {
+						sweetAlert({
+							type: "success",
+							title: "Success!",
+							text: "The academic duty has been successfully added!"
+						});
 					}
-					console.log(res);
-				}
-			);
-			return false;
+				});
+			
+				return false;
 		}
 	},
   	updateAcademicDutiesForm: {
@@ -32,11 +44,23 @@ AutoForm.hooks({
  				newDescription: this.updateDoc.$set.description, 
  				newDateOfClass: this.updateDoc.$set.dateOfClass,
 				newClassRoomNumber: this.updateDoc.$set.classRoomNumber,
- 				newTimeRangeOfClass: this.updateDoc.$set.timeRangeOfClass}, (err, res) => {
+ 				newTimeRangeOfClass: this.updateDoc.$set.timeRangeOfClass
+ 			}, (err, res) => {
  					if (err) {
- 						throw err;
- 					}
- 					console.log(res);
+						sweetAlert({
+							type: "error",
+							title: "Error!",
+							text: "Oh no! Something went wrong!"
+						});
+
+						throw err;
+					} else {
+						sweetAlert({
+							type: "success",
+							title: "Success!",
+							text: "The academic duty has been successfully updated!"
+						});
+					}
  			});
  			return false;
  		}
