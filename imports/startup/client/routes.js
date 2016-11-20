@@ -223,6 +223,9 @@ FlowRouter.route('/employer/active_duties', {
         }
         BlazeLayout.render("MainLayout", {main: "ActiveDuties"});
 
+    }
+})
+
 
 
 FlowRouter.route('/edit/laundry_duty/:_id', {
@@ -245,6 +248,8 @@ FlowRouter.route('/employer/new_duty/new_transport_duty', {
       FlowRouter.go('main');
 
     }
+    BlazeLayout.render("MainLayout", {main: "NewTransportDuty"})
+  }
 });
 
 FlowRouter.route('/edit/transport_duty/:_id', {
@@ -253,7 +258,7 @@ FlowRouter.route('/edit/transport_duty/:_id', {
         if(!Meteor.userId()){
             FlowRouter.go('main');
         }
-        BlazeLayout.render("MainLayout", {main: "EditTransportDuty"})
+        BlazeLayout.render("MainLayout", {main: "EditTransportDuty"});
     }
 })
 
