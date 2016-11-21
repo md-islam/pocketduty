@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { ShoppingDuties } from '../../api/shoppingDuties/shoppingDuties.js';
 import { insertShoppingDuty, updateShoppingDuty } from '../../api/shoppingDuties/methods.js';
 import './insertShoppingDutiesForm.html';
+import {FlowRouter} from 'meteor/kadira:flow-router';
 
 AutoForm.hooks({
 	insertShoppingDutyForm: {
@@ -15,9 +16,21 @@ AutoForm.hooks({
 				//laborerId: "none",
 				maxSpending: this.insertDoc.maxSpending}, (err, res) => {
 					if (err) {
+						sweetAlert({
+							type: "error",
+							title: "Error!",
+							text: "Oh no! Something went wrong!"
+						});
+
 						throw err;
+					} else {
+						sweetAlert({
+							type: "success",
+							title: "Success!",
+							text: "The shopping duty has been successfully added!"
+						});
+						FlowRouter.go('employer');
 					}
-					console.log(res);
 				});
 			return false;
 		}

@@ -62,3 +62,4 @@ mpowaga:string-template
 coffeescript
 ui
 yogiben:autoform-modals
+momentjs:moment
