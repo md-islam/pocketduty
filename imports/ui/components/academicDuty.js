@@ -30,3 +30,9 @@ Template.AcademicDuty.events({
  		})
  	}
  }); 
+
+Template.AcademicDuty.helpers({
+	formatDate: function(dueDate){
+		return moment(dueDate).format('LLL')
+	}
+})

@@ -1,20 +1,32 @@
 <template name="AcademicDuty">
 	<div class="panel panel-default">
-		<div class="panel-heading"> Academic Duty - {{title}}</div>
+		<div class="panel-heading" style="background-color:#CC0000; color:#fff;"> <i class="fa fa-lg fa-shopping-cart" aria-hidden="true"></i>&nbsp;<b>ACADEMIC DUTY</b> - {{title}}</div>
 		<div class="panel-body">
-			<div> {{description}}</div>
-			<div> {{dateOfClass}}</div>
-			<div> {{classRoomNumber}}</div>
-			<div> {{timeRangeOfClass}}</div>
-			<div> {{price}}</div>
+			<label class="small">Due Date: </label>
+			<h4>{{formatDate dueDate}} </h4>
+			<hr>
+			<label class="small">Description:</label>
+			<h4>{{description}}</h4>
+			<hr>
+			<label class="small">Date of class:</label>
+			<h4>{{formatDate dateOfClass}} </h4>
+			<hr>
+			<label class="small">Duration of the class:</label>
+			<h4>{{timeRangeOfClass}}</h4>
+			<hr>
+			<label class="small">Classroom number:</label>
+			<h4>{{classRoomNumber}}</h4>
+			<hr>
 		</div>
 		<div class="panel-footer">
- 			<div class="row">
- 				<div class="btn-group">
- 				  <a type="button" href="{{pathFor 'academic_duty.edit' _id=_id}}" class="btn btn-primary"> Edit </a>
- 				  <button class="btn btn-danger"> Delete</button>
- 				</div>
- 			</div>
- 		</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="btn-group">
+						<a type="button" href="{{pathFor 'academic_duty.edit' _id=_id}}" class="btn btn-default"> Edit </a>
+						<button class="btn btn-default"> Delete</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
