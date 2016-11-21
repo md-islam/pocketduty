@@ -21,7 +21,8 @@ function EC_url_request_payment_authorization(transaction, callback){
     var ec = new PayPalEC(cred, opts );
 
     var params = {
-        returnUrl : process.env.ROOT_URL + "payment_return/" + transaction.invoice_no + "/" + transaction.total + "/",
+        // returnUrl : process.env.ROOT_URL + "payment_return/" + transaction.invoice_no + "/" + transaction.total + "/",
+        returnUrl : process.env.ROOT_URL + "paypal/payment_return/",
         cancelUrl : process.env.ROOT_URL + "payment_cancel/",
         SOLUTIONTYPE : 'sole' ,
         PAYMENTREQUEST_0_PAYMENTACTION :'Sale',
@@ -94,7 +95,7 @@ function EC_do_actual_payment(params, callback){
 
 export const GenerateUrl = new ValidatedMethod({
     name: "generateUrl",
-    validate: new SimpleSchema({invoice_no: {type: String}, amount: {type: Number}}).validator(),
+    validate: new SimpleSchema({invoice_no: {type: String}, amount: {type: Number, decimal: true}}).validator(),
     run({invoice_no, amount}) {
         if(Meteor.isClient){
             return;

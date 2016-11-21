@@ -358,28 +358,26 @@ FlowRouter.route('/employer/past_duties', {
 //     }
 // });
 
+FlowRouter.route('/paypal/payment_return/', {
+    name: 'paypal_return',
+    action() {
+        FlowRouter.go('main');
+    }
+});
+
 FlowRouter.route('/paypal/payment/:invoice_no/:amount/', {
     name: 'payment',
     action(){
         var amount = parseInt(FlowRouter.getParam("amount"));
 
         var url = GenerateUrl.call(
-            {invoice_no: FlowRouter.getParam("invoice_no"), amount: parseInt(FlowRouter.getParam("amount"))}, 
+            {invoice_no: FlowRouter.getParam("invoice_no"), amount: parseFloat(FlowRouter.getParam("amount"))}, 
             (error, res) => {
                 if(error){
                     console.error(error);
                 }
                 location.assign(res);
             });
-        // console.log(url);
-        // if (url == null)
-        // {
-        //     this.response.end("error");
-        // }
-        // else
-        // {
-        //     Windows.Location(url);
-        // }
     }
 });
 
