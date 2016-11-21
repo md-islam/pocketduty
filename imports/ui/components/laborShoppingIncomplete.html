@@ -1,15 +1,11 @@
 <template name="LaborShoppingIncomplete">
 	<div class="panel panel-default">
-		<div class="panel-heading"> Shopping Duty - {{title}}</div>
-		<div class="panel-body">
-			<div> {{description}}</div>
-			<div> {{price}}</div>
-		</div>
+		{{>laborShoppingDutyInfo this}}
 		<div class="panel-footer">
 			<div class="row">
 				<div class="btn-group">
-					<button class = "cancle">Cancle</button>
-					<button class = "complete">Completed</button>
+					<button class = "btn btn-default cancel">Cancel</button>
+					<button class = "btn btn-default complete">Mark Completed</button>
 				</div>
 			</div>
 		</div>
