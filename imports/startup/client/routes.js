@@ -24,6 +24,7 @@ import '../../ui/pages/NewTransportDuty.js';
 import '../../ui/pages/NewMailDuty.js'; 
 import '../../ui/components/updateMailDutiesForm.js';
 import '../../ui/pages/ActiveDuties.js';
+import '../../ui/pages/InactiveDuties.js';
 import '../../ui/pages/PastDuties.js';
 import '../../ui/pages/EditTransportDuty.js';
 
@@ -178,6 +179,17 @@ FlowRouter.route('/employer/active_duties', {
             FlowRouter.go('main');
         }
         BlazeLayout.render("MainLayout", {main: "ActiveDuties"});
+    }
+});
+
+// Inactive duties(User logged in)
+FlowRouter.route('/employer/inactive_duties', {
+    name: 'inactive_duties',
+    action() {
+        if(!Meteor.userId()) {
+            FlowRouter.go('main');
+        }
+        BlazeLayout.render("MainLayout", {main: "InactiveDuties"});
     }
 });
 

@@ -1,0 +1,34 @@
+<template name="InactiveDuties">
+    <div class="space" style="height: 69px;"></div>
+    	{{> AppNav}}
+
+    <div class="container" style="margin-left: 200px; margin-right: 5%;">
+    <h1 class="page-title">Inactive Duties</h1>
+    	<div class="row">
+			{{#each shoppingDuty in shoppingDuties}}
+				{{> ShoppingDuty (shoppingDuty)}}
+			{{/each}}
+		</div>
+        <div class="row">
+            {{#each academicDuty in academicDuties}}
+                {{> AcademicDuty (academicDuty)}}
+            {{/each}}
+        </div>
+        <div class="row">
+            {{#each laundryDuty in laundryDuties}}
+                {{> LaundryDuty (laundryDuty)}}
+            {{/each}}
+        </div>
+        <div class="row">
+            {{#each mailDuty in mailDuties}}
+                {{> MailDuty (mailDuty)}}
+            {{/each}}
+        </div>
+        <div class="row">
+            {{#each transportDuty in transportDuties}}
+                {{> TransportDuty (transportDuty)}}
+            {{/each}}
+        </div>
+  	</div>
+
+</template>

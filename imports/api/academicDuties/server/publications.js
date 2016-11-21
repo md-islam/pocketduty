@@ -25,6 +25,16 @@ Meteor.publish('employerAcademicAssigned', function employerAcademicAssigned(){
   })
 });
 
+Meteor.publish('employerAcademicUnassigned', function employerAcademicUnassigned(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return AcademicDuties.find({userId: this.userId, status: AcceptableDutyStatuses.New}, { sort: {dateCreated: -1}}, {
+    fields : AcademicDuties.publicFields
+  })
+});
+
 Meteor.publish('employerAcademicComplete', function employerAcademicComplete(){
   if(!this.userId){
     return this.ready();

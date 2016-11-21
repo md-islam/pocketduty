@@ -24,6 +24,16 @@ Meteor.publish('employerMailAssigned', function employerMailAssigned(){
   })
 });
 
+Meteor.publish('employerMailUnassigned', function employerMailUnassigned(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return MailDuties.find({userId: this.userId, status: AcceptableDutyStatuses.New}, { sort: {dateCreated: -1}}, {
+    fields : MailDuties.publicFields
+  })
+});
+
 Meteor.publish('employerMailComplete', function employerMailComplete(){
   if(!this.userId){
     return this.ready();

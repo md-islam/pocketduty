@@ -25,6 +25,16 @@ Meteor.publish('employerLaundryAssigned', function employerLaundryAssigned(){
   })
 });
 
+Meteor.publish('employerLaundryUnassigned', function employerLaundryUnassigned(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return LaundryDuties.find({userId: this.userId, status: AcceptableDutyStatuses.New}, { sort: {dateCreated: -1}}, {
+    fields : LaundryDuties.publicFields
+  })
+});
+
 Meteor.publish('employerLaundryComplete', function employerLaundryComplete(){
   if(!this.userId){
     return this.ready();

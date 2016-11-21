@@ -59,6 +59,16 @@ Meteor.publish('employerShoppingAssigned', function employerShoppingAssigned(){
   })
 });
 
+Meteor.publish('employerShoppingUnassigned', function employerShoppingUnassigned(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return ShoppingDuties.find({userId: this.userId, status: AcceptableDutyStatuses.New}, { sort: {dateCreated: -1}}, {
+    fields : ShoppingDuties.publicFields
+  })
+});
+
 Meteor.publish('employerShoppingComplete', function employerShoppingComplete(){
   if(!this.userId){
     return this.ready();

@@ -25,6 +25,16 @@ Meteor.publish('employerTransportAssigned', function employerTransportAssigned()
   })
 });
 
+Meteor.publish('employerTransportUnassigned', function employerTransportUnassigned(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return TransportDuties.find({userId: this.userId, status: AcceptableDutyStatuses.New}, { sort: {dateCreated: -1}}, {
+    fields : TransportDuties.publicFields
+  })
+});
+
 Meteor.publish('employerTransportComplete', function employerTransportComplete(){
   if(!this.userId){
     return this.ready();
