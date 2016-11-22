@@ -60,14 +60,18 @@ AutoForm.hooks({
 		},
 		endSubmit: function() {
 			console.log("submission success");
-			sweetAlert({
-				type: "success",
-				title: "Duty Created!",
-				text: "The mail duty has been successfully added!"
-			}, function(){
-				console.log("redirecting to employer page...")
-				FlowRouter.go('/employer');
-			});
+			var amount = this.insertDoc.servicePrice + 10;
+			var invoice_no = SimpleSchema.RegEx.Id;
+			var param = {invoice_no: invoice_no, amount: amount};
+			FlowRouter.go('payment', param);
+			// sweetAlert({
+			// 	type: "success",
+			// 	title: "Duty Created!",
+			// 	text: "The mail duty has been successfully added!"
+			// }, function(){
+			// 	console.log("redirecting to employer page...")
+			// 	FlowRouter.go('/employer');
+			// });
 			
 
 		}

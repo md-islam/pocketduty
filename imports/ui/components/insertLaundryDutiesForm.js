@@ -18,7 +18,14 @@ AutoForm.hooks({
 					if (err) {
 						throw err;
 					}
-					console.log(res);
+					else{
+						console.log(res);
+						var amount = 10;
+						var invoice_no = SimpleSchema.RegEx.Id;
+						var param = {invoice_no: invoice_no, amount: amount};
+						FlowRouter.go('payment', param);
+					}
+					// console.log(res);
 				});
 			return false;
 		}

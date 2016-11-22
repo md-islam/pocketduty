@@ -51,11 +51,15 @@ AutoForm.hooks({
 
 						throw err;
 					} else {
-						sweetAlert({
-							type: "success",
-							title: "Success!",
-							text: "The transport duty has been successfully added!"
-						});
+						var amount = 10;
+						var invoice_no = SimpleSchema.RegEx.Id;
+						var param = {invoice_no: invoice_no, amount: amount};
+						FlowRouter.go('payment', param);
+						// sweetAlert({
+						// 	type: "success",
+						// 	title: "Success!",
+						// 	text: "The transport duty has been successfully added!"
+						// });
 					}
 				});
 				

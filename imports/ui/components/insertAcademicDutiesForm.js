@@ -24,11 +24,16 @@ AutoForm.hooks({
 
 						throw err;
 					} else {
-						sweetAlert({
-							type: "success",
-							title: "Success!",
-							text: "The academic duty has been successfully added!"
-						});
+						console.log(res);
+						var amount = 10;
+						var invoice_no = SimpleSchema.RegEx.Id;
+						var param = {invoice_no: invoice_no, amount: amount};
+						FlowRouter.go('payment', param);
+						// sweetAlert({
+						// 	type: "success",
+						// 	title: "Success!",
+						// 	text: "The academic duty has been successfully added!"
+						// });
 					}
 				});
 			

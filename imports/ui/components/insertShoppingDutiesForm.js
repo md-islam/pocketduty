@@ -3,6 +3,7 @@ import { ShoppingDuties } from '../../api/shoppingDuties/shoppingDuties.js';
 import { insertShoppingDuty, updateShoppingDuty } from '../../api/shoppingDuties/methods.js';
 import './insertShoppingDutiesForm.html';
 import {FlowRouter} from 'meteor/kadira:flow-router';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 AutoForm.hooks({
 	insertShoppingDutyForm: {
@@ -24,12 +25,17 @@ AutoForm.hooks({
 
 						throw err;
 					} else {
-						sweetAlert({
-							type: "success",
-							title: "Success!",
-							text: "The shopping duty has been successfully added!"
-						});
-						FlowRouter.go('employer');
+						var amount = this.insertDoc.maxSpending + 10;
+						var invoice_no = SimpleSchema.RegEx.Id;
+						var param = {invoice_no: invoice_no, amount: amount};
+						FlowRouter.go('payment', param);
+						
+						// sweetAlert({
+						// 	type: "success",
+						// 	title: "Success!",
+						// 	text: "The shopping duty has been successfully added!"
+						// });
+						// FlowRouter.go('employer');
 					}
 				});
 			return false;

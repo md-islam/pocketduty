@@ -361,7 +361,12 @@ FlowRouter.route('/employer/past_duties', {
 FlowRouter.route('/paypal/payment_return/', {
     name: 'paypal_return',
     action() {
-        FlowRouter.go('main');
+        sweetAlert({
+            type: "success",
+            title: "Success!",
+            text: "The shopping duty has been successfully added!"
+        });
+        FlowRouter.go('employer');
     }
 });
 
