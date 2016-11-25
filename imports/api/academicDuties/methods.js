@@ -11,11 +11,11 @@ import { AcceptableDutyStatuses } from '../duties/duties.js';
 export const AcademicDutyPrice = 10; 
 
 export const insertAcademicDuty = new ValidatedMethod({
-  name: 'academicDuties.insert',
+  name: 'AcademicDuties.insert',
     validate: AcademicDuties.simpleSchema().pick(['title','dueDate', 'description', 'dateOfClass', 'classRoomNumber', 'timeRangeOfClass']).validator({ clean: true, filter: false }),
     run({ title, dueDate, description, dateOfClass, classRoomNumber, timeRangeOfClass}) {
     if (!this.userId) {
-      throw new Meteor.Error('academicDuties.insert.accessDenied',
+      throw new Meteor.Error('AcademicDuties.insert.accessDenied',
         'You must be signed in to create a new Academic Duty');
     }
 
@@ -39,7 +39,7 @@ export const insertAcademicDuty = new ValidatedMethod({
 
 
 export const updateAcademicDuty = new ValidatedMethod({
-  name: 'academicDuties.updateDuty',
+  name: 'AcademicDuties.updateDuty',
   validate: new SimpleSchema({
     academicDutyId: AcademicDuties.simpleSchema().schema('_id'),
     newTitle: AcademicDuties.simpleSchema().schema('title'),
@@ -56,7 +56,7 @@ export const updateAcademicDuty = new ValidatedMethod({
     console.log(academicDuty);
 
     if (academicDuty.userId != this.userId) {
-      throw new Meteor.Error('academicDuties.updateDuty.accessDenied',
+      throw new Meteor.Error('AcademicDuties.updateDuty.accessDenied',
         'Cannot edit academicDuty that is not yours');
     }
     AcademicDuties.update(academicDutyId, {
@@ -73,7 +73,7 @@ export const updateAcademicDuty = new ValidatedMethod({
 });
 
 export const removeAcademicDuty = new ValidatedMethod({
-  name: 'academicDuties.remove',
+  name: 'AcademicDuties.remove',
   validate: new SimpleSchema({
     academicDutyId: AcademicDuties.simpleSchema().schema('_id'),
   }).validator({ clean: true, filter: false }),
@@ -81,14 +81,68 @@ export const removeAcademicDuty = new ValidatedMethod({
     const duty = AcademicDuties.findOne(academicDutyId);
 
     if (duty.userId != this.userId) {
-      throw new Meteor.Error('academicDuties.remove.accessDenied',
-        'Cannot remove academicDuties that is not yours');
+      throw new Meteor.Error('AcademicDuties.remove.accessDenied',
+        'Cannot remove AcademicDuties that is not yours');
     }
 
     AcademicDuties.remove(academicDutyId);
   },
 });
 
+
+//Assign academic duty
+export const assignAcademicDuty = new ValidatedMethod({
+  name: 'AcademicDuties.assign',
+  validate: new SimpleSchema({
+    academicDutyId: AcademicDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ academicDutyId }) {
+    const duty = AcademicDuties.findOne(academicDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('AcademicDuties.assign.accessDenied',
+        'Cannot assign shoppingDuties that is yours');
+    }
+
+    AcademicDuties.update(academicDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.Assigned}});
+  },
+});
+
+//Unassign academic duty
+export const unassignAcademicDuty = new ValidatedMethod({
+  name: 'AcademicDuties.unassign',
+  validate: new SimpleSchema({
+    academicDutyId: AcademicDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ academicDutyId }) {
+    const duty = AcademicDuties.findOne(academicDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('AcademicDuties.unassign.accessDenied',
+        'Cannot assign shoppingDuties that is yours');
+    }
+
+    AcademicDuties.update(academicDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.New}});
+  },
+});
+
+//Complete academic duty
+export const completeAcademicDuty = new ValidatedMethod({
+  name: 'AcademicDuties.complete',
+  validate: new SimpleSchema({
+    academicDutyId: AcademicDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ academicDutyId }) {
+    const duty = AcademicDuties.findOne(academicDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('AcademicDuties.complete.accessDenied',
+        'Cannot assign shoppingDuties that is yours');
+    }
+
+    AcademicDuties.update(academicDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.Complete}});
+  },
+});
 // export const assignDutyToLaborer = new ValidatedMethod({
 //   name: 'shoppingDuties.assign',
 //   validate: new SimpleSchema({

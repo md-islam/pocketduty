@@ -31,7 +31,7 @@ Meteor.publish('laborMailDutiesAssignedIncomplete', function laborMailDutiesAssi
     return this.ready();
   }
 
-  return MailDuties.find({userId: { $ne: this.userId }, status: AcceptableDutyStatuses.Assigned}, { sort: {dateCreated: -1}}, {
+  return MailDuties.find({laborerId: this.userId, status: AcceptableDutyStatuses.Assigned}, { sort: {dateCreated: -1}}, {
     fields : MailDuties.publicFields
   })
 });
@@ -41,7 +41,7 @@ Meteor.publish('laborMailDutiesAssignedComplete', function laborMailDutiesAssign
     return this.ready();
   }
 
-  return MailDuties.find({userId: { $ne: this.userId }, status: AcceptableDutyStatuses.Complete}, { sort: {dateCreated: -1}}, {
+  return MailDuties.find({laborerId: this.userId, status: AcceptableDutyStatuses.Complete}, { sort: {dateCreated: -1}}, {
     fields : MailDuties.publicFields
   })
 });

@@ -44,3 +44,40 @@ Meteor.publish('employerTransportComplete', function employerTransportComplete()
     fields : TransportDuties.publicFields
   })
 });
+
+
+//Labor Dashboard
+Meteor.publish('laborTransportDuties', function laborTransportDuties(){
+
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return TransportDuties.find({userId: { $ne: this.userId },  status: AcceptableDutyStatuses.New}, { sort: {dateCreated: -1}}, {
+    fields : TransportDuties.publicFields
+  })
+});
+
+//Labor Incomplete
+Meteor.publish('laborTransportIncomplete', function laborTransportIncomplete(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return TransportDuties.find({laborerId: this.userId, status: AcceptableDutyStatuses.Assigned}, { sort: {dateCreated: -1}}, {
+    fields : TransportDuties.publicFields
+  })
+});
+
+//Labor Completed
+Meteor.publish('laborTransportCompleted', function laborTransportCompleted(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return TransportDuties.find({laborerId: this.userId, status: AcceptableDutyStatuses.Complete}, { sort: {dateCreated: -1}}, {
+    fields : TransportDuties.publicFields
+  })
+});
+
+

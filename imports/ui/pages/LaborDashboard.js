@@ -2,10 +2,12 @@ import {Template} from 'meteor/templating';
 import { ShoppingDuties} from '../../api/shoppingDuties/shoppingDuties.js';
 import { AcademicDuties} from '../../api/academicDuties/academicDuties.js';
 import { LaundryDuties} from '../../api/laundryDuties/laundryDuties.js';
+import { TransportDuties} from '../../api/transportDuties/transportDuties.js';
 import { MailDuties } from '../../api/mailDuties/mailDuties.js';
 import './LaborDashboard.html';
 import '../components/laborShoppingDuty.js';
 import '../components/laborTransportDuty.js';
+import '../components/laborAcademic.js';
 import '../components/laborMailDuty.js';
 import '../components/academicDuty.html';
 import '../components/laundryDuty.html';
@@ -15,7 +17,7 @@ import '../components/laundryDuty.html';
 Template.LaborDashboard.onCreated(function(){
 	this.autorun(() => {
 		console.log("Yo yo yo");
-		this.subscribe('academicDuties', {});	//Academic
+		this.subscribe('laborAcademicDuties', {});	//Academic
 		this.subscribe('laundryDuties', {});	//Laundry
 		this.subscribe('laborMailDutiesNew', {});	//Mailing
 		this.subscribe('laborShoppingDuties', {});	//Shopping
@@ -25,7 +27,7 @@ Template.LaborDashboard.onCreated(function(){
 
 Template.LaborDashboard.helpers({
 	academicDuties() {	//Academic
-		return AcademicDuties.find({userId: { $ne: Meteor.userId() }}, { sort: {dateCreated: -1}});
+		return AcademicDuties.find();
 	},
 	laundryDuties() {	//Laundry
 		return LaundryDuties.find({userId: { $ne: Meteor.userId() }}, { sort: {dateCreated: -1}});
@@ -42,7 +44,9 @@ Template.LaborDashboard.helpers({
 		return duties;
 	},
 	transportDuties() {	//Transport
-		return LaundryDuties.find();
+		console.log("getting Transport Duties");
+		duties = TransportDuties.find();
+		return duties;
 	}
 })
 

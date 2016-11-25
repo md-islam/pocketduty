@@ -1,0 +1,22 @@
+<template name="laborTransportDutyInfo">
+<div class="panel-heading" style="background-color:#CC0000; color:#fff;"> <i class="fa fa-lg fa-mailDuty" aria-hidden="true"></i>&nbsp;<b>Transport DUTY</b></div>
+<div class="panel-body">
+	<label class="small">Due Date: </label>
+	<h4>{{formatDate dueDate}} </h4>
+	<hr>
+
+	<label class="small">Passenger Number:</label>
+	<h4>{{passengerNumber}}</h4>
+	<hr>
+
+	<label class="small">Pickup Time and Location:</label>
+	<h4>{{pickupTime}}</h4>
+	<h4>{{pickupLocation}}</h4>
+	<hr>
+
+	<label class="small">Drop-off Location:</label>
+	<h4>{{dropoffLocation}}</h4>
+	<hr>
+
+</div>
+</template>

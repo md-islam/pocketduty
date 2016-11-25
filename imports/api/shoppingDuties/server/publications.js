@@ -34,7 +34,7 @@ Meteor.publish('laborShoppingIncomplete', function laborShoppingIncomplete(){
     return this.ready();
   }
 
-  return ShoppingDuties.find({userId: { $ne: this.userId }, status: AcceptableDutyStatuses.Assigned}, { sort: {dateCreated: -1}}, {
+  return ShoppingDuties.find({laborerId: this.userId, status: AcceptableDutyStatuses.Assigned}, { sort: {dateCreated: -1}}, {
     fields : ShoppingDuties.publicFields
   })
 });
@@ -44,7 +44,7 @@ Meteor.publish('laborShoppingCompleted', function laborShoppingCompleted(){
     return this.ready();
   }
 
-  return ShoppingDuties.find({userId: { $ne: this.userId }, status: AcceptableDutyStatuses.Complete}, { sort: {dateCreated: -1}}, {
+  return ShoppingDuties.find({laborerId: this.userId, status: AcceptableDutyStatuses.Complete}, { sort: {dateCreated: -1}}, {
     fields : ShoppingDuties.publicFields
   })
 });

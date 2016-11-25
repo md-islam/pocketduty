@@ -14,7 +14,13 @@
         <h2 class="page-title">Acedamic duty</h2>
         <div class="row">
             {{#each academicDuty in academicDuties}}
-                {{> AcademicDuty (academicDuty)}}
+                {{> LaborAcademicCompleted (academicDuty)}}
+            {{/each}}
+        </div>
+        <h2 class="page-title">Transport duty</h2>
+        <div class="row">
+            {{#each transportDuty in transportDuties}}
+                {{> LaborTransportCompleted (transportDuty)}}
             {{/each}}
         </div>
         <h2 class="page-title">Laundry duty</h2>

@@ -17,7 +17,7 @@
          <h2 class="page-title">Acedamic duty</h2>
         <div class="row">
             {{#each academicDuty in academicDuties}}
-                {{> AcademicDuty (academicDuty)}}
+                {{> LaborAcademicDuty (academicDuty)}}
             {{/each}}
         </div>
 
@@ -44,6 +44,11 @@
         </div>
 
         <h2 class="page-title">Transport duty</h2>
+          <div class="row">
+            {{#each transportDuty in transportDuties}}
+                {{> LaborTransportDuty (transportDuty)}}
+            {{/each}}
+        </div>
 
     </div>
 </template>
