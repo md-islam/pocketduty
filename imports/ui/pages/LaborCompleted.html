@@ -23,5 +23,11 @@
                 {{> LaundryDuty (laundryDuty)}}
             {{/each}}
         </div>
+        <h2 class="page-title">Mail duties</h2>
+        <div class="row">
+            {{#each mailDuty in mailDuties}}
+                {{> LaborMailDutyCompleted (mailDuty)}}
+            {{/each}}
+        </div>
 	</div>
 </template>

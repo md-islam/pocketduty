@@ -45,7 +45,7 @@ export const removeMailDuty = new ValidatedMethod({
 //   pickUpTime:1
 // };
 
-//update --> will do this later 
+
 export const updateMailDuty = new ValidatedMethod({
   name: 'mailDuties.update',
   validate: new SimpleSchema({
@@ -100,6 +100,58 @@ export const insertMailDuty = new ValidatedMethod({
     },
   });
 
+export const assignMailDuty = new ValidatedMethod({
+  name: 'mailDuties.assign',
+  validate: new SimpleSchema({
+    mailDutyId: MailDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ mailDutyId }) {
+    const duty = MailDuties.findOne(mailDutyId);
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('mailDuties.assign.accessDenied',
+        'Cannot assign mailDuties that is yours');
+    }
+
+    MailDuties.update(mailDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.Assigned}});
+  },
+});
+
+
+export const unassignMailDuty = new ValidatedMethod({
+  name: 'mailDuties.unassign',
+  validate: new SimpleSchema({
+    mailDutyId: MailDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ mailDutyId }) {
+    const duty = MailDuties.findOne(mailDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('mailDuties.unassign.accessDenied',
+        'Cannot assign mailDuties that is yours');
+    }
+
+    MailDuties.update(mailDutyId, {$set: {laborerId: "none", status: AcceptableDutyStatuses.New}});
+  },
+});
+
+export const completeMailDuty = new ValidatedMethod({
+  name: 'mailDuties.complete',
+  validate: new SimpleSchema({
+    mailDutyId: MailDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ mailDutyId }) {
+    const duty = MailDuties.findOne(mailDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('mailDuties.complete.accessDenied',
+        'Cannot assign mailDuties that is yours');
+    }
+
+    MailDuties.update(mailDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.Complete}});
+  },
+});
+
+
 
 
 
@@ -113,7 +165,7 @@ const MAIL_DUTIES_METHODS = _.pluck([
 ], 'name');
 
 if (Meteor.isServer) {
-  // Only allow 5 shoppingDuties operations per connection per second
+  // Only allow 5 mailDuties operations per connection per second
   DDPRateLimiter.addRule({
     name(name) {
       return _.contains(MAIL_DUTIES_METHODS, name);

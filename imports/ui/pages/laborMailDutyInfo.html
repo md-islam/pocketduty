@@ -1,0 +1,35 @@
+<template name="laborMailDutyInfo">
+<div class="panel-heading" style="background-color:#CC0000; color:#fff;"> <i class="fa fa-lg fa-mailDuty" aria-hidden="true"></i>&nbsp;<b>Mail DUTY</b></div>
+<div class="panel-body">
+	<label class="small">Due Date: </label>
+	<h4>{{formatDate dueDate}} </h4>
+	<hr>
+
+	<label class="small">Pickup Location:</label>
+	<h4>{{pickUpLocation}}</h4>
+	<hr>
+
+	<label class="small">Pickup Time:</label>
+	<h4>{{pickUpTime}}</h4>
+	<hr>
+
+	<label class="small">Dropoff Location:</label>
+	<h4>{{dropOffLocation}}</h4>
+	<hr>
+
+	<label class="small">Delivery Type:</label>
+	<h4>{{deliveryType}}</h4>
+	<hr>
+
+	<label class="small">Service Price:</label>
+	<h4>{{price}}</h4>	
+	<hr>
+
+</div>
+</template>
+<!-- <div>Pickup Location: {{pickUpLocation}}</div>
+		<div>Pickup Time: {{pickUpTime}}</div>
+		<div>Dropoff Location: {{dropOffLocation}}</div>
+		<div>Delivery Type: {{deliveryType}}</div>
+		<div>Price: {{price}}</div>
+<div>Due date: {{dueDate}}</div> -->
