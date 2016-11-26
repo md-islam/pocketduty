@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { AcademicDuties } from '../../api/academicDuties/academicDuties.js';
 import { removeAcademicDuty } from '../../api/academicDuties/methods.js';
 import './academicDuty.html';
+import { moment } from 'meteor/momentjs:moment';
 
 Template.AcademicDuty.onCreated(function(){
 	console.log("Created academic duty template with date context ", this.data);

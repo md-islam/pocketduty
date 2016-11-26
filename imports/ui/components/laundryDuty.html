@@ -1,18 +1,35 @@
 <template name="LaundryDuty">
-	<div class="panel panel-default">
-		<div class="panel-primary"> Laundry Duty - {{title}}</div>
+<div class="panel panel-default" >
+		<div class="panel-heading" style="background-color:#CC0000; color:#fff;"> <i class="fa fa-tint" aria-hidden="true"></i>&nbsp;<b>LAUNDRY DUTY</b> - {{title}}</div>
 		<div class="panel-body">
-			<div> {{description}}</div>
-			<div> {{price}}</div>
+			<label class="small">Due Date: </label>
+			<h4>{{formatDate dueDate}} </h4>
+			<hr>
+			<label class="small">Description:</label>
+			<h4>{{description}}</h4>
+			<hr>
+			<label class="small">Price:</label>
+			<h4>{{price}}</h4>
+			<hr>
 		</div>
 	<div class="panel-footer">
 			<div class="row">
-				<div class="btn-group">
-					<a type="button" href="{{pathFor 'laundry_duty.edit' _id=_id}}" class="btn btn-primary"> Edit </a>
-					<button class="btn btn-danger"> Delete</button>
+				<div class="col-md-12">
+					<div class="btn-group">
+						<a type="button" href="{{pathFor 'laundry_duty.edit' _id=_id}}" class="btn btn-default"> Edit </a>
+						<button class="btn btn-default"> Delete</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	<!-- <div class="panel-footer">
+			<div class="row">
+				<div class="btn-group">
+					<a type="button" href="{{pathFor 'laundry_duy.edit' _id=_id}}" class="btn btn-primary"> Edit </a>
+					<button class="btn btn-danger"> Delete</button>
+				</div>
+			</div>
+	</div> -->
+</div>
 
 </template>

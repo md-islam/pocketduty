@@ -1,19 +1,37 @@
 <template name="TransportDuty">
 	<div class="panel panel-default">
-		<div class="panel-heading"> <b>TRANSPORT DUTY</b> - {{title}} </div>
+		<div class="panel-heading" style="background-color:#CC0000; color:#fff;"><i class="fa fa-car" aria-hidden="true"></i>&nbsp;<b>TRANSPORT DUTY</b></div>
 		<div class="panel-body">
-			<div>Pickup Location: {{pickupLocation}}</div>
-			<div>Pickup Time: {{pickupTime}}</div>
-			<div>Dropoff Location: {{dropoffLocation}}</div>
-			<div>Passenger Number: {{passengerNumber}}</div>
+			<label class="small">Pickup Location: </label>
+			<h4>{{pickupLocation}}</h4>
+			<hr>
+			<label class="small">Pickup Time: </label>
+			<h4>{{pickupTime}}</h4>
+			<hr>
+			<label class="small">Dropoff Location: </label>
+			<h4>{{dropoffLocation}}</h4>
+			<hr>
+			<label class="small">Passenger Number: </label>
+			<h4>{{passengerNumber}}</h4>
+			<hr>
 		</div>
 		<div class="panel-footer">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="btn-group">
+						<a type="button" href="{{pathFor 'transport_duty.edit' _id=_id}}" class="btn btn-default"> Edit </a>
+						<button class="btn btn-default"> Delete</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="panel-footer">
 			<div class="row">
 				<div class="btn-group">
 					<a type="button" href="{{pathFor 'transport_duty.edit' _id=_id}}" class="btn btn-primary"> Edit </a>
 					<button class="btn btn-danger"> Delete</button>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
