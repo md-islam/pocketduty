@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { MailDuties } from '../../api/mailDuties/mailDuties.js';
 import { removeMailDuty } from '../../api/mailDuties/methods.js';
 import './mailDuty.html';
+import { moment } from 'meteor/momentjs:moment';
 //need to import methods.js
 
 //single mail duty html
@@ -32,3 +33,9 @@ Template.MailDuty.helpers({
 		return MailDuties;
 	}
 });
+
+Template.MailDuty.helpers({
+	formatDate: function(dueDate){
+		return moment(dueDate).format('LLL')
+	}
+})
