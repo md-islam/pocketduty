@@ -84,6 +84,62 @@ export const removeLaundryDuty = new ValidatedMethod({
   },
 });
 
+
+export const assignLaundryDuty = new ValidatedMethod({
+  name: 'laundryDuties.assign',
+  validate: new SimpleSchema({
+    laundryDutyId: LaundryDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ laundryDutyId }) {
+    const duty = LaundryDuties.findOne(laundryDutyId);
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('laundryDuties.assign.accessDenied',
+        'Cannot assign laundryDuties that is yours');
+    }
+
+    LaundryDuties.update(laundryDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.Assigned}});
+  },
+});
+
+
+export const unassignLaundryDuty = new ValidatedMethod({
+  name: 'laundryDuties.unassign',
+  validate: new SimpleSchema({
+    laundryDutyId: LaundryDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ laundryDutyId }) {
+    const duty = LaundryDuties.findOne(laundryDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('laundryDuties.unassign.accessDenied',
+        'Cannot assign laundryDuties that is yours');
+    }
+
+    LaundryDuties.update(laundryDutyId, {$set: {laborerId: "none", status: AcceptableDutyStatuses.New}});
+  },
+});
+
+
+export const completeLaundryDuty = new ValidatedMethod({
+  name: 'laundryDuties.complete',
+  validate: new SimpleSchema({
+    laundryDutyId: LaundryDuties.simpleSchema().schema('_id'),
+  }).validator({ clean: true, filter: false }),
+  run({ laundryDutyId }) {
+    const duty = LaundryDuties.findOne(laundryDutyId);
+
+    if (duty.userId == this.userId) {
+      throw new Meteor.Error('laundryDuties.complete.accessDenied',
+        'Cannot assign laundryDuties that is yours');
+    }
+
+    LaundryDuties.update(laundryDutyId, {$set: {laborerId: this.userId, status: AcceptableDutyStatuses.Complete}});
+  },
+});
+
+
+
+
 // export const assignDutyToLaborer = new ValidatedMethod({
 //   name: 'laundryDuties.assign',
 //   validate: new SimpleSchema({
