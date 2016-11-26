@@ -225,17 +225,17 @@ FlowRouter.route('/edit/shopping_duty/:_id', {
 })
 
 
-// Employer Active Duties
-FlowRouter.route('/employer/active_duties', {
-    name: 'active_duties',
-    action() {
-        if(!Meteor.userId()) {
-            FlowRouter.go('main');
-        }
-        BlazeLayout.render("MainLayout", {main: "ActiveDuties"});
+// // Employer Active Duties
+// FlowRouter.route('/employer/active_duties', {
+//     name: 'active_duties',
+//     action() {
+//         if(!Meteor.userId()) {
+//             FlowRouter.go('main');
+//         }
+//         BlazeLayout.render("MainLayout", {main: "ActiveDuties"});
 
-    }
-})
+//     }
+// })
 
 
 
@@ -301,16 +301,16 @@ FlowRouter.route('/employer/new_duty/new_mailing_duty', {
 
 });
 
-// Employer Past Duties
-FlowRouter.route('/employer/past_duties', {
-    name: 'past_duties',
-    action() {
-        if(!Meteor.userId()) {
-            FlowRouter.go('main');
-        }
-        BlazeLayout.render("MainLayout", {main: "PastDuties"});
-    }
-});
+// // Employer Past Duties
+// FlowRouter.route('/employer/past_duties', {
+//     name: 'past_duties',
+//     action() {
+//         if(!Meteor.userId()) {
+//             FlowRouter.go('main');
+//         }
+//         BlazeLayout.render("MainLayout", {main: "PastDuties"});
+//     }
+// });
 
 // Employer Account Settings
 // FlowRouter.route('/employer/account_settings', {
@@ -336,16 +336,16 @@ FlowRouter.route('/employer/edit/mail_duty/:_id',{
 });
 
 
-// Employer Past Duties
-FlowRouter.route('/employer/past_duties', {
-    name: 'past_duties',
-    action() {
-        if(!Meteor.userId()) {
-            FlowRouter.go('main');
-        }
-        BlazeLayout.render("MainLayout", {main: "PastDuties"});
-    }
-});
+// // Employer Past Duties
+// FlowRouter.route('/employer/past_duties', {
+//     name: 'past_duties',
+//     action() {
+//         if(!Meteor.userId()) {
+//             FlowRouter.go('main');
+//         }
+//         BlazeLayout.render("MainLayout", {main: "PastDuties"});
+//     }
+// });
 
 // Employer Account Settings
 // FlowRouter.route('/employer/account_settings', {
