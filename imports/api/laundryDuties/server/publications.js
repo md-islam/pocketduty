@@ -15,6 +15,39 @@ Meteor.publish('laundryDuties', function laundryDuties(){
   })
 });
 
+//publish laundryDuties for employee/labor to pick up
+Meteor.publish('laborLaundryDutiesNew', function laborLaundryDutiesNew(){
+  if(!this.userId){
+    return this.ready();
+  }
+  return LaundryDuties.find({userId: { $ne: this.userId },  status: AcceptableDutyStatuses.New}, { sort: {dateCreated: -1}}, {
+    fields : LaundryDuties.publicFields
+  })
+});
+
+Meteor.publish('laborLaundryDutiesAssignedIncomplete', function laborLaundryDutiesAssignedIncomplete(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return LaundryDuties.find({laborerId: this.userId, status: AcceptableDutyStatuses.Assigned}, { sort: {dateCreated: -1}}, {
+    fields : LaundryDuties.publicFields
+  })
+});
+
+Meteor.publish('laborLaundryDutiesAssignedComplete', function laborLaundryDutiesAssignedComplete(){
+  if(!this.userId){
+    return this.ready();
+  }
+
+  return LaundryDuties.find({laborerId: this.userId, status: AcceptableDutyStatuses.Complete}, { sort: {dateCreated: -1}}, {
+    fields : LaundryDuties.publicFields
+  })
+});
+
+
+
+
 Meteor.publish('employerLaundryAssigned', function employerLaundryAssigned(){
   if(!this.userId){
     return this.ready();

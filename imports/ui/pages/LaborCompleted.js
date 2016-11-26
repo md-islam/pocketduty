@@ -9,6 +9,7 @@ import '../components/laborShoppingCompleted.html';
 import '../components/laborMailDutyCompleted.html';
 import '../components/laborAcademicCompleted.html';
 import '../components/laborTransportCompleted.html';
+import '../components/laborLaundryDutyCompleted.html';
 import '../components/academicDuty.html';
 import '../components/laundryDuty.html';
 //import { AcceptableDutyStatuses } from '../../api/duties/duties.js';
@@ -20,7 +21,7 @@ Template.LaborCompleted.onCreated(function(){
         this.subscribe('laborMailDutiesAssignedComplete',{});
         this.subscribe('laborAcademicCompleted', {});
         this.subscribe('laborTransportCompleted', {});
-        this.subscribe('laundryDuties', {});
+        this.subscribe('laborLaundryDutiesAssignedComplete', {});
     });
 });
 
@@ -39,7 +40,7 @@ Template.LaborCompleted.helpers({
         return TransportDuties.find();
     },
     laundryDuties() {
-        return LaundryDuties.find({userId: { $ne: Meteor.userId() }}, { sort: {dateCreated: -1}});
+        return LaundryDuties.find();
     },
     mailDuties(){
         console.log("Getting shoppingduties");

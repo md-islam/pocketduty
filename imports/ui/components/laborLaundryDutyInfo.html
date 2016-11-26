@@ -1,0 +1,41 @@
+<template name="laborLaundryDutyInfo">
+<div class="panel-heading" style="background-color:#CC0000; color:#fff;"> <i class="fa fa-lg fa-laundryDuty" aria-hidden="true"></i>&nbsp;<b>Laundry Duty</b></div>
+<div class="panel-body">
+	<label class="small">Due Date: </label>
+	<h4>{{formatDate dueDate}} </h4>
+	<hr>
+
+	<label class="small">Title :</label>
+	<h4>{{title}}</h4>
+	<hr>
+
+	<label class="small">Description:</label>
+	<h4>{{description}}</h4>
+	<hr>
+
+	<label class="small">Load Size:</label>
+	<h4>{{loadNo}}</h4>
+	<hr>
+
+	<label class="small">Service Price:</label>
+	<h4>{{price}}</h4>	
+	<hr>
+
+</div>
+</template>
+
+
+<!-- {
+  "_id": "QLTd6Cf6naRv6NkJ5",
+  "title": "Do laundry",
+  "description": "a lot of launry",
+  "userId": "HbaH7geQ6jQ3x4qX9",
+  "status": "New",
+  "dueDate": "2016-11-30T00:00:00.000Z",
+  "dateCreated": "2016-11-26T01:13:27.112Z",
+  "loadNo": "Large",
+  "price": 10,
+  "laborerId": "none"
+} -->
+
+<!-- (need to show title, description, duedate, load number and price) -->

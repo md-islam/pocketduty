@@ -7,6 +7,7 @@ import { MailDuties } from '../../api/mailDuties/mailDuties.js';
 import './LaborDashboard.html';
 import '../components/laborShoppingDuty.js';
 import '../components/laborTransportDuty.js';
+import '../components/laborLaundryDuty.js';
 import '../components/laborAcademic.js';
 import '../components/laborMailDuty.js';
 import '../components/academicDuty.html';
@@ -18,7 +19,7 @@ Template.LaborDashboard.onCreated(function(){
 	this.autorun(() => {
 		console.log("Yo yo yo");
 		this.subscribe('laborAcademicDuties', {});	//Academic
-		this.subscribe('laundryDuties', {});	//Laundry
+		this.subscribe('laborLaundryDutiesNew', {});	//Laundry
 		this.subscribe('laborMailDutiesNew', {});	//Mailing
 		this.subscribe('laborShoppingDuties', {});	//Shopping
 		this.subscribe('laborTransportDuties', {});	//Transport
@@ -30,7 +31,7 @@ Template.LaborDashboard.helpers({
 		return AcademicDuties.find();
 	},
 	laundryDuties() {	//Laundry
-		return LaundryDuties.find({userId: { $ne: Meteor.userId() }}, { sort: {dateCreated: -1}});
+		return LaundryDuties.find();
 	},
 	mailDuties() {	//Mailing
 		console.log("getting mail duties")
