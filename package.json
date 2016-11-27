@@ -5,9 +5,10 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "bcrypt": "^0.8.7",
     "meteor-node-stubs": "~0.2.0",
     "paypal-ec": "^0.2.7",
-    "paypal-rest-sdk": "^1.7.0",
-    "paypal-express-checkout" : "*"
+    "paypal-express-checkout": "*",
+    "paypal-rest-sdk": "^1.7.0"
   }
 }
