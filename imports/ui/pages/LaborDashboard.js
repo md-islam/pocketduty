@@ -23,6 +23,11 @@ Template.LaborDashboard.onCreated(function(){
 		this.subscribe('laborMailDutiesNew', {});	//Mailing
 		this.subscribe('laborShoppingDuties', {});	//Shopping
 		this.subscribe('laborTransportDuties', {});	//Transport
+
+		$('#tabs a').click(function (e) {
+		  e.preventDefault()
+		  $(this).tab('show')
+		})
 	});
 });
 

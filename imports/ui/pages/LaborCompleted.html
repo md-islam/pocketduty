@@ -4,36 +4,50 @@
     
     
     <div class="container" style="margin-left: 200px; margin-right: 5%">
-    <h1 class="page-title">Dashboard</h1>
-        <h2 class="page-title">Shopping duty</h2>
-    	<div class="row">
-			{{#each shoppingDuty in shoppingDuties}}
-				{{> LaborShoppingCompleted (shoppingDuty)}}
-			{{/each}}
-		</div>
-        <h2 class="page-title">Acedamic duty</h2>
-        <div class="row">
-            {{#each academicDuty in academicDuties}}
-                {{> LaborAcademicCompleted (academicDuty)}}
-            {{/each}}
+    <h2 class="page-title">Completed Duties</h2>
+    Here are all the duties you've completed. 
+    <br>
+    <br>
+    <div>
+        <ul class="nav nav-tabs" id="tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#academic-duties-row" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;Academic Duties</a></li>
+            <li role="presentation" ><a href="#laundry-duties-row" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tint" aria-hidden="true"></i>&nbsp;Laundry Duties</a></li>
+            <li role="presentation"><a href="#mail-duties-row" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;Mail Duties</a></li>
+            <li role="presentation" ><a href="#shopping-duties-row" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-lg fa-shopping-cart" aria-hidden="true"></i>&nbsp;Shopping Duties</a></li>
+            <li role="presentation" ><a href="#transport-duties-row" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-car" aria-hidden="true"></i>&nbsp;Transport Duties</a></li>
+        </ul>
+        <br>
+        <div class="tab-content">
+            <div id="academic-duties-row" role="tabpanel" class="tab-pane active" >
+                {{#each academicDuty in academicDuties}}
+                    {{> LaborAcademicCompleted (academicDuty)}}
+                {{/each}}
+            </div>
+
+            <div id="laundry-duties-row" role="tabpanel" class="tab-pane" >
+                {{#each laundryDuty in laundryDuties}}
+                    {{> LaborLaundryDutyCompleted (laundryDuty)}}
+                {{/each}}
+            </div>
+
+            <div id="mail-duties-row" role="tabpanel" class="tab-pane" >
+                {{#each mailDuty in mailDuties}}
+                    {{> LaborMailDutyCompleted (mailDuty)}}
+                {{/each}}
+            </div>
+
+            <div id="shopping-duties-row" role="tabpanel" class="tab-pane" >
+                {{#each shoppingDuty in shoppingDuties}}
+                    {{> LaborShoppingCompleted (shoppingDuty)}}
+                {{/each}}
+            </div>
+
+            <div id="transport-duties-row" role="tabpanel" class="tab-pane" >
+                {{#each transportDuty in transportDuties}}
+                    {{> LaborTransportCompleted (transportDuty)}}
+                {{/each}}
+            </div>
         </div>
-        <h2 class="page-title">Transport duty</h2>
-        <div class="row">
-            {{#each transportDuty in transportDuties}}
-                {{> LaborTransportCompleted (transportDuty)}}
-            {{/each}}
-        </div>
-        <h2 class="page-title">Laundry duties</h2>
-        <div class="row">
-            {{#each laundryDuty in laundryDuties}}
-                {{> LaborLaundryDutyCompleted (laundryDuty)}}
-            {{/each}}
-        </div>
-        <h2 class="page-title">Mail duties</h2>
-        <div class="row">
-            {{#each mailDuty in mailDuties}}
-                {{> LaborMailDutyCompleted (mailDuty)}}
-            {{/each}}
-        </div>
-	</div>
+    </div>
+    </div>
 </template>

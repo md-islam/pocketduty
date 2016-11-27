@@ -3,32 +3,51 @@
     	{{> AppNav}}
 
     <div class="container" style="margin-left: 200px; margin-right: 5%;">
-    <h1 class="page-title">Inactive Duties</h1>
-    	<div class="row">
-			{{#each shoppingDuty in shoppingDuties}}
-				{{> ShoppingDuty (shoppingDuty)}}
-			{{/each}}
-		</div>
-        <div class="row">
-            {{#each academicDuty in academicDuties}}
-                {{> AcademicDuty (academicDuty)}}
-            {{/each}}
+    <h2 class="page-title">Inactive Duties</h2>
+    These are your duties that have not been picked up by a Pocket Duty employee yet. 
+    <br>
+    <br>
+    <div>
+        <ul class="nav nav-tabs" id="tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#academic-duties-row" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;Academic Duties</a></li>
+            <li role="presentation" ><a href="#laundry-duties-row" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tint" aria-hidden="true"></i>&nbsp;Laundry Duties</a></li>
+            <li role="presentation"><a href="#mail-duties-row" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;Mail Duties</a></li>
+            <li role="presentation" ><a href="#shopping-duties-row" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-lg fa-shopping-cart" aria-hidden="true"></i>&nbsp;Shopping Duties</a></li>
+            <li role="presentation" ><a href="#transport-duties-row" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-car" aria-hidden="true"></i>&nbsp;Transport Duties</a></li>
+        </ul>
+        <br>
+        <div class="tab-content">
+            <div id="academic-duties-row" role="tabpanel" class="tab-pane active" >
+                {{#each academicDuty in academicDuties}}
+                    {{> AcademicDuty (academicDuty)}}
+                {{/each}}
+            </div>
+
+            <div id="laundry-duties-row" role="tabpanel" class="tab-pane" >
+                {{#each laundryDuty in laundryDuties}}
+                    {{> LaundryDuty (laundryDuty)}}
+                {{/each}}
+            </div>
+
+            <div id="mail-duties-row" role="tabpanel" class="tab-pane" >
+                {{#each mailDuty in mailDuties}}
+                    {{> MailDuty (mailDuty)}}
+                {{/each}}
+            </div>
+
+            <div id="shopping-duties-row" role="tabpanel" class="tab-pane" >
+                {{#each shoppingDuty in shoppingDuties}}
+                    {{> ShoppingDuty (shoppingDuty)}}
+                {{/each}}
+            </div>
+
+            <div id="transport-duties-row" role="tabpanel" class="tab-pane" >
+                {{#each transportDuty in transportDuties}}
+                    {{> TransportDuty (transportDuty)}}
+                {{/each}}
+            </div>
         </div>
-        <div class="row">
-            {{#each laundryDuty in laundryDuties}}
-                {{> LaundryDuty (laundryDuty)}}
-            {{/each}}
-        </div>
-        <div class="row">
-            {{#each mailDuty in mailDuties}}
-                {{> MailDuty (mailDuty)}}
-            {{/each}}
-        </div>
-        <div class="row">
-            {{#each transportDuty in transportDuties}}
-                {{> TransportDuty (transportDuty)}}
-            {{/each}}
-        </div>
+    </div>
   	</div>
 
 </template>
